@@ -25,6 +25,9 @@ export type Project = {
   badge: string;
   ownershipNote: string;
   summary: string;
+  /** Optional shorter text and tags for the recruiter-facing project card. */
+  cardSummary?: string;
+  cardTags?: string[];
   context: string[];
   role: string;
   repository: { url: string; label: string; note?: string };
@@ -55,6 +58,9 @@ export const projects: Project[] = [
     ownership: "personal",
     badge: "Personal flagship project",
     ownershipNote: "Designed and built end to end.",
+    cardSummary:
+      "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
+    cardTags: ["Java 17", "Spring Boot 3", "Apache Kafka", "PostgreSQL 16", "Next.js", "Spring Security", "Redis", "Docker"],
     summary:
       "A full-stack banking platform built from 11 Spring Boot business services behind an API gateway, with Kafka events, per-service PostgreSQL databases, a Next.js customer and staff console, and a test suite that treats money-movement correctness as the primary risk.",
     context: [
