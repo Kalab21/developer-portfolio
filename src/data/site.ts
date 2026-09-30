@@ -9,6 +9,9 @@ export const site = {
   metaDescription:
     "Senior Software Engineer and Forward Deployed Engineer with 6+ years across Java and Spring Boot, distributed systems, cloud, data engineering and applied AI (RAG, FastAPI).",
   github: "https://github.com/Kalab21",
+  email: "kalabkebe12@gmail.com",
+  phone: "(240) 288-1031",
+  phoneHref: "tel:+12402881031",
   domains: [
     "Banking",
     "Financial Services",

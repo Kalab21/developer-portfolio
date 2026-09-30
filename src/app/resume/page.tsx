@@ -11,7 +11,7 @@ export default function ResumePage() {
   return (
     <>
       <PageHeader eyebrow="Resume" title="Resume">
-        A two-page PDF covering experience, skills and selected projects.
+        A two-page PDF covering experience, skills and selected projects, with contact details.
       </PageHeader>
       <Container className="py-12 sm:py-16">
         <div className="flex flex-wrap gap-3">

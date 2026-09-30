@@ -55,6 +55,11 @@ export function Footer() {
             </a>
           </li>
           <li>
+            <a href={`mailto:${site.email}`} className="hover:text-foreground">
+              Email
+            </a>
+          </li>
+          <li>
             <Link href="/resume" className="hover:text-foreground">
               Resume
             </Link>
