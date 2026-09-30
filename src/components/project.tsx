@@ -164,11 +164,11 @@ export function ProjectCard({
           </Link>
         </h3>
         <p className="mt-1 text-sm text-muted">{project.subtitle}</p>
-        <p className="mt-4 text-sm leading-6 text-muted">{project.summary}</p>
+        <p className="mt-4 text-sm leading-6 text-muted">{project.cardSummary ?? project.summary}</p>
         <div className="mt-5">
           <TagList
             label={`${project.title} technologies`}
-            items={project.technologies.flatMap((g) => g.items).slice(0, flagship ? 8 : 5)}
+            items={project.cardTags ?? project.technologies.flatMap((g) => g.items).slice(0, flagship ? 8 : 5)}
           />
         </div>
         <p className="mt-6 text-sm font-semibold text-accent">
