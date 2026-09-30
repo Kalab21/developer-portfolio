@@ -9,8 +9,6 @@ export const site = {
   metaDescription:
     "Senior Software Engineer and Forward Deployed Engineer with 6+ years across Java and Spring Boot, distributed systems, cloud, data engineering and applied AI (RAG, FastAPI).",
   github: "https://github.com/Kalab21",
-  email: "kalabkebe12@gmail.com",
-  location: "Maryland, USA",
   domains: [
     "Banking",
     "Financial Services",
@@ -121,7 +119,6 @@ export const skillGroups: SkillGroup[] = [
       "FastAPI",
       "RAG",
       "LLM Integration",
-      "Agentic AI",
       "AI Evaluation",
       "Human-in-the-Loop",
       "Brownfield Analysis",
@@ -163,7 +160,6 @@ export const skillGroups: SkillGroup[] = [
 
 export type Engagement = {
   name: string;
-  period: string;
   points: string[];
   stack: string[];
 };
@@ -173,6 +169,7 @@ export type Role = {
   company: string;
   title: string;
   period: string;
+  location: string;
   focus: string;
   summary: string;
   engagements?: Engagement[];
@@ -186,30 +183,26 @@ export const roles: Role[] = [
     company: "Revature",
     title: "Forward Deployed Engineer",
     period: "May 2026 – Sep 2026",
+    location: "Remote",
     focus: "Forward Deployed Engineering · Applied AI",
     summary:
       "Two client-style engagements inheriting partially built systems: understand the existing platform, close the gaps, and ship verified changes.",
     engagements: [
       {
         name: "Consumer Lending / AI Underwriting Platform",
-        period: "Jun 2026 – Sep 2026",
         points: [
-          "Modernized an inherited brownfield lending platform by tracing workflows across intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation.",
-          "Built a RAG-based underwriting assistant grounded in approved guidelines and fee schedules, keeping the existing decisioning service as the system of record.",
-          "Turned business and regulatory requirements into specifications and ADRs; verified TILA/APR calculations with automated tests and independent validation vectors.",
-          "Strengthened RBAC, service ownership, decision finality, idempotency, auditability and reconciliation across distributed services.",
-          "Applied structured logging, metrics, tracing and CI/CD gates, with AI-assisted development kept inside normal review and testing controls.",
+          "Modernized an inherited lending platform spanning intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation.",
+          "Built a grounded RAG policy assistant while keeping deterministic decisioning as the system of record.",
+          "Strengthened RBAC, decision finality, idempotency, auditability and data-integrity controls.",
+          "Translated business and regulatory requirements into specifications and ADRs; added automated verification for lending calculations and production-style logging, metrics, tracing and CI gates.",
         ],
         stack: ["Python", "FastAPI", "Next.js", "PostgreSQL", "Redis", "RAG", "JWT/RBAC", "Pytest", "Playwright", "GitHub Actions"],
       },
       {
         name: "Skills Assessment Platform",
-        period: "May 2026 – Jun 2026",
         points: [
-          "Extended a partially built five-service platform into end-to-end candidate, trainer, reporting and role-aware workflows.",
-          "Wired Nginx and API-gateway routing across services and built the missing Reporting & Analytics service into a running, gateway-reachable component.",
-          "Implemented timed assessments, trainer workflows and JWT/RBAC controls on PostgreSQL and MongoDB while preserving inherited service contracts.",
-          "Diagnosed failures across proxy, gateway, service and database boundaries; maintained CI verification across backend services and the frontend.",
+          "Completed trainer, reporting, participant and role-aware workflows across FastAPI and Next.js services.",
+          "Wired Nginx and API-gateway routing and PostgreSQL/MongoDB-backed features.",
         ],
         stack: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "PostgreSQL", "MongoDB", "Nginx", "Docker Compose", "CI/CD"],
       },
@@ -218,29 +211,45 @@ export const roles: Role[] = [
   {
     id: "lovelytics",
     company: "Lovelytics",
-    title: "Data & Analytics Engineer",
+    title: "Data & Analytics Engineer (Contract)",
     period: "Dec 2024 – Nov 2025",
+    location: "Arlington, VA",
     focus: "Data engineering · Analytics",
     summary:
-      "Enterprise analytics and reporting: turning stakeholder questions into modeled, trustworthy KPIs.",
+      "Enterprise analytics and reporting: turning stakeholder needs into modeled, trustworthy KPIs.",
     points: [
-      "Designed and optimized SQL-based analytics and reporting solutions on PostgreSQL and MySQL, including CTEs, window functions and aggregations for KPI models.",
-      "Built ETL/ELT and reporting patterns using AWS Athena, S3, Glue and RDS, with data validation and quality checks.",
-      "Delivered Power BI dashboards using DAX, Power Query and row-level security, translating stakeholder requirements into maintainable KPI definitions.",
+      "Designed SQL-based analytics and reporting solutions using PostgreSQL/MySQL, ETL/ELT, Power BI and dimensional modeling; translated stakeholder needs into maintainable KPI models and dashboards.",
+      "Built AWS analytics workflows with Athena, S3, Glue and RDS, and implemented validation and data-quality checks that improved reliability of downstream reporting.",
+      "Optimized analytical SQL with CTEs, window functions, indexing, aggregation and caching; automated recurring reporting and transformation workflows with Power Query and DAX.",
     ],
     stack: ["SQL", "AWS Athena", "Glue", "S3", "RDS", "Power BI", "DAX", "Power Query", "PostgreSQL", "MySQL"],
   },
   {
+    id: "scale-ai",
+    company: "Scale AI / Outlier AI",
+    title: "AI Data Specialist (Flexible / Task-Based Contract)",
+    period: "Apr 2024 – Feb 2025",
+    location: "Remote",
+    focus: "AI evaluation",
+    summary: "Quality review of AI-generated data and responses.",
+    points: [
+      "Validated and refined AI-generated datasets and responses for factual accuracy, semantic quality and alignment with task requirements and business logic.",
+      "Promoted to reviewer responsibilities, auditing peer work and providing targeted feedback to improve consistency and quality.",
+    ],
+    stack: ["AI evaluation", "Data validation", "Quality review"],
+  },
+  {
     id: "jpmorgan",
     company: "JPMorgan Chase",
-    title: "Java Software Engineer",
-    period: "May 2024 – Sep 2024",
+    title: "Java Software Engineer (Contract)",
+    period: "May 2024 – Oct 2024",
+    location: "Columbus, OH",
     focus: "Enterprise banking modernization",
     summary: "Banking platform modernization in a compliance-sensitive environment.",
     points: [
-      "Modernized enterprise banking applications with Java and Spring Boot, improving REST API performance, database efficiency, maintainability and deployment reliability.",
-      "Built secure microservices and integrations with Spring Security, Spring Data JPA, Oracle, Redis, AWS, REST APIs, SFTP and SMTP.",
-      "Improved reliability through automated testing, exception handling, performance tuning, Docker/Kubernetes practices, code review and production support.",
+      "Modernized enterprise banking services with Java and Spring Boot, improving API and database efficiency, maintainability and deployment reliability.",
+      "Built secure microservices and integrations using Spring Security, JPA, Oracle, Redis, AWS, REST APIs, SFTP and SMTP; supported issues across application, integration and data layers.",
+      "Improved reliability through query tuning, caching, automated tests, exception handling, Docker/Kubernetes practices, code reviews and production support.",
     ],
     stack: ["Java 8/17/21", "Spring Boot", "Oracle", "Redis", "AWS", "Docker", "Kubernetes", "JUnit 5", "Maven"],
   },
@@ -249,12 +258,13 @@ export const roles: Role[] = [
     company: "Investors Bank",
     title: "Java Software Engineer",
     period: "Apr 2021 – Dec 2023",
+    location: "Short Hills, NJ",
     focus: "Core banking · Distributed systems",
-    summary: "Legacy core-banking modernization into event-driven microservices.",
+    summary: "Legacy banking workflows modernized into event-driven microservices.",
     points: [
-      "Modernized a legacy core-banking platform into Spring Boot microservices and event-driven workflows using Kafka, PostgreSQL and Redis.",
-      "Implemented secure REST APIs, Kafka-based integrations and transaction-processing workflows while preserving business behavior and data integrity.",
-      "Optimized SQL and database access, applied caching and asynchronous patterns, and automated build, test and delivery with Jenkins and GitHub Actions.",
+      "Modernized legacy banking workflows into Spring Boot microservices and Kafka-based event-driven services using PostgreSQL and Redis while preserving transaction and data integrity.",
+      "Improved database and backend performance through SQL refactoring, indexing, caching and asynchronous processing; supported production troubleshooting across distributed services.",
+      "Automated build, test and delivery workflows with Jenkins and GitHub Actions and collaborated with architects, QA and business partners on incremental modernization.",
     ],
     stack: ["Java", "Spring Boot", "Kafka", "PostgreSQL", "Redis", "Microservices", "Jenkins", "GitHub Actions"],
   },
@@ -263,12 +273,13 @@ export const roles: Role[] = [
     company: "Erie Insurance",
     title: "Java Software Engineer",
     period: "Mar 2019 – Feb 2021",
+    location: "Erie, PA",
     focus: "Insurance · Enterprise Java",
     summary: "Claims and policy management backend services.",
     points: [
-      "Developed high-availability Java backend services and REST APIs for claims, policies, customers and transaction-processing workflows.",
-      "Implemented concurrency-safe processing, persistence with Hibernate/JPA on MySQL, SQL optimization and automated testing.",
-      "Worked with engineering and QA to resolve defects and improve reliability of production services.",
+      "Developed Java backend services and REST APIs supporting claims, policies, customers and transaction-processing workflows.",
+      "Implemented concurrency-safe processing, Hibernate/JPA persistence, MySQL query optimization and automated testing for business-critical services.",
+      "Worked with engineering and QA teams on defect resolution, production troubleshooting, reliability, maintainability and application performance.",
     ],
     stack: ["Java", "Spring", "Hibernate/JPA", "MySQL", "Concurrency", "JUnit", "Mockito"],
   },
@@ -277,4 +288,5 @@ export const roles: Role[] = [
 export const education = [
   "B.S. Computer Science — Maharishi International University (2023)",
   "B.S. Electrical and Computer Engineering — Haramaya University (2015)",
+  "Data Analytics Certificate — Per Scholas",
 ];

@@ -6,7 +6,7 @@ import { Container, PageHeader } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Career timeline: Forward Deployed Engineering at Revature, data and analytics engineering at Lovelytics, and Java engineering at JPMorgan Chase, Investors Bank and Erie Insurance.",
+    "Career timeline: Forward Deployed Engineering at Revature, data and analytics engineering at Lovelytics, AI data review at Scale AI, and Java engineering at JPMorgan Chase, Investors Bank and Erie Insurance.",
 };
 
 export default function ExperiencePage() {

@@ -6,7 +6,7 @@ const base = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : "http://localhost:3000";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/projects", "/experience", "/about", "/contact"];
+  const routes = ["", "/projects", "/experience", "/about", "/resume", "/contact"];
   return [
     ...routes.map((r) => ({ url: `${base}${r}` })),
     ...projects.map((p) => ({ url: `${base}/projects/${p.slug}` })),

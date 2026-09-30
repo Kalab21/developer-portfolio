@@ -14,7 +14,10 @@ export function RoleCard({ role }: { role: Role }) {
           </h2>
           <p className="text-base text-foreground">{role.title}</p>
         </div>
-        <p className="font-mono text-sm text-muted">{role.period}</p>
+        <p className="font-mono text-sm text-muted sm:text-right">
+          {role.period}
+          <span className="block">{role.location}</span>
+        </p>
       </header>
       <p className="mt-1 font-mono text-xs uppercase tracking-widest text-accent">
         {role.focus}
@@ -31,7 +34,6 @@ export function RoleCard({ role }: { role: Role }) {
             >
               <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                 <h3 className="text-lg font-semibold">{e.name}</h3>
-                <p className="font-mono text-xs text-muted">{e.period}</p>
               </div>
               <ul className="mt-3 list-disc space-y-2 pl-5 leading-7 marker:text-accent">
                 {e.points.map((p) => (

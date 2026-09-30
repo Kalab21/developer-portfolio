@@ -29,6 +29,7 @@ export default function Home() {
               <ButtonLink href={site.github} external>
                 GitHub
               </ButtonLink>
+              <ButtonLink href="/resume">Resume</ButtonLink>
             </div>
           </div>
         </Container>
