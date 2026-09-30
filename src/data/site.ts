@@ -30,7 +30,7 @@ export const site = {
     "Banking",
     "Financial Services",
     "Insurance",
-    "Data & Analytics",
+    "Data Engineering & Analytics",
     "Applied AI",
   ],
 } as const;

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <>
-      <PageHeader eyebrow="Projects" title="Systems I have designed, built and hardened">
+      <PageHeader eyebrow="Projects" title="Systems I have built, extended and hardened">
         Northbank is the flagship. Meridian Lending and Rev-Eval are team engagements, so
         each page separates what the project is from what I contributed. MarketHub is a
         smaller supporting project.
