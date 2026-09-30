@@ -1,15 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ArchitectureTier, Project, Screenshot, Stat } from "@/data/projects";
-import { TagList } from "./ui";
+import { Badge, TagList } from "./ui";
 
 export function StatGrid({ stats }: { stats: Stat[] }) {
   return (
     <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
       {stats.map((s) => (
-        <div key={s.label} className="flex flex-col-reverse justify-end rounded-lg border border-border bg-surface p-4">
+        <div key={s.label} className="flex flex-col-reverse justify-end rounded-xl border border-border bg-surface p-4 shadow-card">
           <dt className="mt-1 text-sm leading-5 text-muted">{s.label}</dt>
-          <dd className="text-2xl font-semibold tracking-tight">{s.value}</dd>
+          <dd className="text-2xl font-semibold tracking-tight sm:text-3xl">{s.value}</dd>
         </div>
       ))}
     </dl>
@@ -86,7 +86,7 @@ export function Shot({
 }) {
   return (
     <figure>
-      <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+      <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-card">
         <Image
           src={shot.src}
           alt={shot.alt}
@@ -114,7 +114,7 @@ export function ProjectCard({
   const image = project.cardImage ?? project.screenshots[0];
   return (
     <article
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-surface transition-shadow hover:shadow-lg ${
+      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-surface shadow-card transition-shadow hover:shadow-lg ${
         flagship ? "border-accent lg:col-span-3 lg:flex-row" : "border-border"
       }`}
     >
@@ -148,8 +148,11 @@ export function ProjectCard({
         )}
       </div>
       <div className={`flex flex-1 flex-col p-6 ${flagship ? "lg:p-8" : ""}`}>
-        <p className="font-mono text-xs uppercase tracking-widest text-accent">
-          {flagship ? "Flagship · " : `0${index + 1} · `}
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge>{project.badge}</Badge>
+          <span className="font-mono text-xs text-muted">0{index + 1}</span>
+        </div>
+        <p className="mt-3 font-mono text-xs uppercase tracking-widest text-accent">
           {project.category}
         </p>
         <h3 className={`mt-2 font-semibold tracking-tight ${flagship ? "text-3xl" : "text-xl"}`}>

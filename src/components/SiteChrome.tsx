@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "@/data/site";
 import { Container } from "./ui";
+import { NavMenu } from "./NavMenu";
 
 const nav = [
   { href: "/projects", label: "Projects" },
@@ -13,24 +14,11 @@ const nav = [
 export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <Container className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-3">
+      <Container className="relative flex items-center justify-between py-3">
         <Link href="/" className="text-base font-semibold tracking-tight">
           {site.name}
         </Link>
-        <nav aria-label="Primary">
-          <ul className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="py-2 text-muted transition-colors hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <NavMenu items={nav} />
       </Container>
     </header>
   );
@@ -55,14 +43,14 @@ export function Footer() {
             </a>
           </li>
           <li>
-            <a href={`mailto:${site.email}`} className="hover:text-foreground">
-              Email
-            </a>
-          </li>
-          <li>
             <Link href="/resume" className="hover:text-foreground">
               Resume
             </Link>
+          </li>
+          <li>
+            <a href={`mailto:${site.email}`} className="hover:text-foreground">
+              Email
+            </a>
           </li>
         </ul>
       </Container>

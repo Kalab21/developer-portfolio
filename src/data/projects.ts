@@ -22,6 +22,7 @@ export type Project = {
   category: string;
   /** "personal" = built end to end by me; "team" = organization / team project. */
   ownership: "personal" | "team";
+  badge: string;
   ownershipNote: string;
   summary: string;
   context: string[];
@@ -52,7 +53,8 @@ export const projects: Project[] = [
     subtitle: "Event-driven retail banking platform",
     category: "Distributed Systems & Financial Engineering",
     ownership: "personal",
-    ownershipNote: "Personal project, designed and built end to end.",
+    badge: "Personal flagship project",
+    ownershipNote: "Designed and built end to end.",
     summary:
       "A full-stack banking platform built from 11 Spring Boot business services behind an API gateway, with Kafka events, per-service PostgreSQL databases, a Next.js customer and staff console, and a test suite that treats money-movement correctness as the primary risk.",
     context: [
@@ -176,7 +178,8 @@ export const projects: Project[] = [
     subtitle: "Consumer lending platform with a RAG policy assistant",
     category: "Forward Deployed Engineering & Applied AI",
     ownership: "team",
-    ownershipNote: "Team engagement in an organization repository. Contributions below are mine.",
+    badge: "Team / FDE project",
+    ownershipNote: "Team engagement in an organization repository. My contributions are listed separately below.",
     summary:
       "A brownfield consumer-lending platform (origination, decisioning, disclosures, servicing, payments, reconciliation) that a team inherited, hardened and decomposed into eight FastAPI services, with a staff-only RAG assistant grounded in approved lending policy.",
     context: [
@@ -191,10 +194,10 @@ export const projects: Project[] = [
       note: "Organization repository (public).",
     },
     stats: [
-      { value: "8", label: "FastAPI services" },
-      { value: "170", label: "merged pull requests authored by me" },
+      { value: "8", label: "FastAPI backend services" },
       { value: "12", label: "architecture decision records" },
-      { value: "2,000+", label: "automated tests (recorded Aug 2026)" },
+      { value: "48", label: "database migrations" },
+      { value: "Read-only", label: "staff-only RAG assistant, no database access" },
     ],
     technologies: [
       { group: "Backend", items: ["Python 3.12", "FastAPI", "LangGraph", "Anthropic or AWS Bedrock models"] },
@@ -264,13 +267,13 @@ export const projects: Project[] = [
       summary:
         "Per-service Pytest suites run against PostgreSQL 16 in CI, alongside Playwright end-to-end specs.",
       stats: [
-        { value: "2,000+", label: "tests in a recorded Aug 2026 run" },
-        { value: "8", label: "backend services covered" },
+        { value: "8", label: "services with their own Pytest suites" },
         { value: "42", label: "Playwright spec files" },
+        { value: "1", label: "gitleaks secret-scan job in CI" },
       ],
       notes: [
-        "The recorded run in the project roadmap counts database, service and assistant tests separately; the total is a historical figure, not a live badge.",
         "TILA/APR outputs are compared against golden payment-schedule vectors.",
+        "A retrieval evaluation harness and corpus-hygiene gate cover the policy assistant.",
       ],
     },
     scope: [
@@ -281,7 +284,7 @@ export const projects: Project[] = [
     ],
     cardImage: { src: "/projects/meridian/tila-disclosure.webp", width: 1600, height: 842, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
     screenshots: [
-      { src: "/projects/meridian/decision-evidence.webp", width: 1600, height: 925, alt: "Meridian Lending application page showing a five-step status strip and a decision evidence panel with model version, scores and outcome.", caption: "Application status and decision evidence" },
+      { src: "/projects/meridian/decision-evidence.webp", width: 1600, height: 947, alt: "Meridian Lending application page showing a five-step status strip and a decision evidence panel with model version, scores and outcome.", caption: "Application status and decision evidence" },
       { src: "/projects/meridian/tila-disclosure.webp", width: 1600, height: 842, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
       { src: "/projects/meridian/policy-chat.webp", width: 1400, height: 1243, alt: "Meridian policy chat answering a question about late fees with a grounded-in-policy label, the fee schedule as source and expandable evidence.", caption: "Policy chat with cited evidence" },
       { src: "/projects/meridian/ai-summary.webp", width: 1600, height: 632, alt: "AI application summary marked as not a decision, with an external-context section labeled as not model-generated.", caption: "Advisory AI summary" },
@@ -294,7 +297,8 @@ export const projects: Project[] = [
     subtitle: "Skills assessment and evaluation platform",
     category: "AI Platform & Full-Stack FDE Engineering",
     ownership: "team",
-    ownershipNote: "Team engagement in an organization repository. Contributions below are mine.",
+    badge: "Team / FDE project",
+    ownershipNote: "Team engagement in an organization repository. My contributions are listed separately below.",
     summary:
       "A multi-service assessment platform where trainers create and assign tests, participants take timed assessments, and the system scores them and reports analytics. I extended a partially built five-service application into working end-to-end flows.",
     context: [
@@ -304,17 +308,17 @@ export const projects: Project[] = [
     role:
       "Contributing full-stack engineer: scoring engine, quiz-taking UX, the Reporting & Analytics service, gateway and auth hardening, and test and CI coverage.",
     repository: {
-      url: "https://github.com/RevatureFDEPEP/rev-eval",
-      label: "RevatureFDEPEP/rev-eval",
-      note: "Organization repository (public).",
+      url: "https://github.com/RevatureFDEPEP/rev-eval/tree/kalabek",
+      label: "My work: kalabek integration branch",
+      note: "My work lives on the kalabek integration branch, not on the organization's main.",
     },
     extraLinks: [
-      { url: "https://github.com/RevatureFDEPEP/rev-eval/tree/kalabek", label: "My integration branch (kalabek)" },
+      { url: "https://github.com/RevatureFDEPEP/rev-eval", label: "Organization repository" },
     ],
     stats: [
       { value: "5", label: "backend services" },
-      { value: "10+", label: "pull requests merged into my integration branch" },
-      { value: "400+", label: "backend test functions on the branch" },
+      { value: "3", label: "data stores: PostgreSQL, MongoDB, MinIO" },
+      { value: "2", label: "roles: trainer and participant" },
       { value: "80%", label: "diff-coverage gate on changed lines in CI" },
     ],
     technologies: [
@@ -376,12 +380,12 @@ export const projects: Project[] = [
       summary:
         "CI runs a five-service backend matrix with PostgreSQL and MongoDB containers, plus frontend lint, build and tests.",
       stats: [
-        { value: "400+", label: "backend test functions (static count)" },
-        { value: "5", label: "services in the CI matrix" },
-        { value: "80%", label: "diff-coverage gate" },
+        { value: "5", label: "services in the CI backend matrix" },
+        { value: "80%", label: "diff-coverage gate on changed lines" },
+        { value: "Trivy", label: "security scan in CI" },
       ],
       notes: [
-        "The count is a static count of test functions on the branch, not a CI-reported total.",
+        "Backend suites run against PostgreSQL and MongoDB containers in CI.",
         "Playwright end-to-end runs are triggered manually in CI.",
       ],
     },
@@ -398,7 +402,8 @@ export const projects: Project[] = [
     subtitle: "Java marketplace with Admin, Seller and Buyer roles",
     category: "Java Full-Stack Engineering",
     ownership: "personal",
-    ownershipNote: "Personal project.",
+    badge: "Personal project",
+    ownershipNote: "Built and maintained by me.",
     summary:
       "A classic server-rendered Java marketplace: sellers list products after admin approval, buyers browse a catalogue, fill a cart and place orders. Built with Spring MVC, Thymeleaf, Spring Security and Spring Data JPA on MySQL.",
     context: [

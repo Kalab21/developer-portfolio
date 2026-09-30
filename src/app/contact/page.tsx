@@ -17,8 +17,8 @@ export default function ContactPage() {
         reach me.
       </PageHeader>
       <Container className="py-12 sm:py-16">
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <li className="rounded-2xl border border-border bg-surface p-6">
+        <ul className="grid gap-5 md:grid-cols-3">
+          <li className="rounded-2xl border border-border bg-surface p-6 shadow-card">
             <h2 className="font-semibold">Email</h2>
             <p className="mt-2 break-words text-muted">{site.email}</p>
             <div className="mt-4">
@@ -27,14 +27,7 @@ export default function ContactPage() {
               </ButtonLink>
             </div>
           </li>
-          <li className="rounded-2xl border border-border bg-surface p-6">
-            <h2 className="font-semibold">Phone</h2>
-            <p className="mt-2 text-muted">{site.phone}</p>
-            <div className="mt-4">
-              <ButtonLink href={site.phoneHref}>Call</ButtonLink>
-            </div>
-          </li>
-          <li className="rounded-2xl border border-border bg-surface p-6">
+          <li className="rounded-2xl border border-border bg-surface p-6 shadow-card">
             <h2 className="font-semibold">GitHub</h2>
             <p className="mt-2 text-muted">github.com/Kalab21</p>
             <div className="mt-4">
@@ -43,11 +36,11 @@ export default function ContactPage() {
               </ButtonLink>
             </div>
           </li>
-          <li className="rounded-2xl border border-border bg-surface p-6">
+          <li className="rounded-2xl border border-border bg-surface p-6 shadow-card">
             <h2 className="font-semibold">Resume</h2>
             <p className="mt-2 text-muted">Two-page PDF of experience and projects.</p>
             <div className="mt-4">
-              <ButtonLink href="/resume">View resume</ButtonLink>
+              <ButtonLink href="/resume">View Resume</ButtonLink>
             </div>
           </li>
         </ul>

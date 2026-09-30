@@ -1,4 +1,4 @@
-# Kalab Kebede — Developer Portfolio
+# Kalabe Kebede — Developer Portfolio
 
 Portfolio site for a Senior Software Engineer / Forward Deployed Engineer: Java and Spring, distributed systems, data engineering, cloud and applied AI.
 
@@ -6,7 +6,7 @@ Portfolio site for a Senior Software Engineer / Forward Deployed Engineer: Java 
 
 ## Pages
 
-`/` · `/projects` · `/projects/[slug]` (northbank, meridian-lending, rev-eval, markethub) · `/experience` · `/about` · `/contact`
+`/` · `/projects` · `/projects/[slug]` (northbank, meridian-lending, rev-eval, markethub) · `/experience` · `/about` · `/resume` · `/contact`
 
 ## Stack
 
@@ -17,6 +17,7 @@ Next.js (App Router, Server Components), React, TypeScript, Tailwind CSS. Static
 - `src/data/site.ts` — profile, expertise, skills, experience
 - `src/data/projects.ts` — typed project model rendered by one reusable page template
 - `public/projects/*` — screenshots taken from the real applications
+- `public/Kalabe-Kebede-Resume.pdf` — public resume
 
 ## Develop
 

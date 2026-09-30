@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { skillGroups } from "@/data/site";
-import { Container, PageHeader, SectionHeading, TagList } from "@/components/ui";
+import { featuredSkills, skillGroups } from "@/data/site";
+import { Container, PageHeader, SectionHeading, Tag } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "About",
@@ -26,19 +26,27 @@ export default function AboutPage() {
       </PageHeader>
 
       <Container className="py-12 sm:py-16">
-        <section aria-labelledby="path" className="max-w-4xl">
+        <section aria-labelledby="path">
           <h2 id="path" className="sr-only">
             Career path
           </h2>
-          <ol className="grid gap-3 sm:grid-cols-5">
+          <ol className="flex flex-col lg:flex-row lg:items-stretch">
             {path.map((p, i) => (
-              <li
-                key={p.step}
-                className="relative rounded-xl border border-border bg-surface p-4"
-              >
-                <p className="font-mono text-xs text-accent">0{i + 1}</p>
-                <p className="mt-1 font-semibold leading-snug">{p.step}</p>
-                <p className="mt-1 text-sm text-muted">{p.note}</p>
+              <li key={p.step} className="flex flex-1 flex-col lg:flex-row lg:items-stretch">
+                <div className="flex-1 rounded-xl border border-border bg-surface p-4 shadow-card">
+                  <p className="font-mono text-xs text-accent">0{i + 1}</p>
+                  <p className="mt-1 font-semibold leading-snug">{p.step}</p>
+                  <p className="mt-1 text-sm text-muted">{p.note}</p>
+                </div>
+                {i < path.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    className="flex items-center justify-center py-2 font-mono text-accent lg:px-2 lg:py-0"
+                  >
+                    <span className="lg:hidden">↓</span>
+                    <span className="hidden lg:inline">→</span>
+                  </span>
+                )}
               </li>
             ))}
           </ol>
@@ -75,17 +83,29 @@ export default function AboutPage() {
             title="Grouped by what I use them for"
             headingId="skills"
           >
-            No percentages or star ratings. These are technologies I have used in
-            production work or in the projects on this site.
+            No percentages or star ratings. Highlighted skills are the ones I use most
+            across the projects and roles on this site.
           </SectionHeading>
           <div className="grid gap-6 md:grid-cols-2">
             {skillGroups.map((g) => (
               <div
                 key={g.title}
-                className="rounded-2xl border border-border bg-surface p-6"
+                className="rounded-2xl border border-border bg-surface p-6 shadow-card"
               >
                 <h3 className="mb-4 text-lg font-semibold">{g.title}</h3>
-                <TagList items={g.skills} label={g.title} />
+                <ul className="flex flex-wrap gap-2" aria-label={g.title}>
+                  {g.skills.map((s) => (
+                    <li key={s}>
+                      {featuredSkills.has(s) ? (
+                        <span className="inline-block rounded-md bg-accent px-2.5 py-1 text-xs font-semibold text-accent-contrast">
+                          {s}
+                        </span>
+                      ) : (
+                        <Tag>{s}</Tag>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>

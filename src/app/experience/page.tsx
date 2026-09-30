@@ -15,14 +15,23 @@ export default function ExperiencePage() {
       <PageHeader eyebrow="Experience" title="6+ years, widening scope">
         Enterprise Java in insurance and banking, distributed-systems modernization, data
         and analytics engineering, and most recently Forward Deployed Engineering with
-        applied AI. Most recent first.
+        applied AI. Most recent first. Dates overlap where roles were contract or
+        task-based.
       </PageHeader>
       <Container className="py-12 sm:py-16">
-        <div className="space-y-8">
+        <ol className="relative space-y-8 border-l-2 border-border pl-6 sm:pl-10">
           {roles.map((r) => (
-            <RoleCard key={r.id} role={r} />
+            <li key={r.id} className="relative">
+              <span
+                aria-hidden="true"
+                className={`absolute -left-[calc(1.5rem+7px)] top-8 h-3 w-3 rounded-full ring-4 ring-background sm:-left-[calc(2.5rem+7px)] ${
+                  r.secondary ? "bg-border" : "bg-accent"
+                }`}
+              />
+              <RoleCard role={r} />
+            </li>
           ))}
-        </div>
+        </ol>
 
         <section aria-labelledby="education" className="mt-16">
           <h2 id="education" className="mb-4 text-xl font-semibold">
