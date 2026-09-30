@@ -94,15 +94,23 @@ type ButtonProps = {
   children: ReactNode;
   variant?: "primary" | "secondary";
   external?: boolean;
+  download?: boolean;
 };
 
-export function ButtonLink({ href, children, variant = "secondary", external }: ButtonProps) {
+export function ButtonLink({ href, children, variant = "secondary", external, download }: ButtonProps) {
   const base =
     "inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors";
   const styles =
     variant === "primary"
       ? "bg-accent text-accent-contrast hover:opacity-90"
-      : "border border-border bg-surface text-foreground hover:bg-surface-muted";
+      : "border border-border bg-surface text-foreground shadow-sm hover:bg-surface-muted";
+  if (download) {
+    return (
+      <a href={href} download className={`${base} ${styles}`}>
+        {children}
+      </a>
+    );
+  }
   if (href.startsWith("mailto:")) {
     return (
       <a href={href} className={`${base} ${styles}`}>
@@ -127,5 +135,19 @@ export function ButtonLink({ href, children, variant = "secondary", external }: 
     <Link href={href} className={`${base} ${styles}`}>
       {children}
     </Link>
+  );
+}
+
+export function Badge({ children, tone = "accent" }: { children: ReactNode; tone?: "accent" | "neutral" }) {
+  return (
+    <span
+      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
+        tone === "accent"
+          ? "bg-accent-soft text-accent"
+          : "border border-border bg-surface-muted text-foreground"
+      }`}
+    >
+      {children}
+    </span>
   );
 }

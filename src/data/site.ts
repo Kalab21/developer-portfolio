@@ -1,17 +1,31 @@
 export const site = {
-  name: "Kalab Kebede",
+  name: "Kalabe Kebede",
   title: "Senior Software Engineer | Forward Deployed Engineer",
+  specialties: [
+    "Java",
+    "Spring Boot",
+    "Distributed Systems",
+    "AWS",
+    "Kafka",
+    "SQL & Data Engineering",
+    "Python/FastAPI",
+    "RAG & GenAI",
+  ],
   tagline:
     "Java · Spring Boot · Distributed Systems · AWS · Kafka · SQL & Data Engineering · Python/FastAPI · RAG & GenAI",
   valueProp:
     "6+ years building enterprise software, distributed and data systems, and AI-enabled applications across banking, insurance, analytics, and Forward Deployed Engineering engagements.",
-  metaTitle: "Kalab Kebede | Senior Software Engineer & Forward Deployed Engineer",
+  currentFocus: [
+    "Distributed systems",
+    "Forward Deployed Engineering",
+    "Applied AI",
+  ],
+  metaTitle: "Kalabe Kebede | Senior Software Engineer & Forward Deployed Engineer",
   metaDescription:
     "Senior Software Engineer and Forward Deployed Engineer with 6+ years across Java and Spring Boot, distributed systems, cloud, data engineering and applied AI (RAG, FastAPI).",
   github: "https://github.com/Kalab21",
   email: "kalabkebe12@gmail.com",
-  phone: "(240) 288-1031",
-  phoneHref: "tel:+12402881031",
+  resumePath: "/Kalabe-Kebede-Resume.pdf",
   domains: [
     "Banking",
     "Financial Services",
@@ -174,6 +188,8 @@ export type Role = {
   period: string;
   location: string;
   focus: string;
+  /** Smaller supporting role, rendered more compactly. */
+  secondary?: boolean;
   summary: string;
   engagements?: Engagement[];
   points?: string[];
@@ -234,7 +250,8 @@ export const roles: Role[] = [
     period: "Apr 2024 – Feb 2025",
     location: "Remote",
     focus: "AI evaluation",
-    summary: "Quality review of AI-generated data and responses.",
+    secondary: true,
+    summary: "Task-based contract work alongside other roles, reviewing AI-generated data and responses.",
     points: [
       "Validated and refined AI-generated datasets and responses for factual accuracy, semantic quality and alignment with task requirements and business logic.",
       "Promoted to reviewer responsibilities, auditing peer work and providing targeted feedback to improve consistency and quality.",
@@ -293,3 +310,16 @@ export const education = [
   "B.S. Electrical and Computer Engineering — Haramaya University (2015)",
   "Data Analytics Certificate — Per Scholas",
 ];
+
+/** Market-defining skills shown with extra prominence on the About page. */
+export const featuredSkills: ReadonlySet<string> = new Set([
+  "Java 8–21",
+  "Spring Boot",
+  "Microservices",
+  "Kafka",
+  "Advanced SQL",
+  "AWS",
+  "Python",
+  "FastAPI",
+  "RAG",
+]);

@@ -1,28 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf9;
+  --background: #fbfbfc;
   --surface: #ffffff;
-  --surface-muted: #f3f4f6;
-  --foreground: #16181d;
-  --muted: #4b5260;
-  --border: #dfe2e8;
-  --accent: #1d4ed8;
-  --accent-soft: #e8eefc;
+  --surface-muted: #f2f3f7;
+  --foreground: #0d1017;
+  --muted: #495064;
+  --border: #dde0e8;
+  --accent: #3b3fc4;
+  --accent-soft: #eceefc;
   --accent-contrast: #ffffff;
+  --accent-2: #0b6f8a;
+  --grid-line: rgba(13, 16, 23, 0.05);
+  --shadow: 0 1px 2px rgba(13, 16, 23, 0.05), 0 8px 24px -12px rgba(13, 16, 23, 0.14);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0b0e13;
-    --surface: #12161d;
-    --surface-muted: #181d26;
-    --foreground: #e8eaee;
-    --muted: #a3acba;
-    --border: #262c37;
-    --accent: #7aa2ff;
-    --accent-soft: #17203a;
-    --accent-contrast: #0b0e13;
+    --background: #090b11;
+    --surface: #10131b;
+    --surface-muted: #161a24;
+    --foreground: #eceef3;
+    --muted: #a5adbd;
+    --border: #262b38;
+    --accent: #9aa6ff;
+    --accent-soft: #171b36;
+    --accent-contrast: #090b11;
+    --accent-2: #67d4ee;
+    --grid-line: rgba(255, 255, 255, 0.05);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px -12px rgba(0, 0, 0, 0.6);
   }
 }
 
@@ -36,8 +42,10 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-accent-contrast: var(--accent-contrast);
+  --color-accent-2: var(--accent-2);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --shadow-card: var(--shadow);
 }
 
 html {
@@ -61,7 +69,7 @@ body {
   position: absolute;
   left: 1rem;
   top: -4rem;
-  z-index: 50;
+  z-index: 60;
   padding: 0.5rem 0.75rem;
   background: var(--accent);
   color: var(--accent-contrast);
@@ -69,6 +77,16 @@ body {
 }
 .skip-link:focus {
   top: 1rem;
+}
+
+/* Subtle technical grid, fading out toward the bottom of its container. */
+.grid-texture {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 100%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
