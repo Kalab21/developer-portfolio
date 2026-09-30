@@ -282,7 +282,7 @@ export const projects: Project[] = [
       "Not PCI-DSS compliant and no regulatory or compliance certification is claimed.",
       "The AI assistant is advisory and is not the lending system of record.",
     ],
-    cardImage: { src: "/projects/meridian/tila-disclosure.webp", width: 1600, height: 842, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
+    cardImage: { src: "/projects/meridian/tila-card.webp", width: 1200, height: 750, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
     screenshots: [
       { src: "/projects/meridian/decision-evidence.webp", width: 1600, height: 947, alt: "Meridian Lending application page showing a five-step status strip and a decision evidence panel with model version, scores and outcome.", caption: "Application status and decision evidence" },
       { src: "/projects/meridian/tila-disclosure.webp", width: 1600, height: 842, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
@@ -295,7 +295,7 @@ export const projects: Project[] = [
     slug: "rev-eval",
     title: "Rev-Eval",
     subtitle: "Skills assessment and evaluation platform",
-    category: "AI Platform & Full-Stack FDE Engineering",
+    category: "Full-Stack FDE & Platform Engineering",
     ownership: "team",
     badge: "Team / FDE project",
     ownershipNote: "Team engagement in an organization repository. My contributions are listed separately below.",
