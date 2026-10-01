@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "node --test scripts/*.test.mjs",
+    "resume:update": "node scripts/update-resume.mjs"
   },
   "dependencies": {
     "next": "16.3.7",

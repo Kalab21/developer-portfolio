@@ -1,3 +1,5 @@
+import { resume } from "./resume";
+
 export const site = {
   name: "Kalabe Kebede",
   title: "Senior Software Engineer | Forward Deployed Engineer",
@@ -25,7 +27,7 @@ export const site = {
     "Senior Software Engineer and Forward Deployed Engineer with 6+ years across Java and Spring Boot, distributed systems, cloud, data engineering and applied AI (RAG, FastAPI).",
   github: "https://github.com/Kalab21",
   email: "kalabkebe12@gmail.com",
-  resumePath: "/Kalabe-Kebede-Resume.pdf",
+  resumePath: `/${resume.fileName}`,
   domains: [
     "Banking",
     "Financial Services",
