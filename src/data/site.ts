@@ -220,7 +220,7 @@ export const roles: Role[] = [
         stack: ["Python", "FastAPI", "Next.js", "PostgreSQL", "Redis", "RAG", "JWT/RBAC", "Pytest", "Playwright", "GitHub Actions"],
       },
       {
-        name: "Skills Assessment Platform",
+        name: "Rev-Eval — Skills Assessment Platform",
         points: [
           "Completed trainer, reporting, participant and role-aware workflows across FastAPI and Next.js services.",
           "Wired Nginx and API-gateway routing and PostgreSQL/MongoDB-backed features.",
@@ -255,8 +255,8 @@ export const roles: Role[] = [
     secondary: true,
     summary: "Task-based contract work alongside other roles, reviewing AI-generated data and responses.",
     points: [
-      "Validated and refined AI-generated datasets and responses for factual accuracy, semantic quality and alignment with task requirements and business logic.",
-      "Promoted to reviewer responsibilities, auditing peer work and providing targeted feedback to improve consistency and quality.",
+      "Validated and refined AI-generated datasets and responses for factual accuracy, semantic quality, instruction adherence, and alignment with task requirements and business logic.",
+      "Performed reviewer-level quality checks on peer submissions and provided targeted feedback to improve consistency and output quality.",
     ],
     stack: ["AI evaluation", "Data validation", "Quality review"],
   },
@@ -264,7 +264,7 @@ export const roles: Role[] = [
     id: "jpmorgan",
     company: "JPMorgan Chase",
     title: "Java Software Engineer (Contract)",
-    period: "May 2024 – Oct 2024",
+    period: "May 2024 – Sep 2024",
     location: "Columbus, OH",
     focus: "Enterprise banking modernization",
     summary: "Banking platform modernization in a compliance-sensitive environment.",

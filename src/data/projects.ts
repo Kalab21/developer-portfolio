@@ -185,7 +185,7 @@ export const projects: Project[] = [
     badge: "Team / FDE project",
     ownershipNote: "Team engagement in an organization repository. My contributions are listed separately below.",
     summary:
-      "A brownfield consumer-lending platform (origination, decisioning, disclosures, servicing, payments, reconciliation) that a team inherited, hardened and decomposed into eight FastAPI services, with a staff-only RAG assistant grounded in approved lending policy.",
+      "A brownfield consumer-lending platform (origination, decisioning, disclosures, servicing, payments, reconciliation) that a team inherited, hardened and decomposed into eight FastAPI backend services (including the gateway), with a staff-only RAG assistant grounded in approved lending policy.",
     context: [
       "The engagement started from an inherited codebase and business and regulatory requirements. The work was to trace how an application moves through intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation, then close integrity, security and observability gaps without breaking existing behavior.",
       "The AI capability is deliberately advisory. Credit outcomes come from a deterministic scoring service; the loan assistant only summarizes applications and answers policy questions for staff.",
@@ -198,7 +198,7 @@ export const projects: Project[] = [
       note: "Organization repository (public).",
     },
     stats: [
-      { value: "8", label: "FastAPI backend services" },
+      { value: "8", label: "FastAPI backend services, including the gateway" },
       { value: "12", label: "architecture decision records" },
       { value: "Append-only", label: "servicing ledger with maker-checker approvals" },
       { value: "Read-only", label: "staff-only RAG assistant, no database access" },
@@ -237,7 +237,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "A gateway fronts eight FastAPI services that share a PostgreSQL schema under an explicit ADR. The loan assistant sits beside the system of record and never writes to it.",
+        "Eight FastAPI backend services, including the gateway, share a PostgreSQL schema under an explicit ADR. The loan assistant sits beside the system of record and never writes to it.",
       tiers: [
         { label: "Client", nodes: [{ name: "Next.js staff and borrower UI" }] },
         { label: "Edge", nodes: [{ name: "Gateway", detail: "auth, rate limiting, service routing" }] },
@@ -253,7 +253,7 @@ export const projects: Project[] = [
       "Ledger and controls: proposed the append-only servicing ledger (ADR 0010) and built maker-checker approvals with an approvals queue people can work.",
       "Reconciliation: review flow so a person can see and resolve payments flagged for review.",
       "Security: closed a gateway authentication gap on the decision and disclosure proxies and hardened error handling on upstream failures.",
-      "Observability: Prometheus and Grafana metrics across the eight services, including fixing an alert that watched a metric nobody emitted.",
+      "Observability: Prometheus and Grafana metrics across all eight backend services, including fixing an alert that watched a metric nobody emitted.",
       "Verification: automated tests plus independent validation vectors for TILA/APR calculations.",
     ],
     security: [
@@ -271,7 +271,7 @@ export const projects: Project[] = [
       summary:
         "Per-service Pytest suites run against PostgreSQL 16 in CI, alongside Playwright end-to-end specs.",
       stats: [
-        { value: "8", label: "services with their own Pytest suites" },
+        { value: "8", label: "backend services, gateway included, with their own Pytest suites" },
         { value: "42", label: "Playwright spec files" },
         { value: "1", label: "gitleaks secret-scan job in CI" },
       ],
