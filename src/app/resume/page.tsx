@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/data/site";
+import { formatResumeDate, resume } from "@/data/resume";
 import { ButtonLink, Container, PageHeader } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -26,6 +27,10 @@ export default function ResumePage() {
               Download PDF
             </ButtonLink>
           </div>
+          <p className="mt-4 text-sm text-muted">
+            Resume last updated:{" "}
+            <time dateTime={resume.lastUpdated}>{formatResumeDate(resume.lastUpdated)}</time>
+          </p>
         </div>
       </Container>
     </>
