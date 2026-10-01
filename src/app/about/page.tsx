@@ -63,10 +63,11 @@ export default function AboutPage() {
           </p>
           <p>
             Java is still the core of how I build backends. What changed is the scope:
-            analytics and data engineering at Lovelytics, then Forward Deployed
-            Engineering at Revature, where the job is to walk into an inherited system,
-            understand how it really works, talk to the people who depend on it, and
-            close the gaps with specifications, tests and controls.
+            analytics and data engineering at Lovelytics, then client-style
+            Forward Deployed Engineering engagements at Revature, where the job is to take
+            over an inherited system, understand how it really works, work out what the
+            people who use it need, and close the gaps with specifications, tests and
+            controls.
           </p>
           <p>
             That is also where I started building AI features, as an engineer rather than
