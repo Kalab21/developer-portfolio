@@ -234,7 +234,7 @@ export const roles: Role[] = [
     company: "Lovelytics",
     title: "Data & Analytics Engineer (Contract)",
     period: "Dec 2024 – Nov 2025",
-    location: "Arlington, VA",
+    location: "Remote",
     focus: "Data engineering · Analytics",
     summary:
       "Enterprise analytics and reporting: turning stakeholder needs into modeled, trustworthy KPIs.",
@@ -280,7 +280,7 @@ export const roles: Role[] = [
     company: "Investors Bank",
     title: "Java Software Engineer",
     period: "Apr 2021 – Dec 2023",
-    location: "Short Hills, NJ",
+    location: "Remote",
     focus: "Core banking · Distributed systems",
     summary: "Legacy banking workflows modernized into event-driven microservices.",
     points: [
