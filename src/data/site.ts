@@ -208,7 +208,7 @@ export const roles: Role[] = [
       "Two client-style engagements inheriting partially built systems: understand the existing platform, close the gaps, and ship verified changes.",
     engagements: [
       {
-        name: "Consumer Lending / AI Underwriting Platform",
+        name: "Consumer Lending Platform (RAG Policy Assistant)",
         points: [
           "Modernized an inherited lending platform spanning intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation.",
           "Built a grounded RAG policy assistant while keeping deterministic decisioning as the system of record.",

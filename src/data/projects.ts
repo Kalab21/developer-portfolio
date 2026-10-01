@@ -58,11 +58,9 @@ export const projects: Project[] = [
     ownership: "personal",
     badge: "Personal flagship project",
     ownershipNote: "Designed and built end to end.",
-    cardSummary:
-      "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
     cardTags: ["Java 17", "Spring Boot 3", "Apache Kafka", "PostgreSQL 16", "Next.js", "Spring Security", "Redis", "Docker"],
     summary:
-      "A full-stack banking platform built from 11 Spring Boot business services behind an API gateway, with Kafka events, per-service PostgreSQL databases, a Next.js customer and staff console, and a test suite that treats money-movement correctness as the primary risk.",
+      "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
     context: [
       "Northbank covers the core retail-banking journeys: onboarding with identity checks and two-factor login, accounts and transfers, cards, loans, and a credit-application workflow that ends with a stored offer the customer can accept or decline. Staff have their own review workbench for referred applications and KYC documents.",
       "The engineering focus is correctness under concurrency and failure: what happens when two debits race, when a request is retried, when a downstream call times out, or when a caller tries to reach another customer's data.",
@@ -202,13 +200,13 @@ export const projects: Project[] = [
     stats: [
       { value: "8", label: "FastAPI backend services" },
       { value: "12", label: "architecture decision records" },
-      { value: "48", label: "database migrations" },
+      { value: "Append-only", label: "servicing ledger with maker-checker approvals" },
       { value: "Read-only", label: "staff-only RAG assistant, no database access" },
     ],
     technologies: [
       { group: "Backend", items: ["Python 3.12", "FastAPI", "LangGraph", "Anthropic or AWS Bedrock models"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript"] },
-      { group: "Data", items: ["PostgreSQL 16 (48 migrations)", "Redis (sessions)"] },
+      { group: "Data", items: ["PostgreSQL 16 (versioned SQL migrations)", "Redis (sessions)"] },
       { group: "Delivery & ops", items: ["Docker Compose", "GitHub Actions", "gitleaks", "Prometheus", "Grafana", "Pytest", "Playwright"] },
     ],
     highlights: [
