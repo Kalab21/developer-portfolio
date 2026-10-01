@@ -5,7 +5,7 @@
 export const resume = {
   fileName: "Kalabe-Kebede-Resume.pdf",
   /** ISO date (YYYY-MM-DD) the current PDF was installed. */
-  lastUpdated: "2026-09-30",
+  lastUpdated: "2026-10-01",
 } as const;
 
 /** "September 30, 2026", independent of the server's time zone. */
