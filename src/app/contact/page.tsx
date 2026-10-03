@@ -29,7 +29,7 @@ export default function ContactPage() {
           </li>
           <li className="rounded-2xl border border-border bg-surface p-6 shadow-card">
             <h2 className="font-semibold">GitHub</h2>
-            <p className="mt-2 text-muted">github.com/Kalab21</p>
+            <p className="mt-2 text-muted">{site.github.replace("https://", "")}</p>
             <div className="mt-4">
               <ButtonLink href={site.github} external>
                 View profile
