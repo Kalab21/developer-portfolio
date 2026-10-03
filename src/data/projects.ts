@@ -188,7 +188,7 @@ export const projects: Project[] = [
       "A brownfield consumer-lending platform (origination, decisioning, disclosures, servicing, payments, reconciliation) that a team inherited, hardened and decomposed into eight FastAPI backend services (including the gateway), with a staff-only RAG assistant grounded in approved lending policy.",
     context: [
       "The engagement started from an inherited codebase and business and regulatory requirements. The work was to trace how an application moves through intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation, then close integrity, security and observability gaps without breaking existing behavior.",
-      "The AI capability is deliberately advisory. Credit outcomes come from a deterministic scoring service; the loan assistant only summarizes applications and answers policy questions for staff.",
+      "The AI capability is deliberately separated from authority. Credit outcomes come from the decision service and are persisted by the system of record; the RAG loan assistant only summarizes applications and answers policy questions for staff.",
     ],
     role:
       "Contributing engineer on a team: brownfield analysis, requirements and ADRs, the RAG policy assistant, and security, ledger, reconciliation and observability work across the services.",
@@ -241,7 +241,7 @@ export const projects: Project[] = [
       tiers: [
         { label: "Client", nodes: [{ name: "Next.js staff and borrower UI" }] },
         { label: "Edge", nodes: [{ name: "Gateway", detail: "auth, rate limiting, service routing" }] },
-        { label: "Services", nodes: [{ name: "origination", detail: "system of record" }, { name: "kyc" }, { name: "decision", detail: "deterministic scorer" }, { name: "disclosure", detail: "TILA / APR" }, { name: "servicing", detail: "ledger, maker-checker" }, { name: "payment", detail: "idempotent capture" }, { name: "loan-assistant", detail: "read-only RAG" }] },
+        { label: "Services", nodes: [{ name: "origination", detail: "system of record" }, { name: "kyc" }, { name: "decision", detail: "credit scoring / decision computation" }, { name: "disclosure", detail: "TILA / APR" }, { name: "servicing", detail: "ledger, maker-checker" }, { name: "payment", detail: "idempotent capture" }, { name: "loan-assistant", detail: "read-only RAG" }] },
         { label: "Data & ops", nodes: [{ name: "PostgreSQL 16" }, { name: "Redis" }, { name: "Prometheus + Grafana" }] },
       ],
     },
