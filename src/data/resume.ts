@@ -8,7 +8,7 @@ export const resume = {
   lastUpdated: "2026-10-03",
 } as const;
 
-/** "September 30, 2026", independent of the server's time zone. */
+/** Format the ISO resume date independently of the server time zone. */
 export function formatResumeDate(isoDate: string): string {
   const [year, month, day] = isoDate.split("-").map(Number);
   return new Intl.DateTimeFormat("en-US", { dateStyle: "long", timeZone: "UTC" }).format(
