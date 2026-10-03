@@ -316,9 +316,6 @@ export const projects: Project[] = [
       label: "My work: kalabek integration branch",
       note: "My work lives on the kalabek integration branch, not on the organization's main.",
     },
-    extraLinks: [
-      { url: "https://github.com/RevatureFDEPEP/rev-eval", label: "Organization repository" },
-    ],
     stats: [
       { value: "5", label: "backend services" },
       { value: "3", label: "data stores: PostgreSQL, MongoDB, MinIO" },

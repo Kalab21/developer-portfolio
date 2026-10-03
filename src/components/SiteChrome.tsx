@@ -47,11 +47,11 @@ export function Footer() {
               Resume
             </Link>
           </li>
- <li>
-  <Link href="/contact" className="hover:text-foreground">
-    Email
-  </Link>
-</li>
+          <li>
+            <Link href="/contact" className="hover:text-foreground">
+              Email
+            </Link>
+          </li>
         </ul>
       </Container>
     </footer>
