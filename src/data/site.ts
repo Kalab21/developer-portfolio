@@ -218,7 +218,7 @@ export const roles: Role[] = [
         name: "Consumer Lending Platform (RAG Policy Assistant)",
         points: [
           "Modernized an inherited lending platform spanning intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation.",
-          "Built a grounded RAG policy assistant while keeping deterministic decisioning as the system of record.",
+          "Built a grounded RAG policy assistant while keeping credit decisioning separate and authoritative in the core lending workflow.",
           "Strengthened RBAC, decision finality, idempotency, auditability and data-integrity controls.",
           "Translated business and regulatory requirements into specifications and ADRs; added automated verification for lending calculations and production-style logging, metrics, tracing and CI gates.",
         ],
