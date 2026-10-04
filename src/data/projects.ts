@@ -248,7 +248,7 @@ export const projects: Project[] = [
     contributions: [
       "Brownfield analysis: traced the lending lifecycle from intake through reconciliation and turned business and regulatory requirements into specifications and ADRs.",
       "RAG policy assistant: retrieval evaluation harness and corpus-hygiene gate, grounded policy chat with cited evidence, and prompt-injection and redaction guards.",
-      "Kept AI advisory: preserved the decisioning service as the system of record and stopped the model's reason code from becoming what a declined applicant is told.",
+      "Kept AI advisory: kept the RAG assistant separate from credit decisioning, with origination persisting the authoritative decision evidence, and prevented model reason codes from being surfaced directly to declined applicants.",
       "Payments and data integrity: removed stored card numbers and CVVs from the payments schema through a staged migration.",
       "Ledger and controls: proposed the append-only servicing ledger (ADR 0010) and built maker-checker approvals with an approvals queue people can work.",
       "Reconciliation: review flow so a person can see and resolve payments flagged for review.",
