@@ -237,7 +237,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "Eight FastAPI backend services, including the gateway, share a PostgreSQL schema under an explicit ADR. The loan assistant sits beside the system of record and never writes to it.",
+        "Eight FastAPI backend services, including the gateway. Seven share a PostgreSQL schema under an explicit ADR; the loan assistant holds no database connection, reads application data over HTTP, and never writes to the system of record.",
       tiers: [
         { label: "Client", nodes: [{ name: "Next.js staff and borrower UI" }] },
         { label: "Edge", nodes: [{ name: "Gateway", detail: "auth, rate limiting, service routing" }] },
@@ -466,7 +466,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "Nginx and an API gateway route traffic to Python services that each own their storage. The gateway forwards verified identity to services, which enforce role checks.",
+        "Nginx and the API gateway route traffic to the FastAPI services. User and test-management data use PostgreSQL, question-management uses MongoDB and MinIO, and Reporting & Analytics reads the shared PostgreSQL data directly under its documented ADR. The gateway forwards verified identity to services, which enforce role checks.",
       tiers: [
         { label: "Client", nodes: [{ name: "Next.js trainer and participant UI" }] },
         { label: "Edge", nodes: [{ name: "Nginx" }, { name: "API gateway", detail: "JWT, identity headers, request IDs" }] },
@@ -520,7 +520,7 @@ export const projects: Project[] = [
     badge: "Personal project",
     ownershipNote: "Built and maintained by me.",
     summary:
-      "A classic server-rendered Java marketplace: sellers list products after admin approval, buyers browse a catalogue, fill a cart and place orders. Built with Spring MVC, Thymeleaf, Spring Security and Spring Data JPA on MySQL.",
+      "A classic server-rendered Java marketplace with Admin, Seller and Buyer workflows: admins review seller accounts, sellers manage product listings, and buyers browse a catalogue, fill a cart and place orders. Built with Spring MVC, Thymeleaf, Spring Security and Spring Data JPA on MySQL.",
     context: [
       "MarketHub is a smaller supporting project that shows the conventional Spring MVC stack end to end: controllers, services, repositories, role-based navigation and templates, packaged with Docker and tested in CI.",
     ],
@@ -582,6 +582,7 @@ export const projects: Project[] = [
     scope: [
       "Demo project using local synthetic accounts and a local MySQL database.",
       "No real payment processor: checkout creates a Pending order from the cart total.",
+      "Seller approval is an admin workflow, but the approval status is not yet enforced before a seller can list products.",
       "Authorization is role-based, not fully ownership-based; several endpoints only require a login. The repository README lists these limitations.",
     ],
     screenshots: [
