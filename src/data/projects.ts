@@ -297,7 +297,7 @@ export const projects: Project[] = [
   },
   {
     slug: "policy-rag",
-    title: "Policy RAG",
+    title: "Policy RAG Platform",
     subtitle: "pgvector semantic retrieval and grounded RAG platform",
     category: "Vector Search & Retrieval-Augmented Generation",
     ownership: "personal",
@@ -328,13 +328,13 @@ export const projects: Project[] = [
     role:
       "Designed and implemented the ingestion pipeline, pgvector schema and queries, retrieval service, LangGraph evidence gate, evaluation harness, tests, Docker setup and CI.",
     repository: {
-      url: "https://github.com/Kalab21/policy-rag-pgvector",
-      label: "Kalab21/policy-rag-pgvector",
+      url: "https://github.com/Kalab21/policy-rag-platform",
+      label: "Kalab21/policy-rag-platform",
     },
     stats: [
       { value: "384", label: "embedding dimensions (MiniLM, run locally)" },
-      { value: "139", label: "automated tests" },
-      { value: "68", label: "integration tests against real PostgreSQL + pgvector" },
+      { value: "168", label: "automated tests" },
+      { value: "90", label: "integration tests against real PostgreSQL + pgvector" },
       { value: "5", label: "pull requests merged with green CI" },
     ],
     technologies: [
@@ -384,7 +384,7 @@ export const projects: Project[] = [
     ],
     testing: {
       summary:
-        "139 automated tests: 71 unit and 68 integration. Integration tests run against real PostgreSQL with pgvector and do not mock vector search. The retrieval figures below come from a small, synthetic, in-sample evaluation: 33 answerable queries over 7 documents (34 chunks), with no held-out set. They are not a production-quality claim.",
+        "168 automated tests: 78 unit and 90 integration. Integration tests run against real PostgreSQL with pgvector and do not mock vector search. The retrieval figures below come from a small, synthetic, in-sample evaluation: 33 answerable queries over 7 documents (34 chunks), with no held-out set. They are not a production-quality claim.",
       stats: [
         { value: "90.9%", label: "Hit@1 (33 queries, in-sample)" },
         { value: "93.9%", label: "Hit@3 (33 queries, in-sample)" },
@@ -402,7 +402,7 @@ export const projects: Project[] = [
       "Synthetic policy documents only: 7 documents and 34 chunks, English, markdown input.",
       "The evaluation is in-sample, with no held-out set, and the corpus is tiny.",
       "No latency or throughput benchmark was run. On 34 chunks the HNSW index can be used by the query, but no speed advantage is claimed.",
-      "No reranker and no hybrid keyword/vector search.",
+      "No reranker. Hybrid keyword/vector retrieval exists but is optional: it did not beat semantic-only retrieval on the evaluation set, so semantic stays the default.",
       "The default generator is extractive. The optional OpenAI-compatible generator has only been tested against a mocked transport; no live LLM is used.",
       "Only LangGraph is used from the LangChain ecosystem in this project.",
       "No authentication. Not production-ready.",
