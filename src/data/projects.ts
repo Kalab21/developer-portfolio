@@ -297,50 +297,51 @@ export const projects: Project[] = [
   },
   {
     slug: "policy-rag",
-    title: "Policy RAG",
+    title: "Policy RAG Platform",
     subtitle: "pgvector semantic retrieval and grounded RAG platform",
     category: "Vector Search & Retrieval-Augmented Generation",
     ownership: "personal",
     badge: "Personal project",
     ownershipNote: "Designed and built end to end.",
     cardSummary:
-      "A FastAPI retrieval platform that stores 384-dimensional embeddings in PostgreSQL/pgvector, runs HNSW cosine similarity search with metadata filtering, and uses a LangGraph evidence gate to answer from retrieved policy text or refuse when support is insufficient.",
+      "A FastAPI retrieval/RAG platform combining pgvector semantic search with PostgreSQL full-text search and optional Reciprocal Rank Fusion hybrid retrieval, plus a LangGraph evidence gate that answers from retrieved policy evidence or refuses unsupported questions.",
     cardTags: [
       "Python",
       "FastAPI",
       "PostgreSQL",
       "pgvector",
       "Vector Databases",
-      "Embeddings",
-      "Similarity Search",
+      "Hybrid Search",
+      "Full-Text Search",
+      "Reciprocal Rank Fusion",
       "RAG",
       "LangGraph",
       "Docker",
-      "GitHub Actions",
       "Pytest",
     ],
     summary:
-      "A FastAPI retrieval platform that stores 384-dimensional embeddings in PostgreSQL/pgvector, performs HNSW cosine similarity search with metadata filtering, and uses a LangGraph evidence gate to answer from retrieved policy text or refuse when support is insufficient.",
+      "A FastAPI retrieval/RAG platform that stores 384-dimensional embeddings in PostgreSQL/pgvector for HNSW cosine semantic search, adds PostgreSQL full-text search and optional Reciprocal Rank Fusion hybrid retrieval, filters on metadata in SQL, and uses a LangGraph evidence gate to answer from retrieved policy evidence or refuse when support is insufficient.",
     context: [
-      "Policy RAG answers questions over a small set of synthetic lending-policy documents. It is the project where I worked directly with the vector layer: choosing the embedding model, defining the vector(384) schema and index, writing the similarity and metadata-filter SQL, and measuring retrieval quality.",
+      "Policy RAG answers questions over a small set of synthetic lending-policy documents. It is the project where I worked directly with the vector layer: choosing the embedding model, defining the vector(384) schema and index, writing the similarity, full-text and metadata-filter SQL, and measuring retrieval quality.",
       "The default answer generator is extractive: it quotes the best-matching retrieved sentences with citation markers. An OpenAI-compatible generator can be configured, but it has only been tested against a mocked HTTP transport, and no live LLM is used or claimed.",
     ],
     role:
       "Designed and implemented the ingestion pipeline, pgvector schema and queries, retrieval service, LangGraph evidence gate, evaluation harness, tests, Docker setup and CI.",
     repository: {
-      url: "https://github.com/Kalab21/policy-rag-pgvector",
-      label: "Kalab21/policy-rag-pgvector",
+      url: "https://github.com/Kalab21/policy-rag-platform",
+      label: "Kalab21/policy-rag-platform",
     },
     stats: [
       { value: "384", label: "embedding dimensions (MiniLM, run locally)" },
-      { value: "139", label: "automated tests" },
-      { value: "68", label: "integration tests against real PostgreSQL + pgvector" },
-      { value: "5", label: "pull requests merged with green CI" },
+      { value: "168", label: "automated tests" },
+      { value: "90", label: "integration tests against real PostgreSQL + pgvector" },
+      { value: "3", label: "retrieval modes: semantic, lexical, hybrid" },
     ],
     technologies: [
       { group: "API & language", items: ["Python 3.12", "FastAPI", "Pydantic"] },
-      { group: "Vector search", items: ["PostgreSQL 16", "pgvector 0.8.7", "HNSW (vector_cosine_ops)", "JSONB + GIN metadata index"] },
-      { group: "Embeddings & RAG", items: ["sentence-transformers/all-MiniLM-L6-v2 (fastembed)", "LangGraph"] },
+      { group: "Vector search", items: ["PostgreSQL 16", "pgvector 0.8.7", "HNSW (vector_cosine_ops)", "Cosine similarity search", "JSONB + GIN metadata index"] },
+      { group: "Lexical & hybrid retrieval", items: ["PostgreSQL Full-Text Search", "tsvector", "GIN full-text index", "Reciprocal Rank Fusion", "Hybrid Retrieval"] },
+      { group: "Embeddings & RAG", items: ["Embeddings: sentence-transformers/all-MiniLM-L6-v2 (fastembed)", "LangGraph"] },
       { group: "Quality & delivery", items: ["Pytest", "Ruff", "mypy", "pip-audit", "Bandit", "Docker Compose", "GitHub Actions"] },
     ],
     highlights: [
@@ -353,6 +354,10 @@ export const projects: Project[] = [
         body: "Uses an HNSW vector_cosine_ops index plus JSONB/GIN metadata filtering, while honestly documenting that the tiny sample corpus does not demonstrate a performance advantage.",
       },
       {
+        title: "Hybrid retrieval",
+        body: "Adds PostgreSQL full-text search alongside pgvector semantic retrieval and can fuse both ranked lists with Reciprocal Rank Fusion. Semantic remains the default because it achieved the stronger MRR on the current in-sample evaluation.",
+      },
+      {
         title: "Grounding",
         body: "A LangGraph evidence gate routes questions to answer or refusal, and citation validation rejects responses without valid retrieved evidence.",
       },
@@ -363,17 +368,17 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "A question is embedded with the same model used for the documents, matched against pgvector with an optional metadata filter in the same SQL statement, and passed through a LangGraph flow that either answers with validated citations or refuses.",
+        "Retrieval runs in one of three modes, chosen per request. Semantic (the default): the question is embedded with the same MiniLM model as the documents and matched in pgvector. Lexical: PostgreSQL full-text search. Hybrid (optional): semantic and lexical candidates are merged with Reciprocal Rank Fusion. Every mode applies the optional metadata filter in the same SQL statement; results then pass the evidence gate and a LangGraph flow that either answers with validated citations or refuses.",
       tiers: [
         { label: "API", nodes: [{ name: "FastAPI", detail: "/api/search, /api/ask" }] },
-        { label: "Retrieval", nodes: [{ name: "MiniLM embeddings" }, { name: "pgvector HNSW cosine search" }, { name: "Metadata filter", detail: "JSONB containment in SQL" }] },
+        { label: "Retrieval", nodes: [{ name: "Semantic (default)", detail: "MiniLM embedding to pgvector HNSW" }, { name: "Lexical", detail: "PostgreSQL full-text search" }, { name: "Hybrid (optional)", detail: "semantic + lexical candidates fused with RRF" }, { name: "Metadata filter", detail: "JSONB containment in SQL" }] },
         { label: "RAG", nodes: [{ name: "LangGraph evidence gate" }, { name: "Extractive answer / refusal" }, { name: "Citation validation" }] },
         { label: "Data", nodes: [{ name: "PostgreSQL 16 + pgvector" }] },
         { label: "Quality", nodes: [{ name: "Pytest" }, { name: "GitHub Actions" }] },
       ],
     },
     security: [
-      "Metadata filter keys are checked against an allowlist and filter values are bound parameters, so requests cannot inject SQL",
+      "Metadata filter keys are checked against an allowlist, and filter values and query text are bound parameters, so requests cannot inject SQL",
       "Dependency auditing with pip-audit and static analysis with Bandit in CI",
       "No secrets in the repository; Compose uses local-only demo credentials",
     ],
@@ -384,7 +389,7 @@ export const projects: Project[] = [
     ],
     testing: {
       summary:
-        "139 automated tests: 71 unit and 68 integration. Integration tests run against real PostgreSQL with pgvector and do not mock vector search. The retrieval figures below come from a small, synthetic, in-sample evaluation: 33 answerable queries over 7 documents (34 chunks), with no held-out set. They are not a production-quality claim.",
+        "168 automated tests: 78 unit and 90 integration. Integration tests run against real PostgreSQL with pgvector and do not mock vector search. The retrieval figures below come from a small, synthetic, in-sample evaluation: 33 answerable queries over 7 documents (34 chunks), with no held-out set. They are not a production-quality claim.",
       stats: [
         { value: "90.9%", label: "Hit@1 (33 queries, in-sample)" },
         { value: "93.9%", label: "Hit@3 (33 queries, in-sample)" },
@@ -394,7 +399,8 @@ export const projects: Project[] = [
       notes: [
         "Retrieval was measured with the current-policy filter. The evidence-gate threshold and the extractive sentence ranking were tuned while looking at the same question set, so the numbers are optimistic.",
         "On the unanswerable set, 12 of 13 questions were refused; 6 of the 33 answerable questions were also wrongly refused by the gate. End to end, 23 of 33 were answered correctly.",
-        "Integration tests cover vector insertion, similarity ordering, metadata filtering, top-K behavior, the HNSW index, iterative scan, refusal and citation correctness.",
+        "Retrieval modes were compared on the same in-sample set: semantic MRR 0.939, lexical 0.907, hybrid 0.912. Hybrid found the answer in the top 3 more often (97.0% vs 93.9%) but ranked it first less often, so semantic stays the default.",
+        "Integration tests on real PostgreSQL + pgvector cover vector insertion and cosine ordering, metadata filtering, top-K behavior, the HNSW index and iterative scan, full-text search with stemming and its GIN index, Reciprocal Rank Fusion ordering, hybrid retrieval, SQL-injection safety, refusal and citation correctness.",
         "CI runs Ruff, mypy, unit and integration tests, pip-audit, Bandit and a Docker Compose smoke test.",
       ],
     },
@@ -402,7 +408,7 @@ export const projects: Project[] = [
       "Synthetic policy documents only: 7 documents and 34 chunks, English, markdown input.",
       "The evaluation is in-sample, with no held-out set, and the corpus is tiny.",
       "No latency or throughput benchmark was run. On 34 chunks the HNSW index can be used by the query, but no speed advantage is claimed.",
-      "No reranker and no hybrid keyword/vector search.",
+      "No reranker. Hybrid keyword/vector retrieval exists but is optional: it did not beat semantic-only retrieval on the evaluation set, so semantic stays the default.",
       "The default generator is extractive. The optional OpenAI-compatible generator has only been tested against a mocked transport; no live LLM is used.",
       "Only LangGraph is used from the LangChain ecosystem in this project.",
       "No authentication. Not production-ready.",
