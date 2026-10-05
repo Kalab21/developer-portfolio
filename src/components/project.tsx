@@ -135,7 +135,7 @@ export function ProjectCard({
         ) : (
           <div className="flex aspect-[16/10] flex-col justify-center gap-2 p-6">
             <p className="font-mono text-xs uppercase tracking-widest text-muted">
-              Services
+              {project.architecture.tiers[2].label}
             </p>
             <ul className="flex flex-wrap gap-2">
               {project.architecture.tiers[2].nodes.map((n) => (

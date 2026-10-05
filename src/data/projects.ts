@@ -296,6 +296,120 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "policy-rag",
+    title: "Policy RAG",
+    subtitle: "pgvector semantic retrieval and grounded RAG platform",
+    category: "Vector Search & Retrieval-Augmented Generation",
+    ownership: "personal",
+    badge: "Personal project",
+    ownershipNote: "Designed and built end to end.",
+    cardSummary:
+      "A FastAPI retrieval platform that stores 384-dimensional embeddings in PostgreSQL/pgvector, runs HNSW cosine similarity search with metadata filtering, and uses a LangGraph evidence gate to answer from retrieved policy text or refuse when support is insufficient.",
+    cardTags: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Vector Databases",
+      "Embeddings",
+      "Similarity Search",
+      "RAG",
+      "LangGraph",
+      "Docker",
+      "GitHub Actions",
+      "Pytest",
+    ],
+    summary:
+      "A FastAPI retrieval platform that stores 384-dimensional embeddings in PostgreSQL/pgvector, performs HNSW cosine similarity search with metadata filtering, and uses a LangGraph evidence gate to answer from retrieved policy text or refuse when support is insufficient.",
+    context: [
+      "Policy RAG answers questions over a small set of synthetic lending-policy documents. It is the project where I worked directly with the vector layer: choosing the embedding model, defining the vector(384) schema and index, writing the similarity and metadata-filter SQL, and measuring retrieval quality.",
+      "The default answer generator is extractive: it quotes the best-matching retrieved sentences with citation markers. An OpenAI-compatible generator can be configured, but it has only been tested against a mocked HTTP transport, and no live LLM is used or claimed.",
+    ],
+    role:
+      "Designed and implemented the ingestion pipeline, pgvector schema and queries, retrieval service, LangGraph evidence gate, evaluation harness, tests, Docker setup and CI.",
+    repository: {
+      url: "https://github.com/Kalab21/policy-rag-pgvector",
+      label: "Kalab21/policy-rag-pgvector",
+    },
+    stats: [
+      { value: "384", label: "embedding dimensions (MiniLM, run locally)" },
+      { value: "139", label: "automated tests" },
+      { value: "68", label: "integration tests against real PostgreSQL + pgvector" },
+      { value: "5", label: "pull requests merged with green CI" },
+    ],
+    technologies: [
+      { group: "API & language", items: ["Python 3.12", "FastAPI", "Pydantic"] },
+      { group: "Vector search", items: ["PostgreSQL 16", "pgvector 0.8.7", "HNSW (vector_cosine_ops)", "JSONB + GIN metadata index"] },
+      { group: "Embeddings & RAG", items: ["sentence-transformers/all-MiniLM-L6-v2 (fastembed)", "LangGraph"] },
+      { group: "Quality & delivery", items: ["Pytest", "Ruff", "mypy", "pip-audit", "Bandit", "Docker Compose", "GitHub Actions"] },
+    ],
+    highlights: [
+      {
+        title: "Real vector retrieval",
+        body: "Stores MiniLM 384-dimensional embeddings in PostgreSQL/pgvector and executes cosine top-K search using a real vector(384) column.",
+      },
+      {
+        title: "Indexed retrieval",
+        body: "Uses an HNSW vector_cosine_ops index plus JSONB/GIN metadata filtering, while honestly documenting that the tiny sample corpus does not demonstrate a performance advantage.",
+      },
+      {
+        title: "Grounding",
+        body: "A LangGraph evidence gate routes questions to answer or refusal, and citation validation rejects responses without valid retrieved evidence.",
+      },
+      {
+        title: "Retrieval evaluation",
+        body: "Evaluates retrieval with Hit@K and MRR over a documented synthetic gold set. The README explicitly identifies the evaluation as small and in-sample.",
+      },
+    ],
+    architecture: {
+      description:
+        "A question is embedded with the same model used for the documents, matched against pgvector with an optional metadata filter in the same SQL statement, and passed through a LangGraph flow that either answers with validated citations or refuses.",
+      tiers: [
+        { label: "API", nodes: [{ name: "FastAPI", detail: "/api/search, /api/ask" }] },
+        { label: "Retrieval", nodes: [{ name: "MiniLM embeddings" }, { name: "pgvector HNSW cosine search" }, { name: "Metadata filter", detail: "JSONB containment in SQL" }] },
+        { label: "RAG", nodes: [{ name: "LangGraph evidence gate" }, { name: "Extractive answer / refusal" }, { name: "Citation validation" }] },
+        { label: "Data", nodes: [{ name: "PostgreSQL 16 + pgvector" }] },
+        { label: "Quality", nodes: [{ name: "Pytest" }, { name: "GitHub Actions" }] },
+      ],
+    },
+    security: [
+      "Metadata filter keys are checked against an allowlist and filter values are bound parameters, so requests cannot inject SQL",
+      "Dependency auditing with pip-audit and static analysis with Bandit in CI",
+      "No secrets in the repository; Compose uses local-only demo credentials",
+    ],
+    reliability: [
+      "Idempotent ingestion: unchanged documents are skipped, changed documents are replaced atomically, and a failed embedding leaves existing rows untouched",
+      "The API refuses to start when the vector column width and the configured embedding dimension disagree",
+      "Retrieval is a separate service from the RAG flow, so each can be tested on its own",
+    ],
+    testing: {
+      summary:
+        "139 automated tests: 71 unit and 68 integration. Integration tests run against real PostgreSQL with pgvector and do not mock vector search. The retrieval figures below come from a small, synthetic, in-sample evaluation: 33 answerable queries over 7 documents (34 chunks), with no held-out set. They are not a production-quality claim.",
+      stats: [
+        { value: "90.9%", label: "Hit@1 (33 queries, in-sample)" },
+        { value: "93.9%", label: "Hit@3 (33 queries, in-sample)" },
+        { value: "100%", label: "Hit@5 (33 queries, 34 chunks, in-sample)" },
+        { value: "0.939", label: "MRR (current-policy filter, in-sample)" },
+      ],
+      notes: [
+        "Retrieval was measured with the current-policy filter. The evidence-gate threshold and the extractive sentence ranking were tuned while looking at the same question set, so the numbers are optimistic.",
+        "On the unanswerable set, 12 of 13 questions were refused; 6 of the 33 answerable questions were also wrongly refused by the gate. End to end, 23 of 33 were answered correctly.",
+        "Integration tests cover vector insertion, similarity ordering, metadata filtering, top-K behavior, the HNSW index, iterative scan, refusal and citation correctness.",
+        "CI runs Ruff, mypy, unit and integration tests, pip-audit, Bandit and a Docker Compose smoke test.",
+      ],
+    },
+    scope: [
+      "Synthetic policy documents only: 7 documents and 34 chunks, English, markdown input.",
+      "The evaluation is in-sample, with no held-out set, and the corpus is tiny.",
+      "No latency or throughput benchmark was run. On 34 chunks the HNSW index can be used by the query, but no speed advantage is claimed.",
+      "No reranker and no hybrid keyword/vector search.",
+      "The default generator is extractive. The optional OpenAI-compatible generator has only been tested against a mocked transport; no live LLM is used.",
+      "Only LangGraph is used from the LangChain ecosystem in this project.",
+      "No authentication. Not production-ready.",
+    ],
+    screenshots: [],
+  },
+  {
     slug: "rev-eval",
     title: "Rev-Eval",
     subtitle: "Skills assessment and evaluation platform",
