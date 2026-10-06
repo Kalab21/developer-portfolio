@@ -6,7 +6,7 @@ import { Container, PageHeader } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Five projects: an event-driven banking platform, a consumer-lending platform with a RAG assistant, a pgvector retrieval platform, a skills assessment platform and a Java marketplace.",
+    "Five projects: an event-driven banking platform, a consumer-lending platform with a RAG assistant, the Policy RAG Platform (pgvector retrieval and grounded RAG), a skills assessment platform and a Java marketplace.",
 };
 
 export default function ProjectsPage() {
