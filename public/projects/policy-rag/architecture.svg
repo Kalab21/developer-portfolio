@@ -59,7 +59,7 @@
 <rect x="380.0" y="950" width="640" height="120" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
 <text x="700.0" y="993.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">LangGraph flow</text>
 <text x="700.0" y="1015.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">validate query → retrieve → assess evidence → generate | refuse → validate citations</text>
-<text x="700.0" y="1037.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">generators: Extractive   ·   Bedrock / OpenAI-compatible adapters</text>
+<text x="700.0" y="1037.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">Extractive Generator   ·   Bedrock / OpenAI-compatible adapters</text>
 <line x1="700" y1="1070" x2="700" y2="1120" stroke="#3f4ab8" stroke-width="2.5" marker-end="url(#head-3f4ab8)"/>
 <rect x="470.0" y="1120" width="460" height="70" rx="12" fill="#fafbff" stroke="#3f4ab8" stroke-width="2"/>
 <text x="700.0" y="1149.0" font-size="19" font-weight="700" fill="#3f4ab8" text-anchor="middle">Citation validation</text>

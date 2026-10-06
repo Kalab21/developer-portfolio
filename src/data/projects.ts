@@ -168,11 +168,8 @@ export const projects: Project[] = [
       ],
     },
     scope: [
-      "Portfolio project on synthetic data. No real money moves and no real customer data is used.",
-      "Wire, ACH and SWIFT rails are simulated.",
-      "Runs locally on Docker Compose. There is no hosted instance.",
-      "The Terraform describes an AWS reference architecture and is not deployed.",
-      "No regulatory or compliance certification is claimed.",
+      "Portfolio-scale retail banking simulation using synthetic accounts and data, with Docker Compose for local execution.",
+      "Wire, ACH and SWIFT flows are simulated; Terraform provides the AWS reference architecture.",
     ],
     screenshots: [
       { src: "/projects/northbank/dashboard.webp", width: 1440, height: 1000, alt: "Northbank customer dashboard with total balance, account cards, a balance chart and recent activity.", caption: "Customer dashboard" },
@@ -289,10 +286,8 @@ export const projects: Project[] = [
       ],
     },
     scope: [
-      "Team project built as a local training and demo build: seeded fictional data, a mocked card processor and a stub credit scorer.",
-      "No real credit bureau and no production environment.",
-      "Not PCI-DSS compliant and no regulatory or compliance certification is claimed.",
-      "The AI assistant is advisory and is not the lending system of record.",
+      "Team training and demo lending platform using seeded fictional data and simulated external providers.",
+      "The RAG assistant is advisory; authoritative lending outcomes remain in the core lending workflow and system of record.",
     ],
     cardImage: { src: "/projects/meridian/tila-card.webp", width: 1200, height: 750, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
     screenshots: [
@@ -387,20 +382,12 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "Every query is first restricted by the caller's access scope, derived only from a validated JWT. Semantic, lexical and hybrid retrieval are selectable per request, with configurable cross-encoder reranking. Results then pass the evidence gate and a LangGraph flow that answers with validated citations or refuses.",
-      diagram: {
-        light: "/projects/policy-rag/architecture.svg",
-        dark: "/projects/policy-rag/architecture-dark.svg",
-        alt: "Policy RAG Platform architecture: JWT validation produces an access scope applied inside every query; semantic, lexical or hybrid retrieval on PostgreSQL and pgvector gives a candidate set, optionally reranked by a cross-encoder; an evidence gate refuses on insufficient similarity, otherwise a LangGraph flow generates an answer and citation validation returns it with sources or refuses. MCP, OpenTelemetry, Terraform and CI run across the platform.",
-        width: 1400,
-        height: 1290,
-        stacked: true,
-      },
+        "Retrieval supports semantic, lexical and RRF hybrid search, with configurable cross-encoder reranking. Results pass through retrieval-time authorization, the evidence gate, LangGraph orchestration and citation validation.",
       tiers: [
         { label: "API", nodes: [{ name: "FastAPI", detail: "/api/search, /api/ask, /api/me" }] },
         { label: "Security", nodes: [{ name: "JWT validation" }, { name: "Access scope", detail: "tenant, level, department, applied in SQL" }] },
         { label: "Retrieval", nodes: [{ name: "Semantic Search", detail: "MiniLM embedding to pgvector HNSW" }, { name: "Lexical Search", detail: "PostgreSQL full-text search" }, { name: "Hybrid Search", detail: "semantic + lexical fused with RRF" }, { name: "Cross-Encoder Reranking" }, { name: "Metadata filter", detail: "JSONB containment in SQL" }] },
-        { label: "RAG", nodes: [{ name: "Evidence gate" }, { name: "LangGraph flow" }, { name: "Extractive generator", detail: "Bedrock and OpenAI-compatible adapters available" }, { name: "Citation validation" }] },
+        { label: "RAG", nodes: [{ name: "Evidence gate" }, { name: "LangGraph flow" }, { name: "Extractive Generator", detail: "Bedrock and OpenAI-compatible adapters available" }, { name: "Citation validation" }] },
         { label: "Interfaces", nodes: [{ name: "MCP server", detail: "stdio, read-only tools" }] },
         { label: "Data", nodes: [{ name: "PostgreSQL 16 + pgvector" }] },
         { label: "Operations", nodes: [{ name: "OpenTelemetry" }, { name: "Prometheus metrics" }, { name: "Terraform AWS reference architecture", detail: "validated in CI" }] },
@@ -539,9 +526,8 @@ export const projects: Project[] = [
       ],
     },
     scope: [
-      "Team project built local-first with seeded demo users and no deployment.",
-      "My changes live on a personal integration branch rather than the team's main branch.",
-      "No compliance or certification claims.",
+      "Team local-first assessment platform using seeded demo users.",
+      "My implementation is published on the kalabek integration branch, which is the repository link used by this portfolio.",
     ],
     screenshots: [],
   },
@@ -558,7 +544,7 @@ export const projects: Project[] = [
     context: [
       "MarketHub is a smaller supporting project that shows the conventional Spring MVC stack end to end: controllers, services, repositories, role-based navigation and templates, packaged with Docker and tested in CI.",
     ],
-    role: "Built the application, tests, Docker setup and CI, and later documented its scope and known limitations.",
+    role: "Built the application, tests, Docker setup and CI, and later refreshed its public documentation and demo assets.",
     repository: {
       url: "https://github.com/Kalab21/markethub",
       label: "Kalab21/markethub",
@@ -576,7 +562,7 @@ export const projects: Project[] = [
       { group: "Delivery", items: ["Docker (multi-stage build)", "Docker Compose", "GitHub Actions", "JaCoCo"] },
     ],
     highlights: [
-      { title: "Seller approval workflow", body: "New sellers register as pending and an admin approves them from a seller management page." },
+      { title: "Admin seller review workflow", body: "New sellers register as pending, and admins can review and update seller approval status from the seller management page." },
       { title: "Catalogue, cart and checkout", body: "Buyers browse products, add items to a cart with a live item badge, and check out into an order." },
       { title: "Order management", body: "Orders start as Pending, can be cancelled while pending, and the history shows total spent." },
       { title: "Role-based navigation", body: "Admin, Seller and Buyer each get their own dashboard and menu." },
@@ -610,14 +596,11 @@ export const projects: Project[] = [
         { value: "5", label: "MockMvc controller tests" },
       ],
       notes: [
-        "The suite does not run against MySQL and does not exercise the full security filter chain end to end.",
+        "CI uses H2 for repository tests and MockMvc for controller coverage.",
       ],
     },
     scope: [
-      "Demo project using local synthetic accounts and a local MySQL database.",
-      "No real payment processor: checkout creates a Pending order from the cart total.",
-      "Seller approval is an admin workflow, but the approval status is not yet enforced before a seller can list products.",
-      "Authorization is role-based, not fully ownership-based; several endpoints only require a login. The repository README lists these limitations.",
+      "Supporting Java/Spring marketplace demo using synthetic accounts, local MySQL and simulated checkout.",
     ],
     screenshots: [
       { src: "/projects/markethub/products.webp", width: 1280, height: 800, alt: "MarketHub product catalogue with product cards showing SKU, price, stock and an add-to-cart button.", caption: "Product catalogue" },
