@@ -66,7 +66,7 @@ export const projects: Project[] = [
     ownership: "personal",
     badge: "Personal flagship project",
     ownershipNote: "Designed and built end to end.",
-    cardTags: ["Java 17", "Spring Boot 3", "Apache Kafka", "PostgreSQL 16", "Next.js", "Spring Security", "Redis", "Docker"],
+    cardTags: ["Java 21", "Spring Boot 3", "Apache Kafka", "PostgreSQL 16", "Next.js", "Spring Security", "Redis", "Docker"],
     summary:
       "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
     context: [
@@ -86,7 +86,7 @@ export const projects: Project[] = [
       { value: "5", label: "shared library modules" },
     ],
     technologies: [
-      { group: "Backend", items: ["Java 17", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Eureka", "OpenFeign"] },
+      { group: "Backend", items: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Eureka", "OpenFeign"] },
       { group: "Data & messaging", items: ["PostgreSQL 16", "Flyway", "Redis", "Apache Kafka", "Transactional outbox"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
       { group: "Testing", items: ["JUnit 5", "Mockito", "Testcontainers", "Vitest", "Playwright"] },
