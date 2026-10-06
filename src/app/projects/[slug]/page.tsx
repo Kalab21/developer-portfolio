@@ -138,11 +138,20 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           </SectionHeading>
           <div
             className={`grid items-start gap-8 ${
-              project.architecture.diagram ? "lg:grid-cols-2" : "max-w-4xl"
+              !project.architecture.diagram
+                ? "max-w-4xl"
+                : project.architecture.diagram.stacked
+                  ? ""
+                  : "lg:grid-cols-2"
             }`}
           >
-            <ArchitectureFlow tiers={project.architecture.tiers} />
-            {project.architecture.diagram && (
+            {project.architecture.diagram?.stacked && (
+              <ArchitectureDiagram diagram={project.architecture.diagram} />
+            )}
+            <div className={project.architecture.diagram?.stacked ? "max-w-4xl" : undefined}>
+              <ArchitectureFlow tiers={project.architecture.tiers} />
+            </div>
+            {project.architecture.diagram && !project.architecture.diagram.stacked && (
               <ArchitectureDiagram diagram={project.architecture.diagram} />
             )}
           </div>

@@ -38,7 +38,15 @@ export type Project = {
   architecture: {
     description: string;
     tiers: ArchitectureTier[];
-    diagram?: { light: string; dark: string; alt: string; width: number; height: number };
+    diagram?: {
+      light: string;
+      dark: string;
+      alt: string;
+      width: number;
+      height: number;
+      /** Show the diagram at full width above the tier list (for tall, text-heavy diagrams). */
+      stacked?: boolean;
+    };
   };
   contributions?: string[];
   security: string[];
@@ -380,6 +388,14 @@ export const projects: Project[] = [
     architecture: {
       description:
         "Every query is first restricted by the caller's access scope, derived only from a validated JWT. Retrieval then runs in one of three modes, chosen per request: semantic (the default: MiniLM embedding, pgvector HNSW), lexical (PostgreSQL full-text search) or hybrid (both, fused with Reciprocal Rank Fusion). An optional cross-encoder reranks the candidates. Results pass the evidence gate and a LangGraph flow that answers with validated citations or refuses.",
+      diagram: {
+        light: "/projects/policy-rag/architecture.svg",
+        dark: "/projects/policy-rag/architecture-dark.svg",
+        alt: "Policy RAG Platform architecture: JWT validation produces an access scope applied inside every query; semantic, lexical or hybrid retrieval on PostgreSQL and pgvector gives a candidate set, optionally reranked by a cross-encoder; an evidence gate refuses on insufficient similarity, otherwise a LangGraph flow generates an answer and citation validation returns it with sources or refuses. MCP, OpenTelemetry, Terraform and CI run across the platform.",
+        width: 1400,
+        height: 1290,
+        stacked: true,
+      },
       tiers: [
         { label: "API", nodes: [{ name: "FastAPI", detail: "/api/search, /api/ask, /api/me" }] },
         { label: "Security", nodes: [{ name: "JWT validation" }, { name: "Access scope", detail: "tenant, level, department, applied in SQL" }] },

@@ -53,15 +53,17 @@ export function ArchitectureDiagram({
 }: {
   diagram: NonNullable<Project["architecture"]["diagram"]>;
 }) {
+  // A tall, text-heavy diagram keeps a readable minimum width and scrolls sideways on phones.
+  const minWidth = diagram.stacked ? "min-w-[860px]" : "";
   return (
-    <figure className="overflow-hidden rounded-xl border border-border bg-surface">
+    <figure className="overflow-x-auto rounded-xl border border-border bg-surface">
       <Image
         src={diagram.light}
         alt={diagram.alt}
         width={diagram.width}
         height={diagram.height}
         unoptimized
-        className="h-auto w-full dark:hidden"
+        className={`h-auto w-full dark:hidden ${minWidth}`}
       />
       <Image
         src={diagram.dark}
@@ -69,7 +71,7 @@ export function ArchitectureDiagram({
         width={diagram.width}
         height={diagram.height}
         unoptimized
-        className="hidden h-auto w-full dark:block"
+        className={`hidden h-auto w-full dark:block ${minWidth}`}
       />
     </figure>
   );
