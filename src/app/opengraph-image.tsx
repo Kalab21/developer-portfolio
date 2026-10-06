@@ -104,7 +104,7 @@ export default function OpengraphImage() {
                 maxWidth: 1040,
               }}
             >
-              Java · Spring Boot · Distributed Systems · AWS · Kafka · Data Engineering · Python/FastAPI · RAG &amp; GenAI
+              Java · Spring Boot · Distributed Systems · AWS · Kafka · Data Engineering · Python/FastAPI · RAG &amp; Applied AI
             </div>
             <div
               style={{

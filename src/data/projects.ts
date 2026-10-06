@@ -86,9 +86,10 @@ export const projects: Project[] = [
       { value: "5", label: "shared library modules" },
     ],
     technologies: [
-      { group: "Backend", items: ["Java 17", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Eureka", "OpenFeign", "Resilience4j"] },
-      { group: "Data & messaging", items: ["PostgreSQL 16", "Flyway", "Redis", "Apache Kafka"] },
+      { group: "Backend", items: ["Java 17", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Eureka", "OpenFeign"] },
+      { group: "Data & messaging", items: ["PostgreSQL 16", "Flyway", "Redis", "Apache Kafka", "Transactional outbox"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
+      { group: "Testing", items: ["JUnit 5", "Mockito", "Testcontainers", "Vitest", "Playwright"] },
       { group: "Delivery", items: ["Docker Compose", "GitHub Actions", "CodeQL", "Trivy", "Terraform (reference architecture)"] },
       { group: "Observability", items: ["Micrometer", "Prometheus", "Grafana", "Zipkin"] },
     ],
@@ -149,7 +150,6 @@ export const projects: Project[] = [
       "Pessimistic locking on balance-changing paths, verified with real-PostgreSQL concurrency tests",
       "Idempotency keys, transactional outbox, retry with dead-letter topics",
       "Request-ID propagation across hops; Prometheus, Grafana and Zipkin for metrics and tracing",
-      "Resilience4j in the service stack for inter-service fault tolerance",
     ],
     testing: {
       summary:
@@ -189,6 +189,7 @@ export const projects: Project[] = [
     ownership: "team",
     badge: "Team / FDE project",
     ownershipNote: "Team engagement in an organization repository. My contributions are listed separately below.",
+    cardTags: ["Python", "FastAPI", "LangChain", "LangGraph", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "RBAC", "Prometheus"],
     summary:
       "A brownfield consumer-lending platform (origination, decisioning, disclosures, servicing, payments, reconciliation) that a team inherited, hardened and decomposed into eight FastAPI backend services (including the gateway), with a staff-only RAG assistant grounded in approved lending policy.",
     context: [
@@ -209,9 +210,10 @@ export const projects: Project[] = [
       { value: "Read-only", label: "staff-only RAG assistant, no database access" },
     ],
     technologies: [
-      { group: "Backend", items: ["Python 3.12", "FastAPI", "LangGraph", "Anthropic or AWS Bedrock models"] },
+      { group: "Backend", items: ["Python 3.12", "FastAPI", "Pydantic"] },
+      { group: "AI assistant", items: ["LangChain", "LangGraph", "AWS Bedrock (Anthropic Claude models)", "Bounded read-only tool calling"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript"] },
-      { group: "Data", items: ["PostgreSQL 16 (versioned SQL migrations)", "Redis (sessions)"] },
+      { group: "Data & access control", items: ["PostgreSQL 16 (versioned SQL migrations)", "Redis (sessions)", "Role-based access control (staff roles, maker-checker)"] },
       { group: "Delivery & ops", items: ["Docker Compose", "GitHub Actions", "gitleaks", "Prometheus", "Grafana", "Pytest", "Playwright"] },
     ],
     highlights: [
@@ -258,7 +260,7 @@ export const projects: Project[] = [
       "Ledger and controls: proposed the append-only servicing ledger (ADR 0010) and built maker-checker approvals with an approvals queue people can work.",
       "Reconciliation: review flow so a person can see and resolve payments flagged for review.",
       "Security: closed a gateway authentication gap on the decision and disclosure proxies and hardened error handling on upstream failures.",
-      "Observability: Prometheus and Grafana metrics across all eight backend services, including fixing an alert that watched a metric nobody emitted.",
+      "Observability: Prometheus metrics and alert rules across all eight backend services, including fixing an alert that watched a metric nobody emitted.",
       "Verification: automated tests plus independent validation vectors for TILA/APR calculations.",
     ],
     security: [
@@ -270,7 +272,7 @@ export const projects: Project[] = [
     reliability: [
       "Idempotent payment capture and a scheduled settlement reconciliation job",
       "Append-only ledger for servicing balances",
-      "Correlation IDs, structured logging, Prometheus alerts and Grafana dashboards",
+      "Correlation IDs, structured logging and Prometheus metrics with alert rules",
     ],
     testing: {
       summary:
@@ -315,7 +317,7 @@ export const projects: Project[] = [
       "pgvector",
       "Vector Databases",
       "Hybrid Search",
-      "Reranking",
+      "Cross-Encoder Reranking",
       "RAG",
       "LangGraph",
       "MCP",
@@ -342,9 +344,9 @@ export const projects: Project[] = [
     ],
     technologies: [
       { group: "API & language", items: ["Python 3.12", "FastAPI", "Pydantic"] },
-      { group: "Vector search", items: ["PostgreSQL 16", "pgvector 0.8.7", "HNSW (vector_cosine_ops)", "Cosine similarity search", "JSONB + GIN metadata index"] },
+      { group: "Vector search", items: ["PostgreSQL 16", "pgvector 0.8.7", "HNSW (vector_cosine_ops)", "Semantic search (cosine similarity)", "JSONB + GIN metadata index"] },
       { group: "Lexical & hybrid retrieval", items: ["PostgreSQL Full-Text Search", "tsvector", "GIN full-text index", "Reciprocal Rank Fusion", "Hybrid Retrieval"] },
-      { group: "Reranking", items: ["Cross-encoder reranking (ms-marco MiniLM, local ONNX)"] },
+      { group: "Reranking", items: ["Cross-Encoder Reranking (ms-marco MiniLM, local ONNX)"] },
       { group: "Embeddings & RAG", items: ["Embeddings: sentence-transformers/all-MiniLM-L6-v2 (fastembed)", "LangGraph", "Evidence gating", "Citation validation"] },
       { group: "Security", items: ["JWT validation (OIDC/JWKS)", "RBAC", "Document-level authorization"] },
       { group: "Interfaces & operations", items: ["MCP (Model Context Protocol) server", "OpenTelemetry", "Prometheus metrics", "Structured logging"] },
@@ -438,6 +440,7 @@ export const projects: Project[] = [
     ownership: "team",
     badge: "Team / FDE project",
     ownershipNote: "Team engagement in an organization repository. My contributions are listed separately below.",
+    cardTags: ["Python", "FastAPI", "Next.js", "PostgreSQL", "MongoDB", "JWT/RBAC", "Nginx", "Docker"],
     summary:
       "A multi-service assessment platform where trainers create and assign tests, participants take timed assessments, and the system scores them and reports analytics. I extended a partially built five-service application into working end-to-end flows.",
     context: [
@@ -458,7 +461,7 @@ export const projects: Project[] = [
       { value: "80%", label: "diff-coverage gate on changed lines in CI" },
     ],
     technologies: [
-      { group: "Backend", items: ["Python", "FastAPI", "Alembic", "PyJWT"] },
+      { group: "Backend", items: ["Python", "FastAPI", "Alembic", "JWT/RBAC (PyJWT)"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Vitest", "Recharts"] },
       { group: "Data & storage", items: ["PostgreSQL", "MongoDB", "MinIO"] },
       { group: "Edge & delivery", items: ["Nginx", "API gateway", "Docker Compose", "GitHub Actions", "Playwright", "Trivy"] },
@@ -539,6 +542,7 @@ export const projects: Project[] = [
     ownership: "personal",
     badge: "Personal project",
     ownershipNote: "Built and maintained by me.",
+    cardTags: ["Java 17", "Spring Boot", "Spring MVC", "Spring Security", "Spring Data JPA", "MySQL", "Thymeleaf", "Docker"],
     summary:
       "A classic server-rendered Java marketplace with Admin, Seller and Buyer workflows: admins review seller accounts, sellers manage product listings, and buyers browse a catalogue, fill a cart and place orders. Built with Spring MVC, Thymeleaf, Spring Security and Spring Data JPA on MySQL.",
     context: [
