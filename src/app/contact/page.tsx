@@ -12,9 +12,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader eyebrow="Contact" title="Let's talk">
-        I am interested in senior software, distributed systems, data engineering,
-        Forward Deployed Engineering and applied AI roles. Email is the fastest way to
-        reach me.
+        I am interested in senior software engineering, distributed systems, Forward
+        Deployed Engineering, backend and cloud, and applied AI roles. Email is the
+        fastest way to reach me.
       </PageHeader>
       <Container className="py-12 sm:py-16">
         <ul className="grid gap-5 md:grid-cols-3">

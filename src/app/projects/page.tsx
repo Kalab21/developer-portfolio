@@ -6,7 +6,7 @@ import { Container, PageHeader } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Five projects: an event-driven banking platform, a consumer-lending platform with a RAG assistant, the Policy RAG Platform (pgvector retrieval and grounded RAG), a skills assessment platform and a Java marketplace.",
+    "Five projects: an event-driven Java/Kafka banking platform, a consumer-lending platform with a RAG assistant, the Policy RAG Platform (advanced retrieval and grounded RAG), a skills assessment platform and a Java marketplace.",
 };
 
 export default function ProjectsPage() {
@@ -15,7 +15,7 @@ export default function ProjectsPage() {
       <PageHeader eyebrow="Projects" title="Systems I have built, extended and hardened">
         Northbank is the flagship. Meridian Lending and Rev-Eval are team engagements, so
         each page separates what the project is from what I contributed. Policy RAG Platform is a
-        focused personal vector-search and RAG project, and MarketHub is a smaller
+        focused personal advanced-retrieval and grounded-RAG project, and MarketHub is a smaller
         supporting Java project.
       </PageHeader>
       <section aria-label="All projects" className="py-12 sm:py-16">

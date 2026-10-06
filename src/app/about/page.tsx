@@ -5,7 +5,7 @@ import { Container, PageHeader, SectionHeading, Tag } from "@/components/ui";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Software engineer whose scope grew from enterprise Java to distributed systems, data and cloud engineering, forward deployed engineering and applied AI.",
+    "Senior Software Engineer whose scope grew from enterprise Java to distributed systems, data and cloud engineering, forward deployed engineering and applied AI/RAG.",
 };
 
 const path = [
