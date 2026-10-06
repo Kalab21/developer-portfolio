@@ -551,7 +551,7 @@ export const projects: Project[] = [
     },
     stats: [
       { value: "3", label: "roles: Admin, Seller, Buyer" },
-      { value: "62", label: "automated tests" },
+      { value: "77", label: "automated tests" },
       { value: "9", label: "JPA entities" },
       { value: "8", label: "Spring Data JPA repositories" },
     ],
@@ -579,7 +579,7 @@ export const projects: Project[] = [
       ],
     },
     security: [
-      "BCrypt password hashing; form login with a server-side session and CSRF protection",
+      "BCrypt password hashing; form login with a server-side session; every state-changing web action is a CSRF-protected POST and GET stays read-only",
       "URL-level role rules plus per-record ownership checks: sellers change only their own products, buyers see only their own orders and cart, admins keep full access; @PreAuthorize on seller approval and the admin API",
       "Self-registration limited to Buyer and Seller roles",
     ],
@@ -590,13 +590,13 @@ export const projects: Project[] = [
     testing: {
       summary: "JUnit 5 and Mockito tests run against in-memory H2, so CI needs no MySQL.",
       stats: [
-        { value: "62", label: "tests in 8 classes" },
+        { value: "77", label: "tests in 8 classes" },
         { value: "19", label: "service unit tests" },
         { value: "14", label: "JPA repository tests" },
-        { value: "28", label: "MockMvc controller and authorization tests" },
+        { value: "43", label: "MockMvc controller and authorization tests" },
       ],
       notes: [
-        "23 MockMvc tests run through the real security filter chain and cover role gates, seller approval and cross-user access attempts, each asserting that data is unchanged.",
+        "38 MockMvc tests run through the real security filter chain and cover role gates, seller approval, cross-user access attempts, missing CSRF tokens and retired GET mutation URLs, each asserting that data is unchanged.",
       ],
     },
     scope: [
