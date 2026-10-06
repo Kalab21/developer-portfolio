@@ -171,6 +171,7 @@ export const skillGroups: SkillGroup[] = [
       "OAuth2/OIDC",
       "JWT",
       "RBAC",
+      "Document-Level Authorization",
       "OWASP concepts",
       "Authorization Boundaries",
       "Secrets Management",
