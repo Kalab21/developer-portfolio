@@ -387,7 +387,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "Every query is first restricted by the caller's access scope, derived only from a validated JWT. Retrieval then runs in one of three modes, chosen per request: semantic (the default: MiniLM embedding, pgvector HNSW), lexical (PostgreSQL full-text search) or hybrid (both, fused with Reciprocal Rank Fusion). An optional cross-encoder reranks the candidates. Results pass the evidence gate and a LangGraph flow that answers with validated citations or refuses.",
+        "Every query is first restricted by the caller's access scope, derived only from a validated JWT. Semantic, lexical and hybrid retrieval are selectable per request, with configurable cross-encoder reranking. Results then pass the evidence gate and a LangGraph flow that answers with validated citations or refuses.",
       diagram: {
         light: "/projects/policy-rag/architecture.svg",
         dark: "/projects/policy-rag/architecture-dark.svg",
@@ -399,8 +399,8 @@ export const projects: Project[] = [
       tiers: [
         { label: "API", nodes: [{ name: "FastAPI", detail: "/api/search, /api/ask, /api/me" }] },
         { label: "Security", nodes: [{ name: "JWT validation" }, { name: "Access scope", detail: "tenant, level, department, applied in SQL" }] },
-        { label: "Retrieval", nodes: [{ name: "Semantic (default)", detail: "MiniLM embedding to pgvector HNSW" }, { name: "Lexical", detail: "PostgreSQL full-text search" }, { name: "Hybrid (optional)", detail: "semantic + lexical fused with RRF" }, { name: "Cross-encoder rerank (optional)" }, { name: "Metadata filter", detail: "JSONB containment in SQL" }] },
-        { label: "RAG", nodes: [{ name: "Evidence gate" }, { name: "LangGraph flow" }, { name: "Extractive generator (default)", detail: "optional Bedrock and OpenAI-compatible adapters" }, { name: "Citation validation" }] },
+        { label: "Retrieval", nodes: [{ name: "Semantic Search", detail: "MiniLM embedding to pgvector HNSW" }, { name: "Lexical Search", detail: "PostgreSQL full-text search" }, { name: "Hybrid Search", detail: "semantic + lexical fused with RRF" }, { name: "Cross-Encoder Reranking" }, { name: "Metadata filter", detail: "JSONB containment in SQL" }] },
+        { label: "RAG", nodes: [{ name: "Evidence gate" }, { name: "LangGraph flow" }, { name: "Extractive generator", detail: "Bedrock and OpenAI-compatible adapters available" }, { name: "Citation validation" }] },
         { label: "Interfaces", nodes: [{ name: "MCP server", detail: "stdio, read-only tools" }] },
         { label: "Data", nodes: [{ name: "PostgreSQL 16 + pgvector" }] },
         { label: "Operations", nodes: [{ name: "OpenTelemetry" }, { name: "Prometheus metrics" }, { name: "Terraform AWS reference architecture", detail: "validated in CI" }] },
