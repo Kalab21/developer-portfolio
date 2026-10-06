@@ -551,7 +551,7 @@ export const projects: Project[] = [
     },
     stats: [
       { value: "3", label: "roles: Admin, Seller, Buyer" },
-      { value: "39", label: "automated tests" },
+      { value: "62", label: "automated tests" },
       { value: "9", label: "JPA entities" },
       { value: "8", label: "Spring Data JPA repositories" },
     ],
@@ -562,7 +562,7 @@ export const projects: Project[] = [
       { group: "Delivery", items: ["Docker (multi-stage build)", "Docker Compose", "GitHub Actions", "JaCoCo"] },
     ],
     highlights: [
-      { title: "Admin seller review workflow", body: "New sellers register as pending, and admins can review and update seller approval status from the seller management page." },
+      { title: "Admin seller review workflow", body: "New sellers register as pending and only an approved seller can create, edit or delete products. Admins review and approve sellers from the seller management page." },
       { title: "Catalogue, cart and checkout", body: "Buyers browse products, add items to a cart with a live item badge, and check out into an order." },
       { title: "Order management", body: "Orders start as Pending, can be cancelled while pending, and the history shows total spent." },
       { title: "Role-based navigation", body: "Admin, Seller and Buyer each get their own dashboard and menu." },
@@ -580,7 +580,7 @@ export const projects: Project[] = [
     },
     security: [
       "BCrypt password hashing; form login with a server-side session and CSRF protection",
-      "URL-level role rules for admin and buyer areas; @PreAuthorize on seller approval and the admin API",
+      "URL-level role rules plus per-record ownership checks: sellers change only their own products, buyers see only their own orders and cart, admins keep full access; @PreAuthorize on seller approval and the admin API",
       "Self-registration limited to Buyer and Seller roles",
     ],
     reliability: [
@@ -590,13 +590,13 @@ export const projects: Project[] = [
     testing: {
       summary: "JUnit 5 and Mockito tests run against in-memory H2, so CI needs no MySQL.",
       stats: [
-        { value: "39", label: "tests in 7 classes" },
+        { value: "62", label: "tests in 8 classes" },
         { value: "19", label: "service unit tests" },
         { value: "14", label: "JPA repository tests" },
-        { value: "5", label: "MockMvc controller tests" },
+        { value: "28", label: "MockMvc controller and authorization tests" },
       ],
       notes: [
-        "CI uses H2 for repository tests and MockMvc for controller coverage.",
+        "23 MockMvc tests run through the real security filter chain and cover role gates, seller approval and cross-user access attempts, each asserting that data is unchanged.",
       ],
     },
     scope: [
