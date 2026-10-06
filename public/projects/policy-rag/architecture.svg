@@ -20,17 +20,17 @@
 <text x="84" y="224" font-size="19" font-weight="700" fill="#3f4ab8" text-anchor="start">PostgreSQL 16 + pgvector</text>
 <text x="84" y="248" font-size="15" font-weight="400" fill="#4b587c" text-anchor="start">metadata filters and the access scope are applied in SQL inside each retriever</text>
 <rect x="100" y="280" width="380" height="150" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
-<text x="290.0" y="327.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Semantic  (default)</text>
+<text x="290.0" y="327.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Semantic Search</text>
 <text x="290.0" y="349.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">MiniLM embedding (384 dims)</text>
 <text x="290.0" y="371.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">pgvector HNSW index</text>
 <text x="290.0" y="393.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">cosine similarity</text>
 <rect x="510.0" y="280" width="380" height="150" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
-<text x="700.0" y="327.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Lexical</text>
+<text x="700.0" y="327.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Lexical Search</text>
 <text x="700.0" y="349.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">PostgreSQL full-text search</text>
 <text x="700.0" y="371.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">tsvector + GIN index</text>
 <text x="700.0" y="393.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">ranked with ts_rank</text>
-<rect x="920" y="280" width="380" height="150" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2" stroke-dasharray="8 6"/>
-<text x="1110.0" y="327.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Hybrid  (optional)</text>
+<rect x="920" y="280" width="380" height="150" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
+<text x="1110.0" y="327.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Hybrid Search</text>
 <text x="1110.0" y="349.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">semantic + lexical results</text>
 <text x="1110.0" y="371.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">fused with Reciprocal</text>
 <text x="1110.0" y="393.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">Rank Fusion (RRF)</text>
@@ -40,8 +40,8 @@
 <text x="700.0" y="549.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Candidate set</text>
 <text x="700.0" y="571.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">top results from the selected retrieval mode</text>
 <line x1="700" y1="590" x2="700" y2="640" stroke="#3f4ab8" stroke-width="2.5" marker-end="url(#head-3f4ab8)"/>
-<rect x="470.0" y="640" width="460" height="80" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2" stroke-dasharray="8 6"/>
-<text x="700.0" y="674.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Cross-encoder reranker  (optional)</text>
+<rect x="470.0" y="640" width="460" height="80" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
+<text x="700.0" y="674.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">Cross-Encoder Reranking</text>
 <text x="700.0" y="696.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">local ms-marco MiniLM model re-orders the candidates</text>
 <line x1="700" y1="720" x2="700" y2="780" stroke="#3f4ab8" stroke-width="2.5" marker-end="url(#head-3f4ab8)"/>
 <rect x="470.0" y="780" width="460" height="100" rx="12" fill="#fafbff" stroke="#3f4ab8" stroke-width="2"/>
@@ -59,7 +59,7 @@
 <rect x="380.0" y="950" width="640" height="120" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
 <text x="700.0" y="993.0" font-size="19" font-weight="700" fill="#14213d" text-anchor="middle">LangGraph flow</text>
 <text x="700.0" y="1015.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">validate query → retrieve → assess evidence → generate | refuse → validate citations</text>
-<text x="700.0" y="1037.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">generator: Extractive (default)   ·   Bedrock / OpenAI-compatible (optional)</text>
+<text x="700.0" y="1037.0" font-size="15" font-weight="400" fill="#4b587c" text-anchor="middle">generators: Extractive   ·   Bedrock / OpenAI-compatible adapters</text>
 <line x1="700" y1="1070" x2="700" y2="1120" stroke="#3f4ab8" stroke-width="2.5" marker-end="url(#head-3f4ab8)"/>
 <rect x="470.0" y="1120" width="460" height="70" rx="12" fill="#fafbff" stroke="#3f4ab8" stroke-width="2"/>
 <text x="700.0" y="1149.0" font-size="19" font-weight="700" fill="#3f4ab8" text-anchor="middle">Citation validation</text>
