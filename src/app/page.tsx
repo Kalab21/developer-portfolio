@@ -119,8 +119,8 @@ export default function Home() {
       <section aria-labelledby="featured" className="border-y border-border bg-surface-muted py-16 sm:py-24">
         <Container>
           <SectionHeading eyebrow="Featured projects" title="Selected work" headingId="featured">
-            Distributed banking systems, lending and retrieval platforms with applied AI,
-            and full-stack Java and Python applications.
+            Selected engineering work across distributed systems, financial platforms,
+            full-stack applications and applied AI.
           </SectionHeading>
           <div className="grid gap-6 lg:grid-cols-2">
             {projects.map((p, i) => (

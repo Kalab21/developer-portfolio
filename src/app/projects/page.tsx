@@ -14,9 +14,9 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHeader eyebrow="Projects" title="Systems I have built, extended and hardened">
-        Selected engineering work across event-driven banking, lending, retrieval and RAG,
-        assessment and marketplace systems. Each case study covers the architecture, the key
-        engineering decisions and how the work was verified.
+        Systems spanning distributed banking, consumer lending with applied AI, secure
+        retrieval, assessment platforms and full-stack Java. Each case study covers the
+        architecture, the key engineering decisions and how the work was verified.
       </PageHeader>
       <section aria-label="All projects" className="py-12 sm:py-16">
         <Container>

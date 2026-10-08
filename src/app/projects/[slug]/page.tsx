@@ -9,7 +9,6 @@ import {
   StatGrid,
 } from "@/components/project";
 import {
-  Badge,
   ButtonLink,
   Container,
   PageHeader,
@@ -64,7 +63,6 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
   if (!project) notFound();
 
   const [heroShot, ...moreShots] = project.screenshots;
-  const isTeam = project.ownership === "team";
 
   return (
     <>
@@ -80,10 +78,8 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           / <span aria-current="page">{project.title}</span>
         </nav>
 
-        <Badge>{project.badge}</Badge>
-
         {/* Overview */}
-        <section aria-labelledby="overview" className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+        <section aria-labelledby="overview" className="mt-4 grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
           <div>
             <h2 id="overview" className="sr-only">
               Overview
@@ -158,17 +154,15 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           </div>
         </section>
 
-        {/* Contributions (team projects) */}
+        {/* Contributions (collaborative projects) */}
         {project.contributions && (
           <section
             aria-labelledby="contributions"
             className="mt-20 rounded-2xl border border-accent bg-accent-soft p-6 sm:p-10"
           >
-            <p className="font-mono text-xs uppercase tracking-widest text-accent">
-              {isTeam ? "Team project" : "Contributions"}
-            </p>
+            <p className="font-mono text-xs uppercase tracking-widest text-accent">What I built</p>
             <h2 id="contributions" className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-              My Engineering Contributions
+              Engineering contributions
             </h2>
             <div className="mt-6 max-w-4xl">
               <BulletList items={project.contributions} />

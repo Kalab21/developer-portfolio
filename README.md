@@ -1,7 +1,8 @@
 # Kalabe Kebede — Developer Portfolio
 
 Senior Software Engineer / Forward Deployed Engineer portfolio covering
-Java/Spring distributed systems, data engineering, cloud and applied AI.
+Java/Spring distributed systems, full-stack engineering, data and cloud, and
+applied AI.
 
 **Live portfolio:** https://developer-portfolio-iota-ten.vercel.app
 
@@ -9,14 +10,14 @@ Java/Spring distributed systems, data engineering, cloud and applied AI.
 
 ## Featured projects
 
-- **[Northbank](https://github.com/Kalab21/banking-platform)** — Java 21, Spring Boot, Kafka, PostgreSQL, Redis, Next.js
-- **[Meridian Lending](https://github.com/2463-FDE/KK-meridian-lending)** — FastAPI, PostgreSQL, LangChain, LangGraph, AWS Bedrock
-- **[Policy RAG Platform](https://github.com/Kalab21/policy-rag-platform)** — FastAPI, PostgreSQL/pgvector, hybrid retrieval, LangGraph
-- **[Rev-Eval](https://github.com/RevatureFDEPEP/rev-eval/tree/kalabek)** — FastAPI, Next.js, PostgreSQL, MongoDB, JWT/RBAC
-- **[MarketHub](https://github.com/Kalab21/markethub)** — Java 17, Spring Boot MVC, Spring Security, MySQL
+- **[Northbank](https://github.com/Kalab21/banking-platform)** — Java 21, Spring Boot, Kafka, PostgreSQL, Redis, Next.js, React, TypeScript
+- **[Meridian Lending](https://github.com/2463-FDE/KK-meridian-lending)** — Python, FastAPI, LangChain, LangGraph, LangSmith, AWS Bedrock, Next.js
+- **[Policy RAG Platform](https://github.com/Kalab21/policy-rag-platform)** — FastAPI, PostgreSQL/pgvector, hybrid retrieval, LangGraph, MCP
+- **[Rev-Eval](https://github.com/RevatureFDEPEP/rev-eval/tree/kalabek)** — FastAPI, Next.js, React, TypeScript, PostgreSQL, MongoDB
+- **[MarketHub](https://github.com/Kalab21/markethub)** — Java 17, Spring Boot MVC, Spring Security, MySQL, Thymeleaf
 
-Each project page on the site covers the architecture, key engineering decisions,
-and, for the team projects, which parts were my own work.
+Each project page on the site covers the architecture, key engineering decisions
+and my role.
 
 ## Portfolio stack
 

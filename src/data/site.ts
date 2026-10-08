@@ -3,19 +3,19 @@ import { resume } from "./resume";
 export const site = {
   name: "Kalabe Kebede",
   title: "Senior Software Engineer | Forward Deployed Engineer",
-  tagline: "Java · Spring Boot · Kafka · AWS · SQL · Python/FastAPI · RAG",
+  tagline: "Java · Spring Boot · Kafka · AWS · Next.js · Python/FastAPI · Agentic AI & RAG",
   valueProp:
-    "6+ years building backend and data systems for banking, insurance and analytics: event-driven Java microservices, transaction-safe money movement, AWS data pipelines and, most recently, retrieval-grounded AI applications on inherited platforms.",
+    "6+ years building backend, full-stack and data systems for banking, insurance and analytics: event-driven Java microservices, transaction-safe money movement, Next.js consoles, AWS data pipelines and, most recently, agentic and retrieval-grounded AI on inherited platforms.",
   currentFocus: [
     "Event-driven Java systems",
-    "Retrieval and RAG engineering",
+    "Agentic AI and RAG engineering",
     "Brownfield modernization",
   ],
   /** Canonical production origin, used for metadata, the sitemap and robots.txt. */
   url: "https://developer-portfolio-iota-ten.vercel.app",
   metaTitle: "Kalabe Kebede | Senior Software Engineer & Forward Deployed Engineer",
   metaDescription:
-    "Senior Software Engineer and Forward Deployed Engineer specializing in Java/Spring distributed systems, AWS, Python/FastAPI and applied AI/RAG systems.",
+    "Senior Software Engineer and Forward Deployed Engineer: Java/Spring distributed systems, full-stack Next.js and React, AWS, Python/FastAPI, and agentic AI and RAG systems.",
   github: "https://github.com/Kalab21",
   email: "kalabkebe12@gmail.com",
   resumePath: `/${resume.fileName}`,
@@ -36,27 +36,28 @@ export type Expertise = {
 
 export const expertise: Expertise[] = [
   {
-    title: "Software & Distributed Systems",
+    title: "Backend & Distributed Systems",
     summary:
       "Java, Spring Boot, Kafka, microservices, APIs, transaction processing, concurrency.",
     tags: ["Java 8–21", "Spring Boot", "Kafka", "Microservices", "Idempotency"],
   },
   {
-    title: "Data Engineering & Analytics",
-    summary: "SQL, ETL/ELT, AWS data services, data quality, modeling, BI.",
-    tags: ["Advanced SQL", "PostgreSQL", "Athena · Glue · S3", "Power BI"],
+    title: "Full-Stack Engineering",
+    summary:
+      "Next.js and React consoles in TypeScript, server-rendered Spring MVC, and backend-for-frontend security.",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Thymeleaf"],
   },
   {
     title: "Forward Deployed & Applied AI",
     summary:
-      "Python, FastAPI, retrieval and RAG, tool integration, evaluation, and modernizing inherited systems.",
-    tags: ["FastAPI", "RAG", "LangGraph", "Vector Search", "MCP"],
+      "Python and FastAPI services, RAG and retrieval, agent workflows, tool calling, tracing and evaluation on inherited systems.",
+    tags: ["FastAPI", "RAG", "LangGraph", "Multi-Agent", "LangSmith"],
   },
   {
-    title: "Cloud, Reliability & Delivery",
+    title: "Data, Cloud & Delivery",
     summary:
-      "AWS, Docker, Kubernetes, CI/CD, observability, security, testing.",
-    tags: ["AWS", "Docker · Kubernetes", "GitHub Actions", "Observability"],
+      "SQL and ETL/ELT on AWS data services, containers, CI/CD, observability and testing.",
+    tags: ["Advanced SQL", "AWS", "Docker · Kubernetes", "GitHub Actions"],
   },
 ];
 
@@ -64,7 +65,7 @@ export type SkillGroup = { title: string; skills: string[] };
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Software & Distributed Systems",
+    title: "Backend & Distributed Systems",
     skills: [
       "Java 8–21",
       "Spring Boot",
@@ -80,6 +81,20 @@ export const skillGroups: SkillGroup[] = [
       "Concurrency",
       "Idempotency",
       "Transactional Outbox",
+    ],
+  },
+  {
+    title: "Frontend & Full Stack",
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Thymeleaf",
+      "Bootstrap",
+      "Recharts",
+      "Backend-for-Frontend (BFF)",
     ],
   },
   {
@@ -128,21 +143,22 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: "Applied AI & Retrieval",
+    title: "Applied AI & Agents",
     skills: [
       "Python",
       "FastAPI",
       "RAG",
       "Vector Search (pgvector)",
-      "Embeddings",
       "Hybrid Search & Reranking",
-      "PostgreSQL Full-Text Search",
       "LangChain",
       "LangGraph",
+      "Agentic AI",
+      "Multi-Agent Systems",
+      "LangSmith",
       "AWS Bedrock",
       "Tool Calling",
       "MCP (Model Context Protocol)",
-      "Retrieval Evaluation (Hit@K, MRR, nDCG)",
+      "AI Evaluation (Hit@K, MRR, nDCG)",
       "Citation Validation",
       "Human-in-the-Loop",
     ],
@@ -225,11 +241,12 @@ export const roles: Role[] = [
         name: "Meridian Lending — Consumer Lending Platform",
         points: [
           "Modernized an inherited lending platform spanning intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation.",
-          "Built a grounded RAG policy assistant with LangChain/LangGraph, AWS Bedrock and bounded policy tool calling. The assistant is advisory only; credit decisions stay in the core lending workflow, which remains the system of record.",
+          "Built grounded and agentic AI with LangChain, LangGraph and AWS Bedrock: a RAG policy assistant, an underwriting-summary agent with a bounded policy tool, and a two-agent LangGraph disclosure workflow. The AI is advisory; credit decisions stay in the core lending workflow, which remains the system of record.",
+          "Added privacy-safe LangSmith tracing from the gateway through retrieval, the model call and the agent run, plus a retrieval evaluation harness and human review on AI output.",
           "Strengthened RBAC, decision finality, idempotency, auditability and data-integrity controls.",
           "Translated business and regulatory requirements into specifications and ADRs; added automated verification for lending calculations, plus logging, metrics, tracing and CI gates.",
         ],
-        stack: ["Python", "FastAPI", "LangChain", "LangGraph", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "Redis", "JWT/RBAC", "Prometheus/Grafana", "Pytest", "Playwright", "GitHub Actions"],
+        stack: ["Python", "FastAPI", "LangChain", "LangGraph", "Multi-Agent", "LangSmith", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "Redis", "JWT/RBAC", "Next.js", "TypeScript", "Prometheus/Grafana", "Pytest", "Playwright"],
       },
       {
         name: "Rev-Eval — Skills Assessment Platform",
@@ -238,7 +255,7 @@ export const roles: Role[] = [
           "Built the quiz scoring engine with idempotent submissions and row locking, and the Reporting & Analytics service.",
           "Wired Nginx and API-gateway routing, hardened gateway authentication, and built PostgreSQL/MongoDB-backed features.",
         ],
-        stack: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "PostgreSQL", "MongoDB", "JWT/RBAC", "Nginx", "Docker Compose", "CI/CD"],
+        stack: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "Recharts", "PostgreSQL", "MongoDB", "JWT/RBAC", "Nginx", "Docker Compose", "CI/CD"],
       },
     ],
   },
@@ -332,11 +349,14 @@ export const featuredSkills: ReadonlySet<string> = new Set([
   "Spring Boot",
   "Microservices",
   "Kafka",
+  "React",
+  "Next.js",
+  "TypeScript",
   "Advanced SQL",
   "AWS",
   "Python",
   "FastAPI",
   "RAG",
-  "Vector Search (pgvector)",
   "LangGraph",
+  "Agentic AI",
 ]);
