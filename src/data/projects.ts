@@ -24,8 +24,6 @@ export type Project = {
   title: string;
   subtitle: string;
   category: string;
-  /** "personal" = built end to end by me; "team" = organization / team project. */
-  ownership: "personal" | "team";
   summary: string;
   /** Optional shorter text and tags for the recruiter-facing project card. */
   cardSummary?: string;
@@ -65,7 +63,6 @@ export const projects: Project[] = [
     title: "Northbank",
     subtitle: "Event-Driven Retail Banking Platform",
     category: "Distributed Systems & Financial Engineering",
-    ownership: "personal",
     cardSummary:
       "A Java 21 / Spring Boot banking platform: 11 services behind an API gateway, Kafka events, a database per service and a Next.js console, built around transaction integrity and safe money movement.",
     cardTags: ["Java 21", "Spring Boot", "Kafka", "PostgreSQL", "Redis", "Next.js", "React", "TypeScript"],
@@ -187,17 +184,16 @@ export const projects: Project[] = [
     title: "Meridian Lending",
     subtitle: "Consumer Lending & Applied AI Platform",
     category: "Forward Deployed Engineering & Applied AI",
-    ownership: "team",
     cardSummary:
       "An inherited consumer-lending platform hardened and split into eight FastAPI services, with auditable credit decisions, maker-checker controls and reconciliation, plus advisory AI: a grounded RAG assistant, LangGraph agent workflows and LangSmith tracing.",
     cardTags: ["Python", "FastAPI", "LangGraph", "Multi-Agent", "LangSmith", "AWS Bedrock", "RAG", "Next.js", "TypeScript"],
     summary:
       "A brownfield consumer-lending platform (intake, identity checks, credit decisioning, manual review, disclosures, payments, servicing and reconciliation) hardened and decomposed into eight FastAPI backend services, including the gateway. Grounded and agentic AI built with LangChain, LangGraph and AWS Bedrock supports staff, while the core lending workflow stays authoritative for credit decisions.",
     context: [
-      "The team started from an inherited codebase plus business and regulatory requirements. The work was to trace how an application moves through intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation, then close integrity, security and observability gaps without breaking existing behavior.",
+      "Starting from an inherited codebase plus business and regulatory requirements, I traced how an application moves through intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation, then closed integrity, security and observability gaps without breaking existing behavior.",
     ],
     role:
-      "Contributing engineer on a team: brownfield analysis, requirements and ADRs, the RAG assistant, agent workflows and LangSmith tracing, and security, ledger, reconciliation and observability work across the services.",
+      "Contributed brownfield analysis, requirements and ADRs, the RAG assistant, agent workflows and LangSmith tracing, and security, ledger, reconciliation and observability work across the services.",
     repository: {
       url: "https://github.com/2463-FDE/KK-meridian-lending",
       label: "2463-FDE/KK-meridian-lending",
@@ -321,7 +317,6 @@ export const projects: Project[] = [
     title: "Policy RAG Platform",
     subtitle: "Secure Retrieval & Grounded AI Platform",
     category: "Vector Search & Retrieval-Augmented Generation",
-    ownership: "personal",
     cardSummary:
       "A question-answering service over policy documents that only uses documents the caller may read, cites its sources and refuses when the evidence is weak. Retrieval quality is measured on held-out questions.",
     cardTags: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Hybrid Search", "LangGraph", "MCP", "OpenTelemetry"],
@@ -447,7 +442,6 @@ export const projects: Project[] = [
     title: "Rev-Eval",
     subtitle: "Skills Assessment & Analytics Platform",
     category: "Full-Stack FDE & Platform Engineering",
-    ownership: "team",
     cardSummary:
       "A multi-service assessment platform: trainers assign tests, participants take timed quizzes, and submissions are scored safely under retries and concurrency, with reporting and analytics.",
     cardTags: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "PostgreSQL", "MongoDB", "Docker"],
@@ -560,7 +554,6 @@ export const projects: Project[] = [
     title: "MarketHub",
     subtitle: "Full-Stack Java Marketplace",
     category: "Java Full-Stack Engineering",
-    ownership: "personal",
     cardSummary:
       "A server-rendered Spring marketplace with Admin, Seller and Buyer workflows, per-record ownership checks and CSRF-protected actions, covered by authorization tests.",
     cardTags: ["Java 17", "Spring Boot", "Spring Security", "MySQL", "Thymeleaf", "Bootstrap", "Docker"],
