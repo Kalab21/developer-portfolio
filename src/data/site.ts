@@ -139,7 +139,7 @@ export const skillGroups: SkillGroup[] = [
       "LangChain",
       "LangGraph",
       "Agentic AI",
-      "Multi-Agent Systems",
+      "Multi-Agent Orchestration",
       "LangSmith",
       "AWS Bedrock",
       "Tool Calling",
