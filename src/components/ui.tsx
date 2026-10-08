@@ -137,17 +137,3 @@ export function ButtonLink({ href, children, variant = "secondary", external, do
     </Link>
   );
 }
-
-export function Badge({ children, tone = "accent" }: { children: ReactNode; tone?: "accent" | "neutral" }) {
-  return (
-    <span
-      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
-        tone === "accent"
-          ? "bg-accent-soft text-accent"
-          : "border border-border bg-surface-muted text-foreground"
-      }`}
-    >
-      {children}
-    </span>
-  );
-}

@@ -104,7 +104,7 @@ export default function OpengraphImage() {
                 maxWidth: 1040,
               }}
             >
-              Java · Spring Boot · Distributed Systems · AWS · Kafka · Data Engineering · Python/FastAPI · RAG &amp; Applied AI
+              Java · Distributed Systems · Full Stack · Applied AI
             </div>
             <div
               style={{
@@ -115,7 +115,7 @@ export default function OpengraphImage() {
                 color: CYAN,
               }}
             >
-              Banking · Distributed Systems · Applied AI
+              Spring Boot · Kafka · AWS · Next.js · Python/FastAPI · LangGraph
             </div>
           </div>
         </div>

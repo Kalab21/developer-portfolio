@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ArchitectureTier, Project, Screenshot, Stat } from "@/data/projects";
-import { Badge, TagList } from "./ui";
+import { TagList } from "./ui";
 
 export function StatGrid({ stats }: { stats: Stat[] }) {
   return (
@@ -150,12 +150,8 @@ export function ProjectCard({
         )}
       </div>
       <div className={`flex flex-1 flex-col p-6 ${flagship ? "lg:p-8" : ""}`}>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge>{project.badge}</Badge>
-          <span className="font-mono text-xs text-muted">0{index + 1}</span>
-        </div>
-        <p className="mt-3 font-mono text-xs uppercase tracking-widest text-accent">
-          {project.category}
+        <p className="font-mono text-xs uppercase tracking-widest text-accent">
+          <span className="text-muted">0{index + 1}</span> · {project.category}
         </p>
         <h3 className={`mt-2 font-semibold tracking-tight ${flagship ? "text-3xl" : "text-xl"}`}>
           <Link

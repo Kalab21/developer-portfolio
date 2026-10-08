@@ -5,7 +5,7 @@ import { Container, PageHeader, SectionHeading, Tag } from "@/components/ui";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Senior Software Engineer whose scope grew from enterprise Java to distributed systems, data and cloud engineering, forward deployed engineering and applied AI/RAG.",
+    "Senior Software Engineer whose scope grew from enterprise Java to distributed systems, data and cloud engineering, full-stack and forward deployed engineering, and applied and agentic AI.",
   alternates: { canonical: "/about" },
 };
 
@@ -13,8 +13,8 @@ const path = [
   { step: "Enterprise Java", note: "Insurance and banking backends" },
   { step: "Distributed Systems", note: "Kafka, microservices, transactions" },
   { step: "Data / Cloud Engineering", note: "SQL, AWS data services, BI" },
-  { step: "Forward Deployed Engineering", note: "Brownfield systems, clients" },
-  { step: "Applied AI Systems", note: "RAG, LLM apps, evaluation" },
+  { step: "Full-Stack & Forward Deployed", note: "Brownfield platforms, Next.js and FastAPI" },
+  { step: "Applied & Agentic AI", note: "RAG, agents, tracing, evaluation" },
 ];
 
 export default function AboutPage() {
@@ -73,8 +73,9 @@ export default function AboutPage() {
           <p>
             Earlier, at Scale AI, I reviewed and evaluated AI-generated data. At Revature I
             started building applied-AI software as an engineer: retrieval grounded in
-            approved policy, kept advisory next to the system of record, with evaluation and
-            human review around it. I care about
+            approved policy, LangGraph agent workflows and LangSmith tracing, all kept advisory
+            next to the system of record, with evaluation and human review around them. I
+            care about
             authorization boundaries, idempotency, reconciliation and observability more
             than about any one framework.
           </p>

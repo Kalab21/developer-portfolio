@@ -22,7 +22,6 @@ export type Project = {
   category: string;
   /** "personal" = built end to end by me; "team" = organization / team project. */
   ownership: "personal" | "team";
-  badge: string;
   summary: string;
   /** Optional shorter text and tags for the recruiter-facing project card. */
   cardSummary?: string;
@@ -60,13 +59,12 @@ export const projects: Project[] = [
   {
     slug: "northbank",
     title: "Northbank",
-    subtitle: "Event-driven retail banking platform",
+    subtitle: "Event-Driven Retail Banking Platform",
     category: "Distributed Systems & Financial Engineering",
     ownership: "personal",
-    badge: "Personal Project",
     cardSummary:
       "A Java 21 / Spring Boot banking platform: 11 services behind an API gateway, Kafka events, a database per service and a Next.js console, built around transaction integrity and safe money movement.",
-    cardTags: ["Java 21", "Spring Boot 3", "Apache Kafka", "PostgreSQL 16", "Next.js", "Spring Security", "Redis", "Docker"],
+    cardTags: ["Java 21", "Spring Boot", "Kafka", "PostgreSQL", "Redis", "Next.js", "React", "TypeScript"],
     summary:
       "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
     context: [
@@ -88,7 +86,7 @@ export const projects: Project[] = [
     technologies: [
       { group: "Backend", items: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Eureka", "OpenFeign", "Resilience4j"] },
       { group: "Data & messaging", items: ["PostgreSQL 16", "Flyway", "Redis", "Apache Kafka", "Transactional outbox"] },
-      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
+      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Recharts"] },
       { group: "Testing", items: ["JUnit 5", "Mockito", "Testcontainers", "Vitest", "Playwright"] },
       { group: "Delivery", items: ["Docker Compose", "GitHub Actions", "CodeQL", "Trivy", "Terraform (reference architecture)"] },
       { group: "Observability", items: ["Micrometer", "Prometheus", "Grafana", "Zipkin"] },
@@ -183,20 +181,19 @@ export const projects: Project[] = [
   {
     slug: "meridian-lending",
     title: "Meridian Lending",
-    subtitle: "Consumer lending platform with a RAG policy assistant",
+    subtitle: "Consumer Lending & Applied AI Platform",
     category: "Forward Deployed Engineering & Applied AI",
     ownership: "team",
-    badge: "Team Project",
     cardSummary:
-      "An inherited consumer-lending platform hardened and split into eight FastAPI services, with auditable credit decisions, maker-checker controls, payment reconciliation and an advisory RAG policy assistant.",
-    cardTags: ["Python", "FastAPI", "LangChain", "LangGraph", "AWS Bedrock", "PostgreSQL", "RBAC"],
+      "An inherited consumer-lending platform hardened and split into eight FastAPI services, with auditable credit decisions, maker-checker controls and reconciliation, plus advisory AI: a grounded RAG assistant, LangGraph agent workflows and LangSmith tracing.",
+    cardTags: ["Python", "FastAPI", "LangGraph", "Multi-Agent", "LangSmith", "AWS Bedrock", "RAG", "Next.js", "TypeScript"],
     summary:
-      "A brownfield consumer-lending platform (origination, decisioning, disclosures, servicing, payments, reconciliation) that a team inherited, hardened and decomposed into eight FastAPI backend services (including the gateway), with a staff-only RAG assistant grounded in approved lending policy.",
+      "A brownfield consumer-lending platform (intake, identity checks, credit decisioning, manual review, disclosures, payments, servicing and reconciliation) hardened and decomposed into eight FastAPI backend services, including the gateway. Grounded and agentic AI built with LangChain, LangGraph and AWS Bedrock supports staff, while the core lending workflow stays authoritative for credit decisions.",
     context: [
       "The team started from an inherited codebase plus business and regulatory requirements. The work was to trace how an application moves through intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation, then close integrity, security and observability gaps without breaking existing behavior.",
     ],
     role:
-      "Contributing engineer on a team: brownfield analysis, requirements and ADRs, the RAG policy assistant, and security, ledger, reconciliation and observability work across the services.",
+      "Contributing engineer on a team: brownfield analysis, requirements and ADRs, the RAG assistant, agent workflows and LangSmith tracing, and security, ledger, reconciliation and observability work across the services.",
     repository: {
       url: "https://github.com/2463-FDE/KK-meridian-lending",
       label: "2463-FDE/KK-meridian-lending",
@@ -209,15 +206,23 @@ export const projects: Project[] = [
     ],
     technologies: [
       { group: "Backend", items: ["Python 3.12", "FastAPI", "Pydantic"] },
-      { group: "AI assistant", items: ["LangChain", "LangGraph", "AWS Bedrock (Anthropic Claude models)", "Bounded read-only tool calling"] },
-      { group: "Frontend", items: ["Next.js", "React", "TypeScript"] },
+      { group: "Applied AI", items: ["LangChain", "LangGraph (multi-agent workflows)", "LangSmith (tracing)", "AWS Bedrock (Anthropic Claude models)", "RAG", "Bounded tool calling", "Retrieval evaluation"] },
+      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Playwright"] },
       { group: "Data & access control", items: ["PostgreSQL 16 (versioned SQL migrations)", "Redis (sessions)", "Role-based access control (staff roles, maker-checker)"] },
-      { group: "Delivery & ops", items: ["Docker Compose", "GitHub Actions", "gitleaks", "Prometheus", "Grafana", "Pytest", "Playwright"] },
+      { group: "Delivery & ops", items: ["Docker Compose", "GitHub Actions", "gitleaks", "Prometheus", "Grafana", "Pytest"] },
     ],
     highlights: [
       {
-        title: "Advisory RAG, not the decision maker",
-        body: "The loan assistant is staff-only and read-only, with no database connection. It reads through the origination service, refuses to answer when retrieval returns no evidence, and labels its output as a summary that does not change the decision.",
+        title: "Advisory AI, not the decision maker",
+        body: "The underwriting-summary agent (LangChain on AWS Bedrock) is staff-only and read-only, with no database connection and one bounded policy-search tool. It refuses when retrieval returns no policy evidence, and labels its output as a summary that does not change the decision.",
+      },
+      {
+        title: "Agentic orchestration",
+        body: "Offer and TILA disclosure assembly runs as a two-agent LangGraph workflow: one agent walks the loan knowledge graph for an approved decision's inputs, a second hands them to the deterministic disclosure engine. The agents are orchestration nodes with one responsibility each, so regulated dollar math never goes through a model. Credit decisions also run as a LangGraph state graph.",
+      },
+      {
+        title: "AI tracing with LangSmith",
+        body: "LangSmith traces follow a request from the gateway through policy retrieval, the model call, the agent run and output validation. Traces carry allowlisted categorical metadata only, so prompts and applicant data are never recorded.",
       },
       {
         title: "Decision evidence",
@@ -246,13 +251,15 @@ export const projects: Project[] = [
       tiers: [
         { label: "Client", nodes: [{ name: "Next.js staff and borrower UI" }] },
         { label: "Edge", nodes: [{ name: "Gateway", detail: "auth, rate limiting, service routing" }] },
-        { label: "Services", nodes: [{ name: "origination", detail: "system of record" }, { name: "kyc" }, { name: "decision", detail: "credit scoring / decision computation" }, { name: "disclosure", detail: "TILA / APR" }, { name: "servicing", detail: "ledger, maker-checker" }, { name: "payment", detail: "idempotent capture" }, { name: "loan-assistant", detail: "read-only RAG" }] },
+        { label: "Services", nodes: [{ name: "origination", detail: "system of record" }, { name: "kyc" }, { name: "decision", detail: "credit scoring / decision computation" }, { name: "disclosure", detail: "TILA / APR" }, { name: "servicing", detail: "ledger, maker-checker" }, { name: "payment", detail: "idempotent capture" }, { name: "loan-assistant", detail: "advisory RAG agent, read-only" }] },
         { label: "Data & ops", nodes: [{ name: "PostgreSQL 16" }, { name: "Redis" }, { name: "Prometheus + Grafana" }] },
       ],
     },
     contributions: [
       "Brownfield analysis: traced the lending lifecycle from intake through reconciliation and turned business and regulatory requirements into specifications and ADRs.",
       "RAG policy assistant: retrieval evaluation harness and corpus-hygiene gate, grounded policy chat with cited evidence, and prompt-injection and redaction guards.",
+      "Agentic workflows: the LangChain/Bedrock underwriting-summary agent with a bounded policy tool, and the two-agent LangGraph disclosure workflow over a loan knowledge graph.",
+      "AI tracing: privacy-safe LangSmith traces propagated from the gateway through the agent run.",
       "AI boundary: kept the RAG assistant out of credit decisioning. Origination persists the authoritative decision evidence, and model reason codes are not surfaced directly to declined applicants.",
       "Payments and data integrity: removed stored card numbers and CVVs from the payments schema through a staged migration.",
       "Ledger and controls: proposed the append-only servicing ledger (ADR 0010) and built maker-checker approvals with an approvals queue people can work.",
@@ -300,13 +307,12 @@ export const projects: Project[] = [
   {
     slug: "policy-rag",
     title: "Policy RAG Platform",
-    subtitle: "Advanced retrieval and grounded RAG on PostgreSQL + pgvector",
+    subtitle: "Secure Retrieval & Grounded AI Platform",
     category: "Vector Search & Retrieval-Augmented Generation",
     ownership: "personal",
-    badge: "Personal Project",
     cardSummary:
       "A question-answering service over policy documents that only uses documents the caller may read, cites its sources and refuses when the evidence is weak. Retrieval quality is measured on held-out questions.",
-    cardTags: ["Python", "FastAPI", "PostgreSQL / pgvector", "Hybrid Search", "LangGraph", "MCP", "OpenTelemetry"],
+    cardTags: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Hybrid Search", "LangGraph", "MCP", "OpenTelemetry"],
     summary:
       "A FastAPI service that answers questions over lending-policy documents. It retrieves only from documents the caller is authorized to read, answers with citations it has checked, and refuses when the evidence is insufficient. Retrieval runs on PostgreSQL with pgvector and combines semantic, full-text and hybrid search.",
     context: [
@@ -418,13 +424,12 @@ export const projects: Project[] = [
   {
     slug: "rev-eval",
     title: "Rev-Eval",
-    subtitle: "Skills assessment and evaluation platform",
+    subtitle: "Skills Assessment & Analytics Platform",
     category: "Full-Stack FDE & Platform Engineering",
     ownership: "team",
-    badge: "Team Project",
     cardSummary:
       "A multi-service assessment platform: trainers assign tests, participants take timed quizzes, and submissions are scored safely under retries and concurrency, with reporting and analytics.",
-    cardTags: ["Python", "FastAPI", "Next.js", "PostgreSQL", "MongoDB", "JWT/RBAC", "Nginx"],
+    cardTags: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "PostgreSQL", "MongoDB", "Docker"],
     summary:
       "A multi-service assessment platform where trainers create and assign tests, participants take timed assessments, and the system scores them and reports analytics. I extended a partially built five-service application into working end-to-end flows.",
     context: [
@@ -519,13 +524,12 @@ export const projects: Project[] = [
   {
     slug: "markethub",
     title: "MarketHub",
-    subtitle: "Java marketplace with Admin, Seller and Buyer roles",
+    subtitle: "Full-Stack Java Marketplace",
     category: "Java Full-Stack Engineering",
     ownership: "personal",
-    badge: "Personal Project",
     cardSummary:
       "A server-rendered Spring marketplace with Admin, Seller and Buyer workflows, per-record ownership checks and CSRF-protected actions, covered by authorization tests.",
-    cardTags: ["Java 17", "Spring Boot", "Spring MVC", "Spring Security", "Spring Data JPA", "MySQL", "Thymeleaf"],
+    cardTags: ["Java 17", "Spring Boot", "Spring Security", "MySQL", "Thymeleaf", "Bootstrap", "Docker"],
     summary:
       "A classic server-rendered Java marketplace with Admin, Seller and Buyer workflows: admins review seller accounts, sellers manage product listings, and buyers browse a catalogue, fill a cart and place orders. Built with Spring MVC, Thymeleaf, Spring Security and Spring Data JPA on MySQL.",
     context: [
