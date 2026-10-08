@@ -117,7 +117,7 @@ export function ProjectCard({
   return (
     <article
       className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-surface shadow-card transition-shadow hover:shadow-lg ${
-        flagship ? "border-accent lg:col-span-3 lg:flex-row" : "border-border"
+        flagship ? "border-accent lg:col-span-2 lg:flex-row" : "border-border"
       }`}
     >
       <div
@@ -131,7 +131,7 @@ export function ProjectCard({
             alt={image.alt}
             width={image.width}
             height={Math.min(image.height, image.width * 0.62)}
-            sizes={flagship ? "(min-width: 1024px) 560px, 100vw" : "(min-width: 1024px) 360px, 100vw"}
+            sizes={flagship ? "(min-width: 1024px) 560px, 100vw" : "(min-width: 1024px) 540px, 100vw"}
             className="aspect-[16/10] w-full object-cover object-top"
           />
         ) : (

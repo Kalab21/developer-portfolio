@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { expertise, roles, site } from "@/data/site";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/project";
 import { ButtonLink, Container, SectionHeading } from "@/components/ui";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
@@ -81,8 +86,8 @@ export default function Home() {
             title="Engineering across systems, data, cloud and AI"
             headingId="expertise-heading"
           >
-            Production systems rarely stay in one lane. These are the four areas I work
-            across.
+            Four areas I work across, from backend services to the data and AI layers
+            around them.
           </SectionHeading>
           <ul className="grid gap-5 sm:grid-cols-2">
             {expertise.map((e, i) => (
@@ -114,10 +119,10 @@ export default function Home() {
       <section aria-labelledby="featured" className="border-y border-border bg-surface-muted py-16 sm:py-24">
         <Container>
           <SectionHeading eyebrow="Featured projects" title="Selected work" headingId="featured">
-            Northbank is the deepest project. Meridian Lending and Rev-Eval are team
-            engagements, so their pages separate the project from my own contributions.
+            Distributed banking systems, lending and retrieval platforms with applied AI,
+            and full-stack Java and Python applications.
           </SectionHeading>
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-2">
             {projects.map((p, i) => (
               <ProjectCard key={p.slug} project={p} index={i} flagship={i === 0} />
             ))}

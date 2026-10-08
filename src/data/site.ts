@@ -3,25 +3,16 @@ import { resume } from "./resume";
 export const site = {
   name: "Kalabe Kebede",
   title: "Senior Software Engineer | Forward Deployed Engineer",
-  specialties: [
-    "Java",
-    "Spring Boot",
-    "Distributed Systems",
-    "AWS",
-    "Kafka",
-    "SQL & Data Engineering",
-    "Python/FastAPI",
-    "RAG & Applied AI",
-  ],
-  tagline:
-    "Java · Spring Boot · Distributed Systems · AWS · Kafka · SQL & Data Engineering · Python/FastAPI · RAG & Applied AI",
+  tagline: "Java · Spring Boot · Kafka · AWS · SQL · Python/FastAPI · RAG",
   valueProp:
-    "6+ years building enterprise software, distributed and data systems, and AI-enabled applications across banking, insurance, analytics, and Forward Deployed Engineering engagements.",
+    "6+ years building backend and data systems for banking, insurance and analytics: event-driven Java microservices, transaction-safe money movement, AWS data pipelines and, most recently, retrieval-grounded AI applications on inherited platforms.",
   currentFocus: [
-    "Distributed systems",
-    "Forward Deployed Engineering",
-    "Applied AI",
+    "Event-driven Java systems",
+    "Retrieval and RAG engineering",
+    "Brownfield modernization",
   ],
+  /** Canonical production origin, used for metadata, the sitemap and robots.txt. */
+  url: "https://developer-portfolio-iota-ten.vercel.app",
   metaTitle: "Kalabe Kebede | Senior Software Engineer & Forward Deployed Engineer",
   metaDescription:
     "Senior Software Engineer and Forward Deployed Engineer specializing in Java/Spring distributed systems, AWS, Python/FastAPI and applied AI/RAG systems.",
@@ -58,8 +49,8 @@ export const expertise: Expertise[] = [
   {
     title: "Forward Deployed & Applied AI",
     summary:
-      "Python, FastAPI, advanced RAG and retrieval, tool integration, evaluation and client-facing brownfield engineering.",
-    tags: ["FastAPI", "Advanced RAG", "LangGraph", "Vector Search", "MCP"],
+      "Python, FastAPI, retrieval and RAG, tool integration, evaluation, and modernizing inherited systems.",
+    tags: ["FastAPI", "RAG", "LangGraph", "Vector Search", "MCP"],
   },
   {
     title: "Cloud, Reliability & Delivery",
@@ -137,59 +128,50 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: "AI & Forward Deployed Engineering",
+    title: "Applied AI & Retrieval",
     skills: [
       "Python",
       "FastAPI",
       "RAG",
-      "RAG Architecture",
-      "Vector Databases",
-      "pgvector",
+      "Vector Search (pgvector)",
       "Embeddings",
-      "Semantic Search",
-      "Similarity Search",
-      "HNSW",
-      "Hybrid Search",
+      "Hybrid Search & Reranking",
       "PostgreSQL Full-Text Search",
-      "Reciprocal Rank Fusion",
-      "Cross-Encoder Reranking",
-      "Advanced RAG",
-      "Retrieval Evaluation (Hit@K, MRR, nDCG)",
-      "Secure RAG",
-      "MCP (Model Context Protocol)",
-      "OpenTelemetry",
       "LangChain",
       "LangGraph",
       "AWS Bedrock",
       "Tool Calling",
-      "Evidence Gating",
+      "MCP (Model Context Protocol)",
+      "Retrieval Evaluation (Hit@K, MRR, nDCG)",
       "Citation Validation",
-      "LLM Integration",
-      "AI Evaluation",
       "Human-in-the-Loop",
+    ],
+  },
+  {
+    title: "Forward Deployed Engineering",
+    skills: [
       "Brownfield Analysis",
       "Requirements Synthesis",
       "Spec-Driven Development",
       "ADRs",
-      "Client/Stakeholder Collaboration",
+      "Stakeholder Collaboration",
     ],
   },
   {
-    title: "Security & Reliability",
+    title: "Security & Observability",
     skills: [
       "OAuth2/OIDC",
       "JWT",
       "RBAC",
       "Document-Level Authorization",
-      "OWASP concepts",
-      "Authorization Boundaries",
+      "OWASP",
       "Secrets Management",
       "Structured Logging",
+      "OpenTelemetry",
       "Prometheus",
       "Grafana",
       "Distributed Tracing",
       "Reconciliation",
-      "Reliability Engineering",
     ],
   },
   {
@@ -202,7 +184,6 @@ export const skillGroups: SkillGroup[] = [
       "Testcontainers",
       "Integration Testing",
       "TDD",
-      "Automated Verification",
       "Security Scanning (CodeQL, Trivy)",
     ],
   },
@@ -221,7 +202,7 @@ export type Role = {
   period: string;
   location: string;
   focus: string;
-  /** Smaller supporting role, rendered more compactly. */
+  /** Rendered more compactly on the timeline. */
   secondary?: boolean;
   summary: string;
   engagements?: Engagement[];
@@ -238,15 +219,15 @@ export const roles: Role[] = [
     location: "Remote",
     focus: "Forward Deployed Engineering · Applied AI",
     summary:
-      "Two client-style engagements inheriting partially built systems: understand the existing platform, close the gaps, and ship verified changes.",
+      "Two engagements on inherited, partially built platforms: learn how the existing system works, close the gaps, and ship verified changes.",
     engagements: [
       {
-        name: "Consumer Lending Platform",
+        name: "Meridian Lending — Consumer Lending Platform",
         points: [
           "Modernized an inherited lending platform spanning intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation.",
-          "Built a grounded RAG policy assistant with LangChain/LangGraph, AWS Bedrock and bounded policy tool calling, while keeping AI advisory and credit decisioning authoritative in the core lending workflow.",
+          "Built a grounded RAG policy assistant with LangChain/LangGraph, AWS Bedrock and bounded policy tool calling. The assistant is advisory only; credit decisions stay in the core lending workflow, which remains the system of record.",
           "Strengthened RBAC, decision finality, idempotency, auditability and data-integrity controls.",
-          "Translated business and regulatory requirements into specifications and ADRs; added automated verification for lending calculations and production-style logging, metrics, tracing and CI gates.",
+          "Translated business and regulatory requirements into specifications and ADRs; added automated verification for lending calculations, plus logging, metrics, tracing and CI gates.",
         ],
         stack: ["Python", "FastAPI", "LangChain", "LangGraph", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "Redis", "JWT/RBAC", "Prometheus/Grafana", "Pytest", "Playwright", "GitHub Actions"],
       },
@@ -254,7 +235,8 @@ export const roles: Role[] = [
         name: "Rev-Eval — Skills Assessment Platform",
         points: [
           "Completed trainer, reporting, participant and role-aware workflows across FastAPI and Next.js services.",
-          "Wired Nginx and API-gateway routing and PostgreSQL/MongoDB-backed features.",
+          "Built the quiz scoring engine with idempotent submissions and row locking, and the Reporting & Analytics service.",
+          "Wired Nginx and API-gateway routing, hardened gateway authentication, and built PostgreSQL/MongoDB-backed features.",
         ],
         stack: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "PostgreSQL", "MongoDB", "JWT/RBAC", "Nginx", "Docker Compose", "CI/CD"],
       },
@@ -263,7 +245,7 @@ export const roles: Role[] = [
   {
     id: "lovelytics",
     company: "Lovelytics",
-    title: "Data & Analytics Engineer (Contract)",
+    title: "Data & Analytics Engineer",
     period: "Dec 2024 – Nov 2025",
     location: "Remote",
     focus: "Data engineering · Analytics",
@@ -296,7 +278,7 @@ export const roles: Role[] = [
     company: "JPMorgan Chase",
     title: "Java Software Engineer (Contract)",
     period: "May 2024 – Sep 2024",
-    location: "Columbus, OH",
+    location: "Columbus, OH · Hybrid",
     focus: "Enterprise banking modernization",
     summary: "Banking platform modernization in a compliance-sensitive environment.",
     points: [
@@ -326,7 +308,7 @@ export const roles: Role[] = [
     company: "Erie Insurance",
     title: "Java Software Engineer",
     period: "Mar 2019 – Feb 2021",
-    location: "Erie, PA",
+    location: "Erie, PA · Hybrid",
     focus: "Insurance · Enterprise Java",
     summary: "Claims and policy management backend services.",
     points: [
@@ -355,6 +337,6 @@ export const featuredSkills: ReadonlySet<string> = new Set([
   "Python",
   "FastAPI",
   "RAG",
-  "pgvector",
+  "Vector Search (pgvector)",
   "LangGraph",
 ]);

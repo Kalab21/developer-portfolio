@@ -30,12 +30,16 @@ export async function generateMetadata(
   const project = getProject(slug);
   if (!project) return {};
   const image = project.screenshots[0];
+  const title = `${project.title}: ${project.subtitle}`;
   return {
-    title: `${project.title}: ${project.subtitle}`,
+    title,
     description: project.summary,
+    alternates: { canonical: `/projects/${project.slug}` },
+    twitter: { title, description: project.summary },
     openGraph: {
-      title: `${project.title}: ${project.subtitle}`,
+      title,
       description: project.summary,
+      url: `/projects/${project.slug}`,
       type: "article",
       images: image
         ? [{ url: image.src, width: image.width, height: image.height, alt: image.alt }]
@@ -76,10 +80,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           / <span aria-current="page">{project.title}</span>
         </nav>
 
-        <div className="flex flex-wrap items-center gap-3">
-          <Badge>{project.badge}</Badge>
-          <p className="text-sm text-muted">{project.ownershipNote}</p>
-        </div>
+        <Badge>{project.badge}</Badge>
 
         {/* Overview */}
         <section aria-labelledby="overview" className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">

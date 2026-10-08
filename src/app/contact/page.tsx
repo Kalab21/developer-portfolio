@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Get in touch about Senior Software Engineer, Java / Spring, distributed systems, data engineering, Forward Deployed Engineer and applied AI roles.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
