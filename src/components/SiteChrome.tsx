@@ -29,7 +29,7 @@ export function Footer() {
     <footer className="mt-24 border-t border-border py-10 text-sm text-muted">
       <Container className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p>
-          © {new Date().getFullYear()} {site.name}. Built with Next.js, TypeScript and Tailwind CSS.
+          © {new Date().getFullYear()} {site.name}
         </p>
         <ul className="flex gap-5">
           <li>
@@ -48,9 +48,9 @@ export function Footer() {
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="hover:text-foreground">
+            <a href={`mailto:${site.email}`} className="hover:text-foreground">
               Email
-            </Link>
+            </a>
           </li>
         </ul>
       </Container>

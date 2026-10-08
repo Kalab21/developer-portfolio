@@ -23,7 +23,6 @@ export type Project = {
   /** "personal" = built end to end by me; "team" = organization / team project. */
   ownership: "personal" | "team";
   badge: string;
-  ownershipNote: string;
   summary: string;
   /** Optional shorter text and tags for the recruiter-facing project card. */
   cardSummary?: string;
@@ -64,8 +63,9 @@ export const projects: Project[] = [
     subtitle: "Event-driven retail banking platform",
     category: "Distributed Systems & Financial Engineering",
     ownership: "personal",
-    badge: "Personal flagship project",
-    ownershipNote: "Designed and built end to end.",
+    badge: "Personal Project",
+    cardSummary:
+      "A Java 21 / Spring Boot banking platform: 11 services behind an API gateway, Kafka events, a database per service and a Next.js console, built around transaction integrity and safe money movement.",
     cardTags: ["Java 21", "Spring Boot 3", "Apache Kafka", "PostgreSQL 16", "Next.js", "Spring Security", "Redis", "Docker"],
     summary:
       "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
@@ -86,7 +86,7 @@ export const projects: Project[] = [
       { value: "5", label: "shared library modules" },
     ],
     technologies: [
-      { group: "Backend", items: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Eureka", "OpenFeign"] },
+      { group: "Backend", items: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Eureka", "OpenFeign", "Resilience4j"] },
       { group: "Data & messaging", items: ["PostgreSQL 16", "Flyway", "Redis", "Apache Kafka", "Transactional outbox"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
       { group: "Testing", items: ["JUnit 5", "Mockito", "Testcontainers", "Vitest", "Playwright"] },
@@ -149,22 +149,21 @@ export const projects: Project[] = [
     reliability: [
       "Pessimistic locking on balance-changing paths, verified with real-PostgreSQL concurrency tests",
       "Idempotency keys, transactional outbox, retry with dead-letter topics",
+      "Resilience4j circuit breaker on the transaction-to-account path: an open circuit fails fast, while a timeout is recorded as an unknown outcome and reconciled, never retried",
       "Request-ID propagation across hops; Prometheus, Grafana and Zipkin for metrics and tracing",
     ],
     testing: {
       summary:
-        "Documented counts are test cases as the runners report them. The CI total covers backend, frontend and offline browser tests.",
+        "Counts are test cases as the test runners report them. The CI total covers backend, frontend and offline browser tests.",
       stats: [
         { value: "1,028", label: "backend" },
         { value: "385", label: "frontend unit / component" },
         { value: "69", label: "offline Playwright" },
         { value: "1,482", label: "CI total" },
-        { value: "46", label: "live Playwright (on demand)" },
-        { value: "200", label: "full-stack assertions (on demand)" },
       ],
       notes: [
         "Backend: 870 unit and web-slice tests plus 158 integration tests, several against real PostgreSQL and embedded Kafka.",
-        "The live Playwright suite and the full-stack assertion script need all 13 backend processes, so they run on demand rather than in CI.",
+        "A further 46 live Playwright tests and a full-stack assertion script need all 13 backend processes, so they run on demand rather than in CI.",
       ],
     },
     scope: [
@@ -187,21 +186,20 @@ export const projects: Project[] = [
     subtitle: "Consumer lending platform with a RAG policy assistant",
     category: "Forward Deployed Engineering & Applied AI",
     ownership: "team",
-    badge: "Team / FDE project",
-    ownershipNote: "Team engagement in an organization repository. My contributions are listed separately below.",
-    cardTags: ["Python", "FastAPI", "LangChain", "LangGraph", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "RBAC", "Prometheus"],
+    badge: "Team Project",
+    cardSummary:
+      "An inherited consumer-lending platform hardened and split into eight FastAPI services, with auditable credit decisions, maker-checker controls, payment reconciliation and an advisory RAG policy assistant.",
+    cardTags: ["Python", "FastAPI", "LangChain", "LangGraph", "AWS Bedrock", "PostgreSQL", "RBAC"],
     summary:
       "A brownfield consumer-lending platform (origination, decisioning, disclosures, servicing, payments, reconciliation) that a team inherited, hardened and decomposed into eight FastAPI backend services (including the gateway), with a staff-only RAG assistant grounded in approved lending policy.",
     context: [
-      "The engagement started from an inherited codebase and business and regulatory requirements. The work was to trace how an application moves through intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation, then close integrity, security and observability gaps without breaking existing behavior.",
-      "The AI capability is deliberately separated from authority. Credit outcomes come from the decision service and are persisted by the system of record; the RAG loan assistant only summarizes applications and answers policy questions for staff.",
+      "The team started from an inherited codebase plus business and regulatory requirements. The work was to trace how an application moves through intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation, then close integrity, security and observability gaps without breaking existing behavior.",
     ],
     role:
       "Contributing engineer on a team: brownfield analysis, requirements and ADRs, the RAG policy assistant, and security, ledger, reconciliation and observability work across the services.",
     repository: {
       url: "https://github.com/2463-FDE/KK-meridian-lending",
       label: "2463-FDE/KK-meridian-lending",
-      note: "Organization repository (public).",
     },
     stats: [
       { value: "8", label: "FastAPI backend services, including the gateway" },
@@ -255,7 +253,7 @@ export const projects: Project[] = [
     contributions: [
       "Brownfield analysis: traced the lending lifecycle from intake through reconciliation and turned business and regulatory requirements into specifications and ADRs.",
       "RAG policy assistant: retrieval evaluation harness and corpus-hygiene gate, grounded policy chat with cited evidence, and prompt-injection and redaction guards.",
-      "Kept AI advisory: kept the RAG assistant separate from credit decisioning, with origination persisting the authoritative decision evidence, and prevented model reason codes from being surfaced directly to declined applicants.",
+      "AI boundary: kept the RAG assistant out of credit decisioning. Origination persists the authoritative decision evidence, and model reason codes are not surfaced directly to declined applicants.",
       "Payments and data integrity: removed stored card numbers and CVVs from the payments schema through a staged migration.",
       "Ledger and controls: proposed the append-only servicing ledger (ADR 0010) and built maker-checker approvals with an approvals queue people can work.",
       "Reconciliation: review flow so a person can see and resolve payments flagged for review.",
@@ -288,8 +286,7 @@ export const projects: Project[] = [
       ],
     },
     scope: [
-      "Team training and demo lending platform using seeded fictional data and simulated external providers.",
-      "The RAG assistant is advisory; authoritative lending outcomes remain in the core lending workflow and system of record.",
+      "Synthetic, locally run lending platform with fictional data and simulated external providers; no production compliance claim.",
     ],
     cardImage: { src: "/projects/meridian/tila-card.webp", width: 1200, height: 750, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
     screenshots: [
@@ -306,26 +303,12 @@ export const projects: Project[] = [
     subtitle: "Advanced retrieval and grounded RAG on PostgreSQL + pgvector",
     category: "Vector Search & Retrieval-Augmented Generation",
     ownership: "personal",
-    badge: "Personal project",
-    ownershipNote: "Designed and built end to end.",
+    badge: "Personal Project",
     cardSummary:
-      "A FastAPI RAG platform on PostgreSQL/pgvector combining semantic, full-text and Reciprocal Rank Fusion hybrid retrieval with optional cross-encoder reranking, retrieval-time document authorization (JWT/RBAC), a LangGraph evidence gate with citation validation, an MCP tool server, OpenTelemetry observability and held-out retrieval evaluation.",
-    cardTags: [
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "pgvector",
-      "Vector Databases",
-      "Hybrid Search",
-      "Cross-Encoder Reranking",
-      "RAG",
-      "LangGraph",
-      "MCP",
-      "OpenTelemetry",
-      "RBAC",
-    ],
+      "A question-answering service over policy documents that only uses documents the caller may read, cites its sources and refuses when the evidence is weak. Retrieval quality is measured on held-out questions.",
+    cardTags: ["Python", "FastAPI", "PostgreSQL / pgvector", "Hybrid Search", "LangGraph", "MCP", "OpenTelemetry"],
     summary:
-      "A FastAPI RAG platform that stores 384-dimensional embeddings in PostgreSQL/pgvector for HNSW cosine semantic search, adds PostgreSQL full-text search, Reciprocal Rank Fusion hybrid retrieval and optional cross-encoder reranking, enforces JWT roles and document-level authorization inside the retrieval query, and uses a LangGraph evidence gate to answer with validated citations or refuse when support is insufficient.",
+      "A FastAPI service that answers questions over lending-policy documents. It retrieves only from documents the caller is authorized to read, answers with citations it has checked, and refuses when the evidence is insufficient. Retrieval runs on PostgreSQL with pgvector and combines semantic, full-text and hybrid search.",
     context: [
       "Policy RAG Platform answers questions over a small set of synthetic lending-policy documents. It is the project where I worked directly with the retrieval layer: the vector(384) schema and HNSW index, the similarity, full-text and metadata-filter SQL, rank fusion and reranking, and measuring retrieval quality on separate tuning and held-out question sets.",
       "It also carries the controls an enterprise deployment would ask about: authorization applied before any chunk can become context, bounded read-only tools for AI clients, and observability that never records the user's question or the documents. The default answer generator is extractive, with optional Bedrock and OpenAI-compatible adapters.",
@@ -363,7 +346,7 @@ export const projects: Project[] = [
       },
       {
         title: "Retrieval-time authorization",
-        body: "JWT roles plus tenant, department and access-level labels are enforced inside the retrieval query, so restricted chunks are never ranked, reranked, sent to a generator or written to traces and logs. Tests prove it, and disabling the predicate fails 15 of them.",
+        body: "JWT roles plus tenant, department and access-level labels are enforced inside the retrieval query, so restricted chunks are never ranked, reranked, sent to a generator or written to traces and logs. Integration tests cover every retrieval mode, the reranker, the generator, traces and logs.",
       },
       {
         title: "Grounded RAG with citations",
@@ -438,21 +421,21 @@ export const projects: Project[] = [
     subtitle: "Skills assessment and evaluation platform",
     category: "Full-Stack FDE & Platform Engineering",
     ownership: "team",
-    badge: "Team / FDE project",
-    ownershipNote: "Team engagement in an organization repository. My contributions are listed separately below.",
-    cardTags: ["Python", "FastAPI", "Next.js", "PostgreSQL", "MongoDB", "JWT/RBAC", "Nginx", "Docker"],
+    badge: "Team Project",
+    cardSummary:
+      "A multi-service assessment platform: trainers assign tests, participants take timed quizzes, and submissions are scored safely under retries and concurrency, with reporting and analytics.",
+    cardTags: ["Python", "FastAPI", "Next.js", "PostgreSQL", "MongoDB", "JWT/RBAC", "Nginx"],
     summary:
       "A multi-service assessment platform where trainers create and assign tests, participants take timed assessments, and the system scores them and reports analytics. I extended a partially built five-service application into working end-to-end flows.",
     context: [
       "The starting point was an inherited, partially wired system with missing integration paths. Much of the work was diagnosing failures across the Nginx, gateway, service and database boundaries, then building what was missing while preserving the existing service contracts.",
-      "My work was delivered as pull requests on a personal integration branch (kalabek), not merged into the team's main branch, so the repository's main does not include it. The links below point at that branch.",
     ],
     role:
       "Contributing full-stack engineer: scoring engine, quiz-taking UX, the Reporting & Analytics service, gateway and auth hardening, and test and CI coverage.",
     repository: {
       url: "https://github.com/RevatureFDEPEP/rev-eval/tree/kalabek",
-      label: "My work: kalabek integration branch",
-      note: "My work lives on the kalabek integration branch, not on the organization's main.",
+      label: "RevatureFDEPEP/rev-eval (kalabek)",
+      note: "Contributions are available on the kalabek integration branch.",
     },
     stats: [
       { value: "5", label: "backend services" },
@@ -529,8 +512,7 @@ export const projects: Project[] = [
       ],
     },
     scope: [
-      "Team local-first assessment platform using seeded demo users.",
-      "My implementation is published on the kalabek integration branch, which is the repository link used by this portfolio.",
+      "Locally run assessment platform with seeded demo users.",
     ],
     screenshots: [],
   },
@@ -540,15 +522,16 @@ export const projects: Project[] = [
     subtitle: "Java marketplace with Admin, Seller and Buyer roles",
     category: "Java Full-Stack Engineering",
     ownership: "personal",
-    badge: "Personal project",
-    ownershipNote: "Built and maintained by me.",
-    cardTags: ["Java 17", "Spring Boot", "Spring MVC", "Spring Security", "Spring Data JPA", "MySQL", "Thymeleaf", "Docker"],
+    badge: "Personal Project",
+    cardSummary:
+      "A server-rendered Spring marketplace with Admin, Seller and Buyer workflows, per-record ownership checks and CSRF-protected actions, covered by authorization tests.",
+    cardTags: ["Java 17", "Spring Boot", "Spring MVC", "Spring Security", "Spring Data JPA", "MySQL", "Thymeleaf"],
     summary:
       "A classic server-rendered Java marketplace with Admin, Seller and Buyer workflows: admins review seller accounts, sellers manage product listings, and buyers browse a catalogue, fill a cart and place orders. Built with Spring MVC, Thymeleaf, Spring Security and Spring Data JPA on MySQL.",
     context: [
-      "MarketHub is a smaller supporting project that shows the conventional Spring MVC stack end to end: controllers, services, repositories, role-based navigation and templates, packaged with Docker and tested in CI.",
+      "It uses the conventional Spring MVC stack end to end: controllers, services, repositories, role-based navigation and server-rendered templates, packaged with Docker and tested in CI.",
     ],
-    role: "Built the application, tests, Docker setup and CI, and later refreshed its public documentation and demo assets.",
+    role: "Built the application, its authorization model, tests, Docker setup and CI.",
     repository: {
       url: "https://github.com/Kalab21/markethub",
       label: "Kalab21/markethub",
@@ -556,7 +539,7 @@ export const projects: Project[] = [
     stats: [
       { value: "3", label: "roles: Admin, Seller, Buyer" },
       { value: "77", label: "automated tests" },
-      { value: "9", label: "JPA entities" },
+      { value: "38", label: "authorization tests through the real security filter chain" },
       { value: "8", label: "Spring Data JPA repositories" },
     ],
     technologies: [
@@ -570,7 +553,8 @@ export const projects: Project[] = [
       { title: "Catalogue, cart and checkout", body: "Buyers browse products, add items to a cart with a live item badge, and check out into an order." },
       { title: "Order management", body: "Orders start as Pending, can be cancelled while pending, and the history shows total spent." },
       { title: "Role-based navigation", body: "Admin, Seller and Buyer each get their own dashboard and menu." },
-      { title: "Repeatable local setup", body: "A multi-stage Dockerfile builds from source and Compose starts MySQL and the app; local demo credentials are documented in the repo." },
+      { title: "Ownership and CSRF protection", body: "Per-record ownership checks, enforced seller approval and CSRF-protected POST for every state change, with tests that assert both the 403 and that the data is unchanged." },
+      { title: "Repeatable local setup", body: "A multi-stage Dockerfile builds from source, and Compose starts MySQL and the app with seeded synthetic accounts." },
     ],
     architecture: {
       description:
@@ -604,7 +588,7 @@ export const projects: Project[] = [
       ],
     },
     scope: [
-      "Supporting Java/Spring marketplace demo using synthetic accounts, local MySQL and simulated checkout.",
+      "Marketplace demo using synthetic accounts, local MySQL and simulated checkout.",
     ],
     screenshots: [
       { src: "/projects/markethub/products.webp", width: 1280, height: 800, alt: "MarketHub product catalogue with product cards showing SKU, price, stock and an add-to-cart button.", caption: "Product catalogue" },

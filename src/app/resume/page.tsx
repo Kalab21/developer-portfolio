@@ -6,6 +6,7 @@ import { ButtonLink, Container, PageHeader } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Resume",
   description: `Resume of ${site.name}, Senior Software Engineer and Forward Deployed Engineer (PDF).`,
+  alternates: { canonical: "/resume" },
 };
 
 export default function ResumePage() {

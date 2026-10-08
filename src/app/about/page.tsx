@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "Senior Software Engineer whose scope grew from enterprise Java to distributed systems, data and cloud engineering, forward deployed engineering and applied AI/RAG.",
+  alternates: { canonical: "/about" },
 };
 
 const path = [
@@ -63,16 +64,17 @@ export default function AboutPage() {
           </p>
           <p>
             Java is still the core of how I build backends. What changed is the scope:
-            analytics and data engineering at Lovelytics, then client-style
-            Forward Deployed Engineering engagements at Revature, where the job is to take
+            analytics and data engineering at Lovelytics, then Forward Deployed
+            Engineering engagements at Revature, where the job is to take
             over an inherited system, understand how it really works, work out what the
             people who use it need, and close the gaps with specifications, tests and
             controls.
           </p>
           <p>
-            That is also where I started building AI features, as an engineer rather than
-            a researcher: retrieval grounded in approved policy, kept advisory next to the
-            system of record, with evaluation and human review around it. I care about
+            Earlier, at Scale AI, I reviewed and evaluated AI-generated data. At Revature I
+            started building applied-AI software as an engineer: retrieval grounded in
+            approved policy, kept advisory next to the system of record, with evaluation and
+            human review around it. I care about
             authorization boundaries, idempotency, reconciliation and observability more
             than about any one framework.
           </p>
@@ -84,8 +86,7 @@ export default function AboutPage() {
             title="Grouped by what I use them for"
             headingId="skills"
           >
-            No percentages or star ratings. Highlighted skills are the ones I use most
-            across the projects and roles on this site.
+            Highlighted skills are the ones I use most across my roles and projects.
           </SectionHeading>
           <div className="grid gap-6 md:grid-cols-2">
             {skillGroups.map((g) => (

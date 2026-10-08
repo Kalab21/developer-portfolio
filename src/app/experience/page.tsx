@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Experience",
   description:
     "Career timeline: Forward Deployed Engineering at Revature, data and analytics engineering at Lovelytics, AI data review at Scale AI, and Java engineering at JPMorgan Chase, Investors Bank and Erie Insurance.",
+  alternates: { canonical: "/experience" },
 };
 
 export default function ExperiencePage() {
@@ -15,8 +16,7 @@ export default function ExperiencePage() {
       <PageHeader eyebrow="Experience" title="6+ years, widening scope">
         Enterprise Java in insurance and banking, distributed-systems modernization, data
         and analytics engineering, and most recently Forward Deployed Engineering with
-        applied AI. Most recent first. Dates overlap where roles were contract or
-        task-based.
+        applied AI. Most recent first.
       </PageHeader>
       <Container className="py-12 sm:py-16">
         <ol className="relative space-y-8 border-l-2 border-border pl-6 sm:pl-10">

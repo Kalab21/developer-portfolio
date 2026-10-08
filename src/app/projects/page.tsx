@@ -7,20 +7,20 @@ export const metadata: Metadata = {
   title: "Projects",
   description:
     "Five projects: an event-driven Java/Kafka banking platform, a consumer-lending platform with a RAG assistant, the Policy RAG Platform (advanced retrieval and grounded RAG), a skills assessment platform and a Java marketplace.",
+  alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {
   return (
     <>
       <PageHeader eyebrow="Projects" title="Systems I have built, extended and hardened">
-        Northbank is the flagship. Meridian Lending and Rev-Eval are team engagements, so
-        each page separates what the project is from what I contributed. Policy RAG Platform is a
-        focused personal advanced-retrieval and grounded-RAG project, and MarketHub is a smaller
-        supporting Java project.
+        Selected engineering work across event-driven banking, lending, retrieval and RAG,
+        assessment and marketplace systems. Each case study covers the architecture, the key
+        engineering decisions and how the work was verified.
       </PageHeader>
       <section aria-label="All projects" className="py-12 sm:py-16">
         <Container>
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-2">
             {projects.map((p, i) => (
               <ProjectCard key={p.slug} project={p} index={i} flagship={i === 0} />
             ))}
