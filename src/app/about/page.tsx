@@ -5,15 +5,15 @@ import { Container, PageHeader, SectionHeading, Tag } from "@/components/ui";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Senior Software Engineer whose scope grew from enterprise Java to distributed systems, data and cloud engineering, full-stack and forward deployed engineering, and applied and agentic AI.",
+    "Senior Software Engineer whose scope grew from enterprise Java and Spring to distributed systems, Forward Deployed Engineering, full stack, cloud and data, and applied and agentic AI.",
   alternates: { canonical: "/about" },
 };
 
 const path = [
   { step: "Enterprise Java", note: "Insurance and banking backends" },
   { step: "Distributed Systems", note: "Kafka, microservices, transactions" },
-  { step: "Data / Cloud Engineering", note: "SQL, AWS data services, BI" },
-  { step: "Full-Stack & Forward Deployed", note: "Brownfield platforms, Next.js and FastAPI" },
+  { step: "Forward Deployed Engineering", note: "Inherited platforms, specs, verified changes" },
+  { step: "Full Stack, Cloud & Data", note: "Next.js, FastAPI, SQL, AWS data services" },
   { step: "Applied & Agentic AI", note: "RAG, agents, tracing, evaluation" },
 ];
 
@@ -90,10 +90,12 @@ export default function AboutPage() {
             Highlighted skills are the ones I use most across my roles and projects.
           </SectionHeading>
           <div className="grid gap-6 md:grid-cols-2">
-            {skillGroups.map((g) => (
+            {skillGroups.map((g, i) => (
               <div
                 key={g.title}
-                className="rounded-2xl border border-border bg-surface p-6 shadow-card"
+                className={`rounded-2xl border border-border bg-surface p-6 shadow-card ${
+                  i === skillGroups.length - 1 && skillGroups.length % 2 === 1 ? "md:col-span-2" : ""
+                }`}
               >
                 <h3 className="mb-4 text-lg font-semibold">{g.title}</h3>
                 <ul className="flex flex-wrap gap-2" aria-label={g.title}>
