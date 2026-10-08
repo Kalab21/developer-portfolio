@@ -1,10 +1,10 @@
 /**
- * The published resume. `npm run resume:update -- <file.pdf>` replaces the PDF
- * in public/ and rewrites `lastUpdated`; edit `fileName` only to rename it.
+ * The published resume, served from public/. When the PDF is replaced, update
+ * `lastUpdated`; scripts/resume-pdf.test.mjs checks the file in CI.
  */
 export const resume = {
   fileName: "Kalabe-Kebede-Resume.pdf",
-  /** ISO date (YYYY-MM-DD) the current PDF was installed. */
+  /** ISO date (YYYY-MM-DD) the current PDF was published. */
   lastUpdated: "2026-10-07",
 } as const;
 

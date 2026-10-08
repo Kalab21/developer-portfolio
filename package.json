@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
-    "test": "node --test scripts/*.test.mjs",
-    "resume:update": "node scripts/update-resume.mjs"
+    "test": "node --test scripts/*.test.mjs"
   },
   "dependencies": {
     "next": "16.3.7",
