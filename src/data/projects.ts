@@ -175,13 +175,11 @@ export const projects: Project[] = [
       "AWS reference deployment in Terraform (CloudFront + WAF, ALB, ECS Fargate in private subnets, RDS PostgreSQL, ElastiCache, MSK); Terraform-defined, not currently deployed.",
     ],
     screenshots: [
-      { src: "/projects/northbank/dashboard.webp", width: 1440, height: 1000, alt: "Northbank customer dashboard with total balance, account cards, a balance chart and recent activity.", caption: "Customer dashboard" },
-      { src: "/projects/northbank/move-money-review.webp", width: 1440, height: 900, alt: "Northbank transfer review step showing the amount and both accounts by last four digits before confirmation.", caption: "Transfer review before confirmation" },
-      { src: "/projects/northbank/explore-credit.webp", width: 1440, height: 900, alt: "Northbank credit products page listing credit card, personal loan, auto loan and mortgage.", caption: "Credit products and how applications work" },
-      { src: "/projects/northbank/offer-detail.webp", width: 1440, height: 900, alt: "Northbank application detail with a timeline, stored offer terms and accept or decline actions.", caption: "Offer with stored terms" },
-      { src: "/projects/northbank/staff-review.webp", width: 1440, height: 900, alt: "Northbank staff review workbench showing an append-only decision history with a reason code and approve or reject actions.", caption: "Staff review workbench" },
-      { src: "/projects/northbank/cards.webp", width: 1440, height: 900, alt: "Northbank credit card page with a masked card number, balance, limit usage and rewards.", caption: "Credit card (masked numbers)" },
-      { src: "/projects/northbank/loan-payment.webp", width: 1440, height: 900, alt: "Northbank loan detail with repayment progress and options to pay the next instalment, another amount or the full payoff.", caption: "Loan repayment options" },
+      { src: "/projects/northbank/dashboard.webp", width: 1440, height: 1000, alt: "Northbank customer dashboard with total balance, account cards, balance history and recent activity.", caption: "Customer dashboard: balances, account cards and activity from the account and transaction services" },
+      { src: "/projects/northbank/move-money-review.webp", width: 1440, height: 900, alt: "Northbank transfer review step showing the amount and both accounts by their last four digits before confirmation.", caption: "Transfer review: one idempotency key per payment, minted here and reused on every retry" },
+      { src: "/projects/northbank/offer-detail.webp", width: 1440, height: 900, alt: "Northbank application detail with a timeline, stored offer terms and accept or decline actions.", caption: "Credit offer with stored terms that only the applicant can accept or decline" },
+      { src: "/projects/northbank/staff-review.webp", width: 1440, height: 900, alt: "Northbank staff review workbench with an append-only decision history, a policy reason code and approve or reject actions.", caption: "Staff review workbench: append-only decision history and policy reason codes" },
+      { src: "/projects/northbank/loan-payment.webp", width: 1440, height: 900, alt: "Northbank loan detail with repayment progress and options to pay the next instalment, another amount or the full payoff.", caption: "Loan servicing: instalment, partial payment or payoff at today's figure" },
     ],
   },
   {
@@ -309,13 +307,13 @@ export const projects: Project[] = [
     scope: [
       "Synthetic, locally run lending platform with fictional data and simulated external providers; no production compliance claim.",
     ],
-    cardImage: { src: "/projects/meridian/tila-card.webp", width: 1200, height: 750, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
+    cardImage: { src: "/projects/meridian/decision-evidence.webp", width: 1600, height: 947, alt: "Meridian Lending application with a five-step status strip and a decision evidence panel showing outcome, model version and scores.", caption: "Application status and decision evidence" },
     screenshots: [
-      { src: "/projects/meridian/decision-evidence.webp", width: 1600, height: 947, alt: "Meridian Lending application page showing a five-step status strip and a decision evidence panel with model version, scores and outcome.", caption: "Application status and decision evidence" },
-      { src: "/projects/meridian/tila-disclosure.webp", width: 1600, height: 842, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "Truth-in-Lending disclosure" },
-      { src: "/projects/meridian/policy-chat.webp", width: 1400, height: 1243, alt: "Meridian policy chat answering a question about late fees with a grounded-in-policy label, the fee schedule as source and expandable evidence.", caption: "Policy chat with cited evidence" },
-      { src: "/projects/meridian/ai-summary.webp", width: 1600, height: 632, alt: "AI application summary marked as not a decision, with an external-context section labeled as not model-generated.", caption: "Advisory AI summary" },
-      { src: "/projects/meridian/servicing-actions.webp", width: 1600, height: 842, alt: "Servicing forms for proposing a balance adjustment or a fee waiver, both requiring approval from a different person.", caption: "Maker-checker servicing actions" },
+      { src: "/projects/meridian/decision-evidence.webp", width: 1600, height: 947, alt: "Meridian Lending application with a five-step status strip and a decision evidence panel showing outcome, model version and scores.", caption: "Decision evidence: automated outcome, model version and scores recorded as an append-only audit trail" },
+      { src: "/projects/meridian/ai-summary.webp", width: 1600, height: 632, alt: "AI application summary marked as not a decision, with an external-context section labeled as not model-generated.", caption: "Advisory AI summary, labelled as not a decision; credit authority stays in the lending workflow" },
+      { src: "/projects/meridian/policy-chat.webp", width: 1400, height: 1243, alt: "Policy chat answering a late-fee question with a grounded-in-policy label, the fee schedule as source and expandable evidence.", caption: "Policy chat grounded in approved policy, with cited evidence" },
+      { src: "/projects/meridian/tila-disclosure.webp", width: 1600, height: 842, alt: "Federal Truth-in-Lending disclosure box showing APR, finance charge, amount financed, total of payments and payment schedule.", caption: "TILA disclosure computed by the deterministic disclosure engine" },
+      { src: "/projects/meridian/servicing-actions.webp", width: 1600, height: 842, alt: "Servicing forms for proposing a balance adjustment or a fee waiver, both requiring approval from a different person.", caption: "Maker-checker servicing: adjustments are proposals another person must approve" },
     ],
   },
   {
@@ -453,7 +451,7 @@ export const projects: Project[] = [
     cardSummary:
       "A multi-service assessment platform: trainers assign tests, participants take timed quizzes, and submissions are scored safely under retries and concurrency, with reporting and analytics.",
     cardTags: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "PostgreSQL", "MongoDB", "Docker"],
-    cardImage: { src: "/projects/rev-eval/reveval-architecture.svg", darkSrc: "/projects/rev-eval/reveval-architecture-dark.svg", fit: "contain", width: 1400, height: 600, alt: "Rev-Eval architecture diagram.", caption: "Architecture" },
+    cardImage: { src: "/projects/rev-eval/quiz.webp", width: 1440, height: 900, alt: "Rev-Eval timed quiz with a question, countdown timer, progress bar and a Part A / Part B question navigator.", caption: "Timed two-part quiz" },
     summary:
       "A multi-service assessment platform where trainers create and assign tests, participants take timed assessments, and the system scores them and reports analytics. I extended a partially built five-service application into working end-to-end flows.",
     context: [
@@ -504,11 +502,11 @@ export const projects: Project[] = [
       description:
         "Nginx and the API gateway route traffic to the FastAPI services. User and test-management data use PostgreSQL, question-management uses MongoDB and MinIO, and Reporting & Analytics reads the shared PostgreSQL data directly under its documented ADR. The gateway forwards verified identity to services, which enforce role checks.",
       diagram: {
-        light: "/projects/rev-eval/reveval-architecture.svg",
-        dark: "/projects/rev-eval/reveval-architecture-dark.svg",
+        light: "/projects/rev-eval/rev-eval-architecture.svg",
+        dark: "/projects/rev-eval/rev-eval-architecture-dark.svg",
         alt: "Rev-Eval architecture: the browser reaches Nginx, the Next.js frontend and the API gateway, which routes to user-service, test-management, reporting-and-analytics and question-management. User and test data live in PostgreSQL, which reporting reads read-only; questions live in MongoDB with images in MinIO.",
         width: 1400,
-        height: 600,
+        height: 1150,
         stacked: true,
       },
       tiers: [
@@ -551,7 +549,11 @@ export const projects: Project[] = [
     scope: [
       "Locally run assessment platform with seeded demo users.",
     ],
-    screenshots: [],
+    screenshots: [
+      { src: "/projects/rev-eval/quiz.webp", width: 1440, height: 900, alt: "Rev-Eval timed quiz with a question, countdown timer, progress bar and a Part A / Part B question navigator.", caption: "Timed two-part quiz: server-owned timer, progress and a question navigator (Part B adapts to Part A)" },
+      { src: "/projects/rev-eval/results.webp", width: 1440, height: 900, alt: "Rev-Eval quiz results with the attempt score, best and average scores and a score-history chart against the pass threshold.", caption: "Results after server-side scoring, with score history against the pass threshold" },
+      { src: "/projects/rev-eval/trainer-dashboard.webp", width: 1440, height: 900, alt: "Rev-Eval trainer dashboard with active tests, assignments, participants, completion rate, an activity chart and a test-type chart.", caption: "Trainer dashboard: assignment and completion analytics with Recharts" },
+    ],
   },
   {
     slug: "markethub",
@@ -574,7 +576,7 @@ export const projects: Project[] = [
     },
     stats: [
       { value: "3", label: "roles: Admin, Seller, Buyer" },
-      { value: "77", label: "automated tests" },
+      { value: "87", label: "automated tests" },
       { value: "38", label: "authorization tests through the real security filter chain" },
       { value: "8", label: "Spring Data JPA repositories" },
     ],
@@ -621,10 +623,10 @@ export const projects: Project[] = [
     testing: {
       summary: "JUnit 5 and Mockito tests run against in-memory H2, so CI needs no MySQL.",
       stats: [
-        { value: "77", label: "tests in 8 classes" },
+        { value: "87", label: "tests in 9 classes" },
         { value: "19", label: "service unit tests" },
         { value: "14", label: "JPA repository tests" },
-        { value: "43", label: "MockMvc controller and authorization tests" },
+        { value: "53", label: "MockMvc controller, page and authorization tests" },
       ],
       notes: [
         "38 MockMvc tests run through the real security filter chain and cover role gates, seller approval, cross-user access attempts, missing CSRF tokens and retired GET mutation URLs, each asserting that data is unchanged.",

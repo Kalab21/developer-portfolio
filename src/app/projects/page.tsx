@@ -6,7 +6,7 @@ import { Container, PageHeader } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Five projects: an event-driven Java/Kafka banking platform, a consumer-lending platform with a RAG assistant, the Policy RAG Platform (advanced retrieval and grounded RAG), a skills assessment platform and a Java marketplace.",
+    "Five engineering projects spanning event-driven Java banking, consumer lending with agentic AI and RAG, secure retrieval, assessment platforms and full-stack Java.",
   alternates: { canonical: "/projects" },
 };
 

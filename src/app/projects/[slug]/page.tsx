@@ -190,6 +190,18 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           </ol>
         </section>
 
+        {/* Product evidence */}
+        {moreShots.length > 0 && (
+          <section aria-labelledby="screens" className="mt-20">
+            <SectionHeading eyebrow="Product evidence" title="Product experience" headingId="screens" />
+            <div className="grid gap-8 md:grid-cols-2">
+              {moreShots.map((s) => (
+                <Shot key={s.src} shot={s} sizes="(min-width: 768px) 540px, 100vw" />
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Security & reliability */}
         <div className="mt-20 grid overflow-hidden rounded-2xl border border-border bg-surface shadow-card md:grid-cols-2 md:divide-x md:divide-border">
           <section aria-labelledby="security" className="p-6 sm:p-8">
@@ -220,29 +232,6 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           </div>
         </section>
 
-        {/* Scope */}
-        <section
-          aria-labelledby="scope"
-          className="mt-20 border-l-4 border-accent-2 bg-surface-muted p-6 sm:p-8"
-        >
-          <h2 id="scope" className="mb-4 text-xl font-semibold">
-            Scope
-          </h2>
-          <BulletList items={project.scope} />
-        </section>
-
-        {/* More screenshots */}
-        {moreShots.length > 0 && (
-          <section aria-labelledby="screens" className="mt-20">
-            <SectionHeading eyebrow="Screenshots" title="More of the product" headingId="screens" />
-            <div className="grid gap-8 md:grid-cols-2">
-              {moreShots.map((s) => (
-                <Shot key={s.src} shot={s} sizes="(min-width: 768px) 540px, 100vw" />
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* Stack */}
         <section aria-labelledby="stack" className="mt-20">
           <SectionHeading eyebrow="Technology" title="Stack" headingId="stack" />
@@ -262,6 +251,17 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               </div>
             ))}
           </dl>
+        </section>
+
+        {/* Scope */}
+        <section
+          aria-labelledby="scope"
+          className="mt-20 border-l-4 border-accent-2 bg-surface-muted p-6 sm:p-8"
+        >
+          <h2 id="scope" className="mb-4 text-xl font-semibold">
+            Scope
+          </h2>
+          <BulletList items={project.scope} />
         </section>
 
         {/* Source links + next */}
