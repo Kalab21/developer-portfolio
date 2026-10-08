@@ -134,12 +134,12 @@ export default function Home() {
         <Container>
           <SectionHeading
             eyebrow="Career"
-            title="From enterprise Java to applied AI"
+            title="Enterprise Java at the core, scope that kept widening"
             headingId="career"
           >
-            Insurance and banking backends first, then event-driven modernization, data
-            engineering, and most recently forward deployed work on RAG and multi-service
-            platforms.
+            Insurance and banking backends first, then event-driven modernization and data
+            engineering, and most recently Forward Deployed Engineering on multi-service
+            platforms, including agentic AI and RAG.
           </SectionHeading>
           <ol className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface shadow-card">
             {roles.map((r) => (
