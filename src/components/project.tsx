@@ -104,56 +104,48 @@ export function Shot({
   );
 }
 
-export function ProjectCard({
-  project,
-  index,
-  flagship = false,
-}: {
-  project: Project;
-  index: number;
-  flagship?: boolean;
-}) {
+function CardImage({ image }: { image: Screenshot }) {
+  const svg = image.src.endsWith(".svg");
+  // Show the whole image: screenshots and diagrams are never cropped in the card.
+  const fit = image.fit === "cover" ? "object-cover object-top" : "object-contain p-4 sm:p-5";
+  const sizes = "(min-width: 768px) 45vw, 100vw";
+  return (
+    <>
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        sizes={sizes}
+        unoptimized={svg}
+        className={`${fit} ${image.darkSrc ? "dark:hidden" : ""}`}
+      />
+      {image.darkSrc && (
+        <Image
+          src={image.darkSrc}
+          alt={image.alt}
+          fill
+          sizes={sizes}
+          unoptimized={svg}
+          className={`${fit} hidden dark:block`}
+        />
+      )}
+    </>
+  );
+}
+
+/** One project as a row: image on the left, name and description beside it. */
+export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const image = project.cardImage ?? project.screenshots[0];
   return (
-    <article
-      className={`group relative flex flex-col overflow-hidden rounded-2xl border bg-surface shadow-card transition-shadow hover:shadow-lg ${
-        flagship ? "border-accent lg:col-span-2 lg:flex-row" : "border-border"
-      }`}
-    >
-      <div
-        className={`overflow-hidden border-border bg-surface-muted ${
-          flagship ? "lg:w-1/2 lg:border-r" : "border-b"
-        }`}
-      >
-        {image ? (
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={Math.min(image.height, image.width * 0.62)}
-            sizes={flagship ? "(min-width: 1024px) 560px, 100vw" : "(min-width: 1024px) 540px, 100vw"}
-            className="aspect-[16/10] w-full object-cover object-top"
-          />
-        ) : (
-          <div className="flex aspect-[16/10] flex-col justify-center gap-2 p-6">
-            <p className="font-mono text-xs uppercase tracking-widest text-muted">
-              {project.architecture.tiers[2].label}
-            </p>
-            <ul className="flex flex-wrap gap-2">
-              {project.architecture.tiers[2].nodes.map((n) => (
-                <li key={n.name} className="rounded-md border border-border bg-surface px-2.5 py-1 text-xs font-medium">
-                  {n.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+    <article className="group relative grid overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition-shadow hover:border-accent hover:shadow-lg md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+      <div className="relative aspect-[16/10] border-b border-border bg-surface-muted md:aspect-auto md:min-h-[320px] md:border-b-0 md:border-r">
+        {image && <CardImage image={image} />}
       </div>
-      <div className={`flex flex-1 flex-col p-6 ${flagship ? "lg:p-8" : ""}`}>
+      <div className="flex flex-col p-6 sm:p-8">
         <p className="font-mono text-xs uppercase tracking-widest text-accent">
           <span className="text-muted">0{index + 1}</span> · {project.category}
         </p>
-        <h3 className={`mt-2 font-semibold tracking-tight ${flagship ? "text-3xl" : "text-xl"}`}>
+        <h3 className="mt-2 text-2xl font-semibold tracking-tight">
           <Link
             href={`/projects/${project.slug}`}
             className="after:absolute after:inset-0 after:content-['']"
@@ -161,15 +153,15 @@ export function ProjectCard({
             {project.title}
           </Link>
         </h3>
-        <p className="mt-1 text-sm text-muted">{project.subtitle}</p>
-        <p className="mt-4 text-sm leading-6 text-muted">{project.cardSummary ?? project.summary}</p>
+        <p className="mt-1 font-medium text-muted">{project.subtitle}</p>
+        <p className="mt-4 leading-7 text-muted">{project.cardSummary ?? project.summary}</p>
         <div className="mt-5">
           <TagList
             label={`${project.title} technologies`}
-            items={project.cardTags ?? project.technologies.flatMap((g) => g.items).slice(0, flagship ? 8 : 5)}
+            items={project.cardTags ?? project.technologies.flatMap((g) => g.items).slice(0, 8)}
           />
         </div>
-        <p className="mt-6 text-sm font-semibold text-accent">
+        <p className="mt-auto pt-6 text-sm font-semibold text-accent">
           View case study <span aria-hidden="true">→</span>
         </p>
       </div>

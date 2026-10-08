@@ -122,9 +122,9 @@ export default function Home() {
             Selected engineering work across distributed systems, financial platforms,
             full-stack applications and applied AI.
           </SectionHeading>
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6">
             {projects.map((p, i) => (
-              <ProjectCard key={p.slug} project={p} index={i} flagship={i === 0} />
+              <ProjectCard key={p.slug} project={p} index={i} />
             ))}
           </div>
         </Container>

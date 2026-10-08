@@ -20,9 +20,9 @@ export default function ProjectsPage() {
       </PageHeader>
       <section aria-label="All projects" className="py-12 sm:py-16">
         <Container>
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-6">
             {projects.map((p, i) => (
-              <ProjectCard key={p.slug} project={p} index={i} flagship={i === 0} />
+              <ProjectCard key={p.slug} project={p} index={i} />
             ))}
           </div>
         </Container>

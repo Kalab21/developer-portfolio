@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 600" width="1400" height="600" role="img" aria-label="Rev-Eval architecture: the browser reaches Nginx, then the Next.js frontend, then the API gateway, which verifies the JWT and routes to user-service, test-management, reporting-and-analytics and question-management. User and test data live in PostgreSQL, which reporting reads read-only; questions live in MongoDB with images in MinIO.">
+<style>text{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}</style>
+<rect width="1400" height="600" fill="#ffffff"/>
+<rect x="60" y="40" width="220" height="104" rx="12" fill="#fafbff" stroke="#3f4ab8" stroke-width="2"/>
+<text x="170.0" y="87.0" font-size="18" font-weight="700" fill="#14213d" text-anchor="middle">Browser</text>
+<text x="170.0" y="111.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">trainer · participant</text>
+<rect x="360" y="40" width="280" height="104" rx="12" fill="#fafbff" stroke="#3f4ab8" stroke-width="2"/>
+<text x="500.0" y="87.0" font-size="18" font-weight="700" fill="#14213d" text-anchor="middle">Nginx  :443</text>
+<text x="500.0" y="111.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">TLS · rate limiting</text>
+<path d="M280.0,92.0 L347.0,92.0" fill="none" stroke="#3f4ab8" stroke-width="2.5"/>
+<path d="M360.0,92.0 L347.0,85.0 L347.0,99.0 z" fill="#3f4ab8"/>
+<rect x="720" y="40" width="280" height="104" rx="12" fill="#fafbff" stroke="#3f4ab8" stroke-width="2"/>
+<text x="860.0" y="87.0" font-size="18" font-weight="700" fill="#14213d" text-anchor="middle">Next.js  :3000</text>
+<text x="860.0" y="111.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">pages · BFF proxy</text>
+<path d="M640.0,92.0 L707.0,92.0" fill="none" stroke="#3f4ab8" stroke-width="2.5"/>
+<path d="M720.0,92.0 L707.0,85.0 L707.0,99.0 z" fill="#3f4ab8"/>
+<rect x="1080" y="40" width="260" height="104" rx="12" fill="#fafbff" stroke="#3f4ab8" stroke-width="2"/>
+<text x="1210.0" y="76.0" font-size="18" font-weight="700" fill="#3f4ab8" text-anchor="middle">API gateway  :8000</text>
+<text x="1210.0" y="100.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">JWT · identity headers</text>
+<text x="1210.0" y="121.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">request IDs</text>
+<path d="M1000.0,92.0 L1067.0,92.0" fill="none" stroke="#3f4ab8" stroke-width="2.5"/>
+<path d="M1080.0,92.0 L1067.0,85.0 L1067.0,99.0 z" fill="#3f4ab8"/>
+<path d="M1210,144 L1210,196 M210,196 L1210,196" fill="none" stroke="#3f4ab8" stroke-width="2.5"/>
+<path d="M210.0,196.0 L210.0,237.0" fill="none" stroke="#3f4ab8" stroke-width="2.5"/>
+<path d="M210.0,250.0 L217.0,237.0 L203.0,237.0 z" fill="#3f4ab8"/>
+<path d="M550.0,196.0 L550.0,237.0" fill="none" stroke="#3f4ab8" stroke-width="2.5"/>
+<path d="M550.0,250.0 L557.0,237.0 L543.0,237.0 z" fill="#3f4ab8"/>
+<path d="M890.0,196.0 L890.0,237.0" fill="none" stroke="#3f4ab8" stroke-width="2.5"/>
+<path d="M890.0,250.0 L897.0,237.0 L883.0,237.0 z" fill="#3f4ab8"/>
+<path d="M1210.0,196.0 L1210.0,237.0" fill="none" stroke="#3f4ab8" stroke-width="2.5"/>
+<path d="M1210.0,250.0 L1217.0,237.0 L1203.0,237.0 z" fill="#3f4ab8"/>
+<rect x="60" y="250" width="300" height="100" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
+<text x="210.0" y="295.0" font-size="18" font-weight="700" fill="#14213d" text-anchor="middle">user-service  :8002</text>
+<text x="210.0" y="319.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">register · login · JWT</text>
+<rect x="400" y="250" width="300" height="100" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
+<text x="550.0" y="295.0" font-size="18" font-weight="700" fill="#14213d" text-anchor="middle">test-management  :8001</text>
+<text x="550.0" y="319.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">tests · quiz sessions · scoring</text>
+<rect x="740" y="250" width="300" height="100" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
+<text x="890.0" y="295.0" font-size="18" font-weight="700" fill="#14213d" text-anchor="middle">reporting-and-analytics  :8004</text>
+<text x="890.0" y="319.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">reports · rankings</text>
+<rect x="1080" y="250" width="260" height="100" rx="12" fill="#f3f5fb" stroke="#3f4ab8" stroke-width="2"/>
+<text x="1210.0" y="295.0" font-size="18" font-weight="700" fill="#14213d" text-anchor="middle">question-management  :8003</text>
+<text x="1210.0" y="319.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">question bank</text>
+<rect x="60" y="430" width="1280" height="140" rx="16" fill="#eef6fb" stroke="#0b6f8a" stroke-width="2"/>
+<rect x="90" y="456" width="920" height="90" rx="12" fill="#ffffff" stroke="#0b6f8a" stroke-width="2"/>
+<text x="550.0" y="496.0" font-size="18" font-weight="700" fill="#0b6f8a" text-anchor="middle">PostgreSQL  :5432</text>
+<text x="550.0" y="520.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">users · tests · quiz sessions · scores</text>
+<rect x="1060" y="456" width="250" height="90" rx="12" fill="#ffffff" stroke="#0b6f8a" stroke-width="2"/>
+<text x="1185.0" y="496.0" font-size="18" font-weight="700" fill="#0b6f8a" text-anchor="middle">MongoDB + MinIO</text>
+<text x="1185.0" y="520.0" font-size="14.5" font-weight="400" fill="#4b587c" text-anchor="middle">questions · images</text>
+<path d="M210.0,350.0 L210.0,443.0" fill="none" stroke="#0b6f8a" stroke-width="2.5"/>
+<path d="M210.0,456.0 L217.0,443.0 L203.0,443.0 z" fill="#0b6f8a"/>
+<path d="M550.0,350.0 L550.0,443.0" fill="none" stroke="#0b6f8a" stroke-width="2.5"/>
+<path d="M550.0,456.0 L557.0,443.0 L543.0,443.0 z" fill="#0b6f8a"/>
+<path d="M890.0,350.0 L890.0,443.0" fill="none" stroke="#0b6f8a" stroke-width="2.5" stroke-dasharray="7 6"/>
+<path d="M890.0,456.0 L897.0,443.0 L883.0,443.0 z" fill="#0b6f8a"/>
+<text x="902" y="408" font-size="13.5" font-weight="600" fill="#0b6f8a" text-anchor="start">read-only</text>
+<path d="M1185.0,350.0 L1185.0,443.0" fill="none" stroke="#0b6f8a" stroke-width="2.5"/>
+<path d="M1185.0,456.0 L1192.0,443.0 L1178.0,443.0 z" fill="#0b6f8a"/>
+</svg>
