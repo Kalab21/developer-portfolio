@@ -127,7 +127,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "Customer and staff traffic goes through a Next.js backend-for-frontend, then an API gateway that validates identity before forwarding to the business services. Each service owns its PostgreSQL database and communicates asynchronously over Kafka.",
+        "Customer and staff traffic goes through a Next.js backend-for-frontend, then an API gateway that validates identity before forwarding to business services on a private network. REST carries authoritative operations such as debits; Kafka carries derived workflows such as notifications, statistics and fraud checks. Each service owns its PostgreSQL database.",
       tiers: [
         { label: "Clients", nodes: [{ name: "Customer console" }, { name: "Staff console" }] },
         { label: "Edge", nodes: [{ name: "Next.js BFF", detail: "server-side session, no browser token" }, { name: "API Gateway", detail: "JWT validation, identity headers" }, { name: "Eureka", detail: "service discovery" }] },
@@ -135,11 +135,12 @@ export const projects: Project[] = [
         { label: "Data & events", nodes: [{ name: "PostgreSQL", detail: "database per service" }, { name: "Kafka", detail: "outbox, retries, dead-letter topics" }, { name: "Redis" }] },
       ],
       diagram: {
-        light: "/projects/northbank/northbank-architecture.svg",
-        dark: "/projects/northbank/northbank-architecture-dark.svg",
-        alt: "Northbank architecture diagram: a Next.js console, an API gateway, eleven Spring Boot services, Kafka, PostgreSQL and Redis.",
+        light: "/projects/northbank/northbank-logical.svg",
+        dark: "/projects/northbank/northbank-logical-dark.svg",
+        alt: "Northbank logical architecture: customers and staff reach a Next.js BFF, then a Spring Cloud Gateway with Eureka discovery, then eleven Spring Boot services grouped by domain (identity, accounts and money movement, lending and cards, risk and insight) on a private service network. REST carries authoritative calls; Kafka carries derived events. Each service owns a PostgreSQL database; Redis backs rate limits and caches.",
         width: 1400,
-        height: 1010,
+        height: 1210,
+        stacked: true,
       },
     },
     security: [
@@ -170,7 +171,8 @@ export const projects: Project[] = [
     },
     scope: [
       "Portfolio-scale retail banking simulation using synthetic accounts and data, with Docker Compose for local execution.",
-      "Wire, ACH and SWIFT flows are simulated; Terraform provides the AWS reference architecture.",
+      "Wire, ACH and SWIFT flows are simulated.",
+      "AWS reference deployment in Terraform (CloudFront + WAF, ALB, ECS Fargate in private subnets, RDS PostgreSQL, ElastiCache, MSK); Terraform-defined, not currently deployed.",
     ],
     screenshots: [
       { src: "/projects/northbank/dashboard.webp", width: 1440, height: 1000, alt: "Northbank customer dashboard with total balance, account cards, a balance chart and recent activity.", caption: "Customer dashboard" },
@@ -256,8 +258,8 @@ export const projects: Project[] = [
         light: "/projects/meridian/meridian-architecture.svg",
         dark: "/projects/meridian/meridian-architecture-dark.svg",
         alt: "Meridian Lending architecture: the Next.js portal calls the gateway BFF, which routes to origination, the loan assistant and servicing. Origination calls the KYC, decision and disclosure services over synchronous HTTP; payment applies payments to servicing; the loan assistant is staff-only, read-only and has no database connection. PostgreSQL is shared by seven services; Redis holds sessions and rate limits.",
-        width: 1400,
-        height: 1010,
+        width: 1660,
+        height: 1110,
         stacked: true,
       },
       tiers: [
@@ -325,7 +327,7 @@ export const projects: Project[] = [
     cardSummary:
       "A question-answering service over policy documents that only uses documents the caller may read, cites its sources and refuses when the evidence is weak. Retrieval quality is measured on held-out questions.",
     cardTags: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Hybrid Search", "LangGraph", "MCP", "OpenTelemetry"],
-    cardImage: { src: "/projects/policy-rag/architecture.svg", darkSrc: "/projects/policy-rag/architecture-dark.svg", fit: "contain", width: 1400, height: 1290, alt: "Policy RAG Platform architecture diagram.", caption: "Architecture" },
+    cardImage: { src: "/projects/policy-rag/architecture.svg", darkSrc: "/projects/policy-rag/architecture-dark.svg", fit: "contain", width: 1400, height: 1500, alt: "Policy RAG Platform architecture diagram.", caption: "Architecture" },
     summary:
       "A FastAPI service that answers questions over lending-policy documents. It retrieves only from documents the caller is authorized to read, answers with citations it has checked, and refuses when the evidence is insufficient. Retrieval runs on PostgreSQL with pgvector and combines semantic, full-text and hybrid search.",
     context: [
@@ -392,7 +394,7 @@ export const projects: Project[] = [
         dark: "/projects/policy-rag/architecture-dark.svg",
         alt: "Policy RAG Platform architecture: JWT validation produces an access scope applied inside every query; semantic, lexical or hybrid retrieval on PostgreSQL with pgvector, optional cross-encoder reranking, an evidence gate, LangGraph generation and citation validation return an answer with sources or a refusal.",
         width: 1400,
-        height: 1290,
+        height: 1500,
         stacked: true,
       },
       tiers: [
@@ -598,7 +600,7 @@ export const projects: Project[] = [
         dark: "/projects/markethub/markethub-architecture-dark.svg",
         alt: "MarketHub architecture: a browser used by Admin, Seller and Buyer sends requests into one Spring Boot application, through the Spring Security filter chain, Spring MVC controllers, the service layer and Spring Data JPA repositories, to MySQL 8.",
         width: 1000,
-        height: 900,
+        height: 950,
       },
       tiers: [
         { label: "Browser", nodes: [{ name: "Thymeleaf pages", detail: "Admin, Seller, Buyer views" }] },
