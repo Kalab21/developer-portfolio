@@ -1,5 +1,9 @@
 export type Screenshot = {
   src: string;
+  /** Optional dark-theme variant (used for diagrams). */
+  darkSrc?: string;
+  /** Card display: "contain" (default) shows the whole image; "cover" crops to fill. */
+  fit?: "cover" | "contain";
   alt: string;
   caption: string;
   width: number;
@@ -248,6 +252,14 @@ export const projects: Project[] = [
     architecture: {
       description:
         "Eight FastAPI backend services, including the gateway. Seven share a PostgreSQL schema under an explicit ADR; the loan assistant holds no database connection, reads application data over HTTP, and never writes to the system of record.",
+      diagram: {
+        light: "/projects/meridian/meridian-architecture.svg",
+        dark: "/projects/meridian/meridian-architecture-dark.svg",
+        alt: "Meridian Lending architecture: the Next.js portal calls the gateway BFF, which routes to origination, the loan assistant and servicing. Origination calls the KYC, decision and disclosure services over synchronous HTTP; payment applies payments to servicing; the loan assistant is staff-only, read-only and has no database connection. PostgreSQL is shared by seven services; Redis holds sessions and rate limits.",
+        width: 1400,
+        height: 1010,
+        stacked: true,
+      },
       tiers: [
         { label: "Client", nodes: [{ name: "Next.js staff and borrower UI" }] },
         { label: "Edge", nodes: [{ name: "Gateway", detail: "auth, rate limiting, service routing" }] },
@@ -313,6 +325,7 @@ export const projects: Project[] = [
     cardSummary:
       "A question-answering service over policy documents that only uses documents the caller may read, cites its sources and refuses when the evidence is weak. Retrieval quality is measured on held-out questions.",
     cardTags: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Hybrid Search", "LangGraph", "MCP", "OpenTelemetry"],
+    cardImage: { src: "/projects/policy-rag/architecture.svg", darkSrc: "/projects/policy-rag/architecture-dark.svg", fit: "contain", width: 1400, height: 1290, alt: "Policy RAG Platform architecture diagram.", caption: "Architecture" },
     summary:
       "A FastAPI service that answers questions over lending-policy documents. It retrieves only from documents the caller is authorized to read, answers with citations it has checked, and refuses when the evidence is insufficient. Retrieval runs on PostgreSQL with pgvector and combines semantic, full-text and hybrid search.",
     context: [
@@ -374,6 +387,14 @@ export const projects: Project[] = [
     architecture: {
       description:
         "Retrieval supports semantic, lexical and RRF hybrid search, with configurable cross-encoder reranking. Results pass through retrieval-time authorization, the evidence gate, LangGraph orchestration and citation validation.",
+      diagram: {
+        light: "/projects/policy-rag/architecture.svg",
+        dark: "/projects/policy-rag/architecture-dark.svg",
+        alt: "Policy RAG Platform architecture: JWT validation produces an access scope applied inside every query; semantic, lexical or hybrid retrieval on PostgreSQL with pgvector, optional cross-encoder reranking, an evidence gate, LangGraph generation and citation validation return an answer with sources or a refusal.",
+        width: 1400,
+        height: 1290,
+        stacked: true,
+      },
       tiers: [
         { label: "API", nodes: [{ name: "FastAPI", detail: "/api/search, /api/ask, /api/me" }] },
         { label: "Security", nodes: [{ name: "JWT validation" }, { name: "Access scope", detail: "tenant, level, department, applied in SQL" }] },
@@ -430,6 +451,7 @@ export const projects: Project[] = [
     cardSummary:
       "A multi-service assessment platform: trainers assign tests, participants take timed quizzes, and submissions are scored safely under retries and concurrency, with reporting and analytics.",
     cardTags: ["Python", "FastAPI", "Next.js", "React", "TypeScript", "PostgreSQL", "MongoDB", "Docker"],
+    cardImage: { src: "/projects/rev-eval/reveval-architecture.svg", darkSrc: "/projects/rev-eval/reveval-architecture-dark.svg", fit: "contain", width: 1400, height: 600, alt: "Rev-Eval architecture diagram.", caption: "Architecture" },
     summary:
       "A multi-service assessment platform where trainers create and assign tests, participants take timed assessments, and the system scores them and reports analytics. I extended a partially built five-service application into working end-to-end flows.",
     context: [
@@ -479,6 +501,14 @@ export const projects: Project[] = [
     architecture: {
       description:
         "Nginx and the API gateway route traffic to the FastAPI services. User and test-management data use PostgreSQL, question-management uses MongoDB and MinIO, and Reporting & Analytics reads the shared PostgreSQL data directly under its documented ADR. The gateway forwards verified identity to services, which enforce role checks.",
+      diagram: {
+        light: "/projects/rev-eval/reveval-architecture.svg",
+        dark: "/projects/rev-eval/reveval-architecture-dark.svg",
+        alt: "Rev-Eval architecture: the browser reaches Nginx, the Next.js frontend and the API gateway, which routes to user-service, test-management, reporting-and-analytics and question-management. User and test data live in PostgreSQL, which reporting reads read-only; questions live in MongoDB with images in MinIO.",
+        width: 1400,
+        height: 600,
+        stacked: true,
+      },
       tiers: [
         { label: "Client", nodes: [{ name: "Next.js trainer and participant UI" }] },
         { label: "Edge", nodes: [{ name: "Nginx" }, { name: "API gateway", detail: "JWT, identity headers, request IDs" }] },
@@ -563,6 +593,13 @@ export const projects: Project[] = [
     architecture: {
       description:
         "A single Spring Boot application with a conventional layered design.",
+      diagram: {
+        light: "/projects/markethub/markethub-architecture.svg",
+        dark: "/projects/markethub/markethub-architecture-dark.svg",
+        alt: "MarketHub architecture: a browser used by Admin, Seller and Buyer sends requests into one Spring Boot application, through the Spring Security filter chain, Spring MVC controllers, the service layer and Spring Data JPA repositories, to MySQL 8.",
+        width: 1000,
+        height: 900,
+      },
       tiers: [
         { label: "Browser", nodes: [{ name: "Thymeleaf pages", detail: "Admin, Seller, Buyer views" }] },
         { label: "Security", nodes: [{ name: "Spring Security", detail: "form login, role URL rules" }] },
