@@ -64,10 +64,10 @@ export const projects: Project[] = [
     subtitle: "Event-Driven Retail Banking Platform",
     category: "Distributed Systems & Financial Engineering",
     cardSummary:
-      "A Java 21 / Spring Boot banking platform: 11 services behind an API gateway, Kafka events, a database per service and a Next.js console, built around transaction integrity and safe money movement.",
+      "A Java 21 / Spring Boot banking platform: 11 services behind an API gateway, Kafka events, a logical database per service and a Next.js console, built around transaction integrity and safe money movement.",
     cardTags: ["Java 21", "Spring Boot", "Kafka", "PostgreSQL", "Redis", "Next.js", "React", "TypeScript"],
     summary:
-      "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
+      "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service logical PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
     context: [
       "Northbank covers the core retail-banking journeys: onboarding with identity checks and two-factor login, accounts and transfers, cards, loans, and a credit-application workflow that ends with a stored offer the customer can accept or decline. Staff have their own review workbench for referred applications and KYC documents.",
       "The engineering focus is correctness under concurrency and failure: what happens when two debits race, when a request is retried, when a downstream call times out, or when a caller tries to reach another customer's data.",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
       { group: "Data & messaging", items: ["PostgreSQL 16", "Flyway", "Redis", "Apache Kafka", "Transactional outbox"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Recharts"] },
       { group: "Testing", items: ["JUnit 5", "Mockito", "Testcontainers", "Vitest", "Playwright"] },
-      { group: "Delivery", items: ["Docker Compose", "GitHub Actions", "CodeQL", "Trivy", "Terraform (reference architecture)"] },
+      { group: "Delivery", items: ["Docker Compose", "GitHub Actions", "CodeQL", "Trivy", "Terraform · AWS infrastructure"] },
       { group: "Observability", items: ["Micrometer", "Prometheus", "Grafana", "Zipkin"] },
     ],
     highlights: [
@@ -124,19 +124,20 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "Customer and staff traffic goes through a Next.js backend-for-frontend, then an API gateway that validates identity before forwarding to business services on a private network. REST carries authoritative operations such as debits; Kafka carries derived workflows such as notifications, statistics and fraud checks. Each service owns its PostgreSQL database.",
+        "One request path: the browser talks only to a Next.js backend-for-frontend, which makes server-side API requests through the AWS API edge (Route 53, CloudFront with WAF, an Application Load Balancer) to the Spring Cloud Gateway. The gateway validates identity before forwarding to 11 Spring Boot services grouped by domain. REST and OpenFeign carry immediate, authoritative operations such as debits; Kafka carries derived workflows such as notifications, statistics and fraud checks. Each service owns a logical PostgreSQL database; in the AWS model the 11 logical databases share one RDS PostgreSQL instance.",
       tiers: [
-        { label: "Clients", nodes: [{ name: "Customer console" }, { name: "Staff console" }] },
-        { label: "Edge", nodes: [{ name: "Next.js BFF", detail: "server-side session, no browser token" }, { name: "API Gateway", detail: "JWT validation, identity headers" }, { name: "Eureka", detail: "service discovery" }] },
-        { label: "Business services (11)", nodes: [{ name: "user" }, { name: "account" }, { name: "transaction" }, { name: "payment" }, { name: "credit-card" }, { name: "loan" }, { name: "application" }, { name: "fraud-detection" }, { name: "notification" }, { name: "statistics" }, { name: "integration" }] },
-        { label: "Data & events", nodes: [{ name: "PostgreSQL", detail: "database per service" }, { name: "Kafka", detail: "outbox, retries, dead-letter topics" }, { name: "Redis" }] },
+        { label: "Users", nodes: [{ name: "Customer" }, { name: "Staff" }] },
+        { label: "Application / AWS edge", nodes: [{ name: "Next.js BFF", detail: "server-side session; outside current AWS Terraform" }, { name: "Route 53 / CloudFront / WAF" }, { name: "ALB" }, { name: "Spring Cloud Gateway", detail: "JWT validation, identity headers, rate limiting" }, { name: "Eureka" }] },
+        { label: "Business services", nodes: [{ name: "Identity" }, { name: "Accounts & Money Movement" }, { name: "Lending & Cards" }, { name: "Risk & Insight" }] },
+        { label: "Data & messaging", nodes: [{ name: "PostgreSQL", detail: "logical database per service" }, { name: "Redis" }, { name: "Kafka", detail: "outbox, retries, dead-letter topics" }] },
+        { label: "Operations", nodes: [{ name: "ECS Fargate" }, { name: "ECR" }, { name: "Secrets Manager" }, { name: "CloudWatch" }, { name: "Prometheus / Grafana / Zipkin" }] },
       ],
       diagram: {
-        light: "/projects/northbank/northbank-logical.svg",
-        dark: "/projects/northbank/northbank-logical-dark.svg",
-        alt: "Northbank logical architecture: customers and staff reach a Next.js BFF, then a Spring Cloud Gateway with Eureka discovery, then eleven Spring Boot services grouped by domain (identity, accounts and money movement, lending and cards, risk and insight) on a private service network. REST carries authoritative calls; Kafka carries derived events. Each service owns a PostgreSQL database; Redis backs rate limits and caches.",
-        width: 1400,
-        height: 1210,
+        light: "/projects/northbank/northbank-end-to-end.svg",
+        dark: "/projects/northbank/northbank-end-to-end-dark.svg",
+        alt: "Northbank end-to-end architecture. Customers and staff use a web browser that holds no bearer token and talks only to the Next.js backend-for-frontend, an application BFF outside the current AWS Terraform. The BFF makes server-side API requests through the AWS API edge: Route 53, CloudFront with AWS WAF and an ACM certificate, and an Application Load Balancer, which forwards to the Spring Cloud Gateway. The gateway validates the JWT, forwards trusted identity headers, rate-limits and discovers services through Eureka. Eleven Spring Boot services are grouped by domain: identity (user-service); accounts and money movement (account-service, the only writer of balances, transaction-service, payment-service, integration-service); lending and cards (application-service, loan-service, credit-card-service); and risk and insight (fraud-detection, statistics-service, notification-service). REST and OpenFeign carry immediate authoritative operations; Kafka events carry derived, asynchronous workflows. Each service owns a logical PostgreSQL 16 database; in the AWS model the 11 logical databases share one RDS PostgreSQL instance. Redis holds rate limits, counters and cache (ElastiCache); Kafka uses a transactional outbox, idempotent consumers, retry and dead-letter topics (Amazon MSK). A runtime and operations rail shows ECS Fargate in private subnets, ECR, Secrets Manager, CloudWatch Logs, Prometheus, Grafana and Zipkin, and delivery tooling.",
+        width: 1440,
+        height: 1100,
         stacked: true,
       },
     },
@@ -169,7 +170,7 @@ export const projects: Project[] = [
     scope: [
       "Portfolio-scale retail banking simulation using synthetic accounts and data, with Docker Compose for local execution.",
       "Wire, ACH and SWIFT flows are simulated.",
-      "AWS reference deployment in Terraform (CloudFront + WAF, ALB, ECS Fargate in private subnets, RDS PostgreSQL, ElastiCache, MSK); Terraform-defined, not currently deployed.",
+      "The AWS infrastructure is modeled in Terraform (CloudFront + WAF, ALB, ECS Fargate in private subnets, RDS PostgreSQL, ElastiCache, MSK) and scanned for misconfiguration in CI.",
     ],
     screenshots: [
       { src: "/projects/northbank/dashboard.webp", width: 1440, height: 1000, alt: "Northbank customer dashboard with total balance, account cards, balance history and recent activity.", caption: "Customer dashboard: balances, account cards and activity from the account and transaction services" },
@@ -320,7 +321,7 @@ export const projects: Project[] = [
     cardSummary:
       "A question-answering service over policy documents that only uses documents the caller may read, cites its sources and refuses when the evidence is weak. Retrieval quality is measured on held-out questions.",
     cardTags: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Hybrid Search", "LangGraph", "MCP", "OpenTelemetry"],
-    cardImage: { src: "/projects/policy-rag/architecture.svg", darkSrc: "/projects/policy-rag/architecture-dark.svg", fit: "contain", width: 1400, height: 1500, alt: "Policy RAG Platform architecture diagram.", caption: "Architecture" },
+    cardImage: { src: "/projects/policy-rag/architecture.svg", darkSrc: "/projects/policy-rag/architecture-dark.svg", fit: "contain", width: 1440, height: 1466, alt: "Policy RAG Platform end-to-end architecture: authorization before retrieval, evidence gate, grounded answers or refusal, on an AWS infrastructure model.", caption: "End-to-end architecture" },
     summary:
       "A FastAPI service that answers questions over lending-policy documents. It retrieves only from documents the caller is authorized to read, answers with citations it has checked, and refuses when the evidence is insufficient. Retrieval runs on PostgreSQL with pgvector and combines semantic, full-text and hybrid search.",
     context: [
@@ -328,7 +329,7 @@ export const projects: Project[] = [
       "It also carries the controls an enterprise deployment would ask about: authorization applied before any chunk can become context, bounded read-only tools for AI clients, and observability that never records the user's question or the documents. The default answer generator is extractive, with optional Bedrock and OpenAI-compatible adapters.",
     ],
     role:
-      "Designed and implemented the ingestion pipeline, pgvector schema and queries, hybrid retrieval and reranking, LangGraph evidence gate, authorization model, MCP server, observability, evaluation harness, tests, Docker setup, CI and a Terraform reference architecture.",
+      "Designed and implemented the ingestion pipeline, pgvector schema and queries, hybrid retrieval and reranking, LangGraph evidence gate, authorization model, MCP server, observability, evaluation harness, tests, Docker setup, CI and the Terraform AWS infrastructure model.",
     repository: {
       url: "https://github.com/Kalab21/policy-rag-platform",
       label: "Kalab21/policy-rag-platform",
@@ -347,7 +348,7 @@ export const projects: Project[] = [
       { group: "Embeddings & RAG", items: ["Embeddings: sentence-transformers/all-MiniLM-L6-v2 (fastembed)", "LangGraph", "Evidence gating", "Citation validation"] },
       { group: "Security", items: ["JWT validation (OIDC/JWKS)", "RBAC", "Document-level authorization"] },
       { group: "Interfaces & operations", items: ["MCP (Model Context Protocol) server", "OpenTelemetry", "Prometheus metrics", "Structured logging"] },
-      { group: "Quality & delivery", items: ["Pytest", "Ruff", "mypy", "pip-audit", "Bandit", "Docker Compose", "GitHub Actions", "Terraform (AWS reference architecture)", "Trivy IaC scan"] },
+      { group: "Quality & delivery", items: ["Pytest", "Ruff", "mypy", "pip-audit", "Bandit", "Docker Compose", "GitHub Actions", "Terraform · AWS infrastructure", "Trivy IaC scan"] },
     ],
     highlights: [
       {
@@ -381,24 +382,21 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "Retrieval supports semantic, lexical and RRF hybrid search, with configurable cross-encoder reranking. Results pass through retrieval-time authorization, the evidence gate, LangGraph orchestration and citation validation.",
+        "A REST client reaches FastAPI on ECS Fargate through an Application Load Balancer; an MCP consumer runs the same services locally over stdio. A validated JWT becomes an access scope (role, tenant, department, access level) applied inside every query, before retrieval. Semantic, lexical or RRF hybrid search on RDS PostgreSQL + pgvector, optional cross-encoder reranking, an evidence gate, the LangGraph answer generator and citation validation return an answer with sources or a refusal. Terraform models the AWS runtime with ALB, ECS Fargate, RDS, ECR, Secrets Manager, CloudWatch and least-privilege IAM.",
       diagram: {
         light: "/projects/policy-rag/architecture.svg",
         dark: "/projects/policy-rag/architecture-dark.svg",
-        alt: "Policy RAG Platform architecture: JWT validation produces an access scope applied inside every query; semantic, lexical or hybrid retrieval on PostgreSQL with pgvector, optional cross-encoder reranking, an evidence gate, LangGraph generation and citation validation return an answer with sources or a refusal.",
-        width: 1400,
-        height: 1500,
+        alt: "Policy RAG Platform end-to-end architecture. A REST API client reaches an Application Load Balancer, whose public ingress requires HTTPS with an ACM certificate, and which forwards to the FastAPI service on ECS Fargate; an MCP consumer runs the MCP server locally over stdio with its own token. Both present a bearer token that is validated against an external identity provider's JWKS keys and turned into an access scope of role, tenant, department and access level. The scope is applied inside every retrieval query, before retrieval: semantic (pgvector HNSW), lexical (PostgreSQL full-text) or hybrid (Reciprocal Rank Fusion) search against RDS PostgreSQL 16 with pgvector in private subnets, then optional cross-encoder reranking and an evidence gate. A LangGraph answer generator (extractive by default, AWS Bedrock optional) and citation validation return an answer with sources or a refusal. A runtime and operations rail shows ECR, Secrets Manager, CloudWatch Logs, optional Bedrock, least-privilege IAM, and OpenTelemetry with Prometheus; held-out evaluation and CI run across the platform.",
+        width: 1440,
+        height: 1466,
         stacked: true,
       },
       tiers: [
-        { label: "API", nodes: [{ name: "FastAPI", detail: "/api/search, /api/ask, /api/me" }] },
-        { label: "Security", nodes: [{ name: "JWT validation" }, { name: "Access scope", detail: "tenant, level, department, applied in SQL" }] },
-        { label: "Retrieval", nodes: [{ name: "Semantic Search", detail: "MiniLM embedding to pgvector HNSW" }, { name: "Lexical Search", detail: "PostgreSQL full-text search" }, { name: "Hybrid Search", detail: "semantic + lexical fused with RRF" }, { name: "Cross-Encoder Reranking" }, { name: "Metadata filter", detail: "JSONB containment in SQL" }] },
-        { label: "RAG", nodes: [{ name: "Evidence gate" }, { name: "LangGraph flow" }, { name: "Extractive Generator", detail: "Bedrock and OpenAI-compatible adapters available" }, { name: "Citation validation" }] },
-        { label: "Interfaces", nodes: [{ name: "MCP server", detail: "stdio, read-only tools" }] },
-        { label: "Data", nodes: [{ name: "PostgreSQL 16 + pgvector" }] },
-        { label: "Operations", nodes: [{ name: "OpenTelemetry" }, { name: "Prometheus metrics" }, { name: "Terraform AWS reference architecture", detail: "validated in CI" }] },
-        { label: "Quality", nodes: [{ name: "Pytest" }, { name: "GitHub Actions" }] },
+        { label: "Clients", nodes: [{ name: "REST" }, { name: "MCP", detail: "stdio, read-only tools" }] },
+        { label: "Runtime & identity", nodes: [{ name: "ALB / ECS FastAPI", detail: "public ingress: HTTPS + ACM" }, { name: "JWT / OIDC-JWKS" }, { name: "Access scope", detail: "role, tenant, department, access level" }] },
+        { label: "Retrieval", nodes: [{ name: "Semantic", detail: "pgvector HNSW" }, { name: "Lexical", detail: "PostgreSQL FTS" }, { name: "Hybrid", detail: "RRF" }, { name: "Reranking", detail: "optional cross-encoder" }] },
+        { label: "Grounding", nodes: [{ name: "Evidence gate" }, { name: "LangGraph" }, { name: "Citation validation" }, { name: "Answer / refusal" }] },
+        { label: "Data & operations", nodes: [{ name: "RDS PostgreSQL + pgvector" }, { name: "ECR" }, { name: "Secrets Manager" }, { name: "CloudWatch" }, { name: "IAM" }, { name: "Bedrock", detail: "optional" }, { name: "OpenTelemetry / Prometheus" }] },
       ],
     },
     security: [
@@ -433,7 +431,7 @@ export const projects: Project[] = [
     scope: [
       "Evaluation uses a synthetic lending-policy corpus with separate tuning and held-out question sets.",
       "Semantic, lexical and hybrid retrieval are selectable; reranking is optional.",
-      "Cloud infrastructure is represented by a Terraform AWS reference architecture validated in CI.",
+      "The AWS infrastructure is modeled in Terraform and validated statically in CI (fmt, validate, Trivy).",
     ],
     screenshots: [],
   },
