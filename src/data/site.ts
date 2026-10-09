@@ -58,8 +58,8 @@ export const expertise: Expertise[] = [
   {
     title: "Applied & Agentic AI",
     summary:
-      "RAG and retrieval, LangGraph agent workflows, bounded tool calling, LangSmith tracing and evaluation, kept advisory next to the system of record.",
-    tags: ["RAG", "LangGraph", "Multi-Agent", "LangSmith", "AWS Bedrock"],
+      "RAG and retrieval, LangGraph orchestration, tool-using LangChain agents with bounded tool calling, LangSmith tracing and evaluation, kept advisory next to the system of record.",
+    tags: ["RAG", "LangGraph", "Multi-Agent Orchestration", "LangSmith", "AWS Bedrock"],
   },
 ];
 
@@ -221,12 +221,12 @@ export const roles: Role[] = [
         name: "Meridian Lending — Consumer Lending Platform",
         points: [
           "Modernized an inherited lending platform spanning intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation.",
-          "Built grounded and agentic AI with LangChain, LangGraph and AWS Bedrock: a RAG policy assistant, an underwriting-summary agent with a bounded policy tool, and a two-agent LangGraph disclosure workflow. The AI is advisory; credit decisions stay in the core lending workflow, which remains the system of record.",
+          "Built grounded and agentic AI with LangChain, LangGraph and AWS Bedrock: a RAG policy assistant, an underwriting-summary agent with a bounded policy tool, and a two-node LangGraph disclosure orchestration whose deterministic nodes never call a model. The AI is advisory; credit decisions stay in the core lending workflow, which remains the system of record.",
           "Added privacy-safe LangSmith tracing from the gateway through retrieval, the model call and the agent run, plus a retrieval evaluation harness and human review on AI output.",
           "Strengthened RBAC, decision finality, idempotency, auditability and data-integrity controls.",
           "Translated business and regulatory requirements into specifications and ADRs; added automated verification for lending calculations, plus logging, metrics, tracing and CI gates.",
         ],
-        stack: ["Python", "FastAPI", "LangChain", "LangGraph", "Multi-Agent", "LangSmith", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "Redis", "JWT/RBAC", "Next.js", "TypeScript", "Prometheus/Grafana", "Pytest", "Playwright"],
+        stack: ["Python", "FastAPI", "LangChain", "LangGraph", "Multi-Agent Orchestration", "LangSmith", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "Redis", "JWT/RBAC", "Next.js", "TypeScript", "Prometheus/Grafana", "Pytest", "Playwright"],
       },
       {
         name: "Rev-Eval — Skills Assessment Platform",
