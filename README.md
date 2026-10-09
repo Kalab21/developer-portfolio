@@ -14,7 +14,7 @@ React/Next.js, AWS and data, Python/FastAPI, and agentic AI and RAG.
 - **[Meridian Lending](https://github.com/2463-FDE/KK-meridian-lending)** — Python · FastAPI · RAG · LangChain · LangGraph · AWS Bedrock · LangSmith · Next.js
 - **[Policy RAG Platform](https://github.com/Kalab21/policy-rag-platform)** — Python · FastAPI · PostgreSQL · pgvector · Hybrid Retrieval · LangGraph · MCP · OpenTelemetry
 - **[Rev-Eval](https://github.com/RevatureFDEPEP/rev-eval/tree/kalabek)** — Python · FastAPI · Next.js · React · TypeScript · PostgreSQL · MongoDB · Docker
-- **[MarketHub](https://github.com/Kalab21/markethub)** — Java 17 · Spring Boot · Spring Security · MySQL · Thymeleaf · Bootstrap
+- **[MarketHub](https://github.com/Kalab21/markethub)** — Java 17 · Spring Boot · Spring Security · MySQL · Thymeleaf
 
 Each project page on the site covers the architecture, key engineering decisions
 and my role.
