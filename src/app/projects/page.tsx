@@ -22,7 +22,7 @@ export default function ProjectsPage() {
         <Container>
           <div className="grid gap-6">
             {projects.map((p, i) => (
-              <ProjectCard key={p.slug} project={p} index={i} />
+              <ProjectCard key={p.slug} project={p} index={i} headingLevel={2} />
             ))}
           </div>
         </Container>
