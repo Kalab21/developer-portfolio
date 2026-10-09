@@ -81,6 +81,8 @@ export const skillGroups: SkillGroup[] = [
       "Transactional Outbox",
       "Idempotency",
       "Concurrency",
+      "Python",
+      "FastAPI",
     ],
   },
   {
@@ -94,7 +96,6 @@ export const skillGroups: SkillGroup[] = [
       "MSK",
       "Glue",
       "Athena",
-      "AWS Bedrock",
       "PostgreSQL",
       "MongoDB",
       "Redis",
@@ -104,17 +105,12 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
-    title: "Full Stack",
+    title: "Frontend",
     skills: [
       "React",
       "Next.js",
       "TypeScript",
       "JavaScript",
-      "Python",
-      "FastAPI",
-      "Thymeleaf",
-      "Bootstrap",
-      "Tailwind CSS",
     ],
   },
   {
@@ -236,10 +232,10 @@ export const roles: Role[] = [
       "Enterprise analytics and reporting: turning stakeholder needs into modeled, trustworthy KPIs.",
     points: [
       "Designed SQL-based analytics and reporting solutions using PostgreSQL/MySQL, ETL/ELT, Power BI and dimensional modeling; translated stakeholder needs into maintainable KPI models and dashboards.",
-      "Built AWS analytics workflows with Athena, S3, Glue and RDS, and implemented validation and data-quality checks that improved reliability of downstream reporting.",
+      "Built AWS analytics workflows with Lambda, S3, Glue, Athena and RDS, and implemented validation and data-quality checks that improved reliability of downstream reporting.",
       "Optimized analytical SQL with CTEs, window functions, indexing, aggregation and caching; automated recurring reporting and transformation workflows with Power Query and DAX.",
     ],
-    stack: ["SQL", "AWS Athena", "Glue", "S3", "RDS", "Power BI", "DAX", "Power Query", "PostgreSQL", "MySQL"],
+    stack: ["SQL", "AWS Lambda", "S3", "Glue", "AWS Athena", "RDS", "Power BI", "DAX", "Power Query", "PostgreSQL", "MySQL"],
   },
   {
     id: "scale-ai",

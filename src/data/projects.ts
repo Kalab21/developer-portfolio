@@ -556,7 +556,7 @@ export const projects: Project[] = [
     category: "Java Full-Stack Engineering",
     cardSummary:
       "A server-rendered Spring marketplace with Admin, Seller and Buyer workflows, per-record ownership checks and CSRF-protected actions, covered by authorization tests.",
-    cardTags: ["Java 17", "Spring Boot", "Spring Security", "MySQL", "Thymeleaf", "Bootstrap"],
+    cardTags: ["Java 17", "Spring Boot", "Spring Security", "MySQL", "Thymeleaf"],
     summary:
       "A classic server-rendered Java marketplace with Admin, Seller and Buyer workflows: admins review seller accounts, sellers manage product listings, and buyers browse a catalogue, fill a cart and place orders. Built with Spring MVC, Thymeleaf, Spring Security and Spring Data JPA on MySQL.",
     context: [
