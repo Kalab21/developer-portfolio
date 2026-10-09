@@ -3,20 +3,19 @@ import { resume } from "./resume";
 export const site = {
   name: "Kalabe Kebede",
   title: "Senior Software Engineer | Forward Deployed Engineer",
-  tagline:
-    "Java · Spring Boot · Distributed Systems · Kafka · AWS · Next.js · Python/FastAPI · Agentic AI & RAG",
+  tagline: "Java · Distributed Systems · AWS · Applied AI",
   valueProp:
-    "6+ years building Java/Spring Boot distributed systems, microservices and full-stack platforms for banking, insurance and analytics. Forward Deployed delivery on inherited platforms, with recent work in agentic AI and RAG.",
+    "6+ years building Java/Spring Boot distributed systems across banking, insurance and analytics, with recent Forward Deployed Engineering work spanning AWS, data platforms, RAG and production-oriented AI systems.",
   currentFocus: [
-    "Java & Spring distributed systems",
-    "Forward Deployed Engineering",
-    "Agentic AI & RAG",
+    "Java & Spring Engineering",
+    "Distributed Systems & Cloud",
+    "Applied AI, RAG & Agents",
   ],
   /** Canonical production origin, used for metadata, the sitemap and robots.txt. */
   url: "https://developer-portfolio-iota-ten.vercel.app",
   metaTitle: "Kalabe Kebede | Senior Software Engineer & Forward Deployed Engineer",
   metaDescription:
-    "Senior Software Engineer and Forward Deployed Engineer: Java/Spring Boot distributed systems, microservices and Kafka; full-stack React and Next.js; AWS and data; Python/FastAPI; agentic AI and RAG.",
+    "Senior Software Engineer and Forward Deployed Engineer with 6+ years across Java/Spring Boot, distributed systems and microservices, Kafka, AWS and data engineering, Python/FastAPI, React/Next.js, and applied AI and RAG.",
   github: "https://github.com/Kalab21",
   email: "kalabkebe12@gmail.com",
   resumePath: `/${resume.fileName}`,
@@ -40,32 +39,32 @@ export const expertise: Expertise[] = [
   {
     title: "Backend & Distributed Systems",
     summary:
-      "Java, Spring Boot, Kafka, microservices, APIs, transaction processing, concurrency.",
+      "Java, Spring Boot, Kafka, microservices, APIs, transaction processing, concurrency and reliability.",
     tags: ["Java 8–21", "Spring Boot", "Kafka", "Microservices", "Idempotency"],
   },
   {
     title: "Forward Deployed Engineering",
     summary:
       "Taking over inherited systems: tracing how they really work, turning requirements into specs and ADRs, and shipping verified changes without breaking contracts.",
-    tags: ["Brownfield Analysis", "Spec-Driven Development", "ADRs", "Stakeholder Collaboration"],
+    tags: ["Brownfield Analysis", "Requirements Synthesis", "Spec-Driven Development", "ADRs", "Stakeholder Collaboration"],
   },
   {
-    title: "Full Stack, Cloud & Data",
+    title: "Cloud, Data & Frontend",
     summary:
-      "Next.js and React in TypeScript, Python/FastAPI services, SQL and AWS data workflows, containers and CI/CD.",
-    tags: ["Next.js", "React", "TypeScript", "FastAPI", "AWS", "SQL"],
+      "AWS cloud infrastructure and data workflows, SQL and data engineering, and React/Next.js delivery where the product needs a frontend.",
+    tags: ["AWS", "SQL", "PostgreSQL", "Next.js", "React"],
   },
   {
-    title: "Applied & Agentic AI",
+    title: "Applied AI & Retrieval",
     summary:
-      "RAG and retrieval, LangGraph orchestration, tool-using LangChain agents with bounded tool calling, LangSmith tracing and evaluation, kept advisory next to the system of record.",
-    tags: ["RAG", "LangGraph", "Tool-Using Agents", "LangSmith", "AWS Bedrock"],
+      "RAG and retrieval, LangGraph orchestration, bounded LangChain tool use, LangSmith tracing and evaluation, with AI kept inside clear production boundaries.",
+    tags: ["RAG", "LangChain", "LangGraph", "AWS Bedrock", "LangSmith"],
   },
 ];
 
 export type SkillGroup = { title: string; skills: string[] };
 
-/** Backend first, then cloud and data, full stack, applied AI, delivery and engineering practice. */
+/** Backend first, then cloud and data, frontend, applied AI, delivery and engineering practice. */
 export const skillGroups: SkillGroup[] = [
   {
     title: "Backend & Distributed Systems",
@@ -208,7 +207,7 @@ export const roles: Role[] = [
           "Strengthened RBAC, decision finality, idempotency, auditability and data-integrity controls.",
           "Translated business and regulatory requirements into specifications and ADRs; added automated verification for lending calculations, plus logging, metrics, tracing and CI gates.",
         ],
-        stack: ["Python", "FastAPI", "LangChain", "LangGraph", "Agentic AI", "LangSmith", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "Redis", "JWT/RBAC", "Next.js", "TypeScript", "Prometheus/Grafana", "Pytest", "Playwright"],
+        stack: ["Python", "FastAPI", "LangChain", "LangGraph", "Agentic AI", "LangSmith", "AWS Bedrock", "RAG", "PostgreSQL", "Redis", "JWT/RBAC", "Next.js", "TypeScript", "Prometheus/Grafana", "Pytest", "Playwright"],
       },
       {
         name: "Rev-Eval — Skills Assessment Platform",
@@ -235,7 +234,7 @@ export const roles: Role[] = [
       "Built AWS analytics workflows with Lambda, S3, Glue, Athena and RDS, and implemented validation and data-quality checks that improved reliability of downstream reporting.",
       "Optimized analytical SQL with CTEs, window functions, indexing, aggregation and caching; automated recurring reporting and transformation workflows with Power Query and DAX.",
     ],
-    stack: ["SQL", "AWS Lambda", "S3", "Glue", "AWS Athena", "RDS", "Power BI", "DAX", "Power Query", "PostgreSQL", "MySQL"],
+    stack: ["SQL", "AWS Lambda", "S3", "Glue", "Athena", "RDS", "Power BI", "DAX", "Power Query", "PostgreSQL", "MySQL"],
   },
   {
     id: "scale-ai",

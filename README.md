@@ -1,8 +1,8 @@
 # Kalabe Kebede — Developer Portfolio
 
-Senior Software Engineer / Forward Deployed Engineer portfolio: Java/Spring Boot
-distributed systems and microservices, Forward Deployed Engineering, full-stack
-React/Next.js, AWS and data, Python/FastAPI, and agentic AI and RAG.
+Portfolio of a Senior Software Engineer / Forward Deployed Engineer. The focus is
+Java/Spring distributed systems, with AWS cloud and data work, Python/FastAPI
+services, React/Next.js frontends and applied AI and RAG.
 
 **Live portfolio:** https://developer-portfolio-iota-ten.vercel.app
 
