@@ -5,7 +5,7 @@ import { ButtonLink, Container, PageHeader } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch about Senior Software Engineer, Java / Spring, distributed systems, data engineering, Forward Deployed Engineer and applied AI roles.",
+    "Get in touch about Senior Software Engineer and Forward Deployed Engineer opportunities across Java/Spring, distributed systems, cloud platforms and applied AI.",
   alternates: { canonical: "/contact" },
 };
 
@@ -13,9 +13,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader eyebrow="Contact" title="Let's talk">
-        I am interested in senior software engineering, distributed systems, Forward
-        Deployed Engineering, backend and cloud, and applied AI roles. Email is the
-        fastest way to reach me.
+        I am interested in Senior Software Engineer and Forward Deployed Engineer
+        opportunities across Java/Spring, distributed systems, cloud platforms and applied
+        AI. Email is the fastest way to reach me.
       </PageHeader>
       <Container className="py-12 sm:py-16">
         <ul className="grid gap-5 md:grid-cols-3">

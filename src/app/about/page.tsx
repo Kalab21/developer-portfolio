@@ -5,7 +5,7 @@ import { Container, PageHeader, SectionHeading, Tag } from "@/components/ui";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Senior Software Engineer whose scope grew from enterprise Java and Spring to distributed systems, Forward Deployed Engineering, full stack, cloud and data, and applied and agentic AI.",
+    "Senior Software Engineer whose scope grew from enterprise Java and Spring to distributed systems, Forward Deployed Engineering, cloud, data and frontend, and applied AI and retrieval.",
   alternates: { canonical: "/about" },
 };
 
@@ -13,8 +13,8 @@ const path = [
   { step: "Enterprise Java", note: "Insurance and banking backends" },
   { step: "Distributed Systems", note: "Kafka, microservices, transactions" },
   { step: "Forward Deployed Engineering", note: "Inherited platforms, specs, verified changes" },
-  { step: "Full Stack, Cloud & Data", note: "Next.js, FastAPI, SQL, AWS data services" },
-  { step: "Applied & Agentic AI", note: "RAG, agents, tracing, evaluation" },
+  { step: "Cloud, Data & Frontend", note: "AWS, SQL and data services, Next.js" },
+  { step: "Applied AI & Retrieval", note: "RAG, agents, tracing, evaluation" },
 ];
 
 export default function AboutPage() {

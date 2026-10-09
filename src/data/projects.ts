@@ -89,7 +89,7 @@ export const projects: Project[] = [
       { group: "Distributed systems", items: ["Apache Kafka", "Event-Driven Architecture", "Transactional Outbox", "Idempotency", "Pessimistic Locking"] },
       { group: "Data", items: ["PostgreSQL", "Flyway", "Redis"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
-      { group: "AWS infrastructure (modeled in Terraform)", items: ["Terraform", "ECS Fargate", "RDS PostgreSQL", "Amazon MSK"] },
+      { group: "AWS Infrastructure", items: ["Terraform", "ECS Fargate", "RDS PostgreSQL", "Amazon MSK"] },
       { group: "Testing", items: ["JUnit 5", "Mockito", "Testcontainers", "Vitest", "Playwright"] },
       { group: "Delivery & observability", items: ["Docker Compose", "GitHub Actions", "CodeQL", "Trivy", "Prometheus", "Grafana", "Zipkin"] },
     ],
@@ -209,9 +209,9 @@ export const projects: Project[] = [
     ],
     technologies: [
       { group: "Backend", items: ["Python", "FastAPI", "Pydantic", "PostgreSQL"] },
-      { group: "Applied AI", items: ["RAG", "LangChain tool-using agent (one bounded policy tool)", "LangGraph (deterministic decision and disclosure orchestration)", "AWS Bedrock", "LangSmith (tracing)", "Retrieval evaluation"] },
+      { group: "Applied AI", items: ["RAG", "LangChain", "LangGraph", "Agentic AI", "AWS Bedrock", "LangSmith", "Retrieval Evaluation"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript"] },
-      { group: "Controls", items: ["RBAC (staff roles)", "Maker-checker approvals", "Idempotency", "Redis (sessions)"] },
+      { group: "Controls", items: ["RBAC", "Maker-Checker", "Idempotency", "Redis"] },
       { group: "Delivery & ops", items: ["Docker Compose", "GitHub Actions", "gitleaks", "Pytest", "Playwright", "Prometheus", "Grafana"] },
     ],
     highlights: [
@@ -344,10 +344,10 @@ export const projects: Project[] = [
     ],
     technologies: [
       { group: "Backend & data", items: ["Python", "FastAPI", "Pydantic", "PostgreSQL", "pgvector"] },
-      { group: "Retrieval", items: ["Vector Search", "HNSW", "PostgreSQL Full-Text Search", "Hybrid Retrieval", "Reciprocal Rank Fusion", "Cross-Encoder Reranking", "Local embeddings (all-MiniLM-L6-v2)"] },
-      { group: "AI & orchestration", items: ["RAG", "LangGraph", "Evidence Gating", "Citation Validation", "MCP", "AI Evaluation (held-out retrieval metrics)"] },
+      { group: "Retrieval", items: ["Vector Search", "HNSW", "PostgreSQL Full-Text Search", "Hybrid Retrieval", "Reciprocal Rank Fusion", "Cross-Encoder Reranking", "MiniLM Embeddings"] },
+      { group: "AI & orchestration", items: ["RAG", "LangGraph", "Evidence Gating", "Citation Validation", "MCP", "AI Evaluation"] },
       { group: "Security & observability", items: ["OIDC/JWKS", "JWT", "RBAC", "Document-Level Authorization", "OpenTelemetry", "Prometheus"] },
-      { group: "AWS infrastructure (modeled in Terraform)", items: ["Terraform", "ECS Fargate", "RDS PostgreSQL"] },
+      { group: "AWS Infrastructure", items: ["Terraform", "ECS Fargate", "RDS PostgreSQL"] },
       { group: "Quality & delivery", items: ["Docker Compose", "GitHub Actions", "Pytest", "Ruff", "mypy", "Bandit", "pip-audit", "Trivy"] },
     ],
     highlights: [
@@ -466,8 +466,8 @@ export const projects: Project[] = [
       { group: "Backend", items: ["Python", "FastAPI", "Alembic"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript"] },
       { group: "Data & storage", items: ["PostgreSQL", "MongoDB", "MinIO"] },
-      { group: "Security", items: ["JWT", "RBAC (trainer / participant)", "Record ownership", "Service-to-service authentication"] },
-      { group: "Reliability", items: ["Idempotency", "Row locking", "Request-ID propagation"] },
+      { group: "Security", items: ["JWT", "RBAC", "Record Ownership", "Internal Service Token"] },
+      { group: "Reliability", items: ["Idempotency", "Row Locking", "Request-ID Propagation"] },
       { group: "Delivery & testing", items: ["Docker Compose", "Nginx", "GitHub Actions", "Pytest", "Vitest", "Playwright", "Trivy"] },
     ],
     highlights: [
@@ -575,9 +575,9 @@ export const projects: Project[] = [
     ],
     technologies: [
       { group: "Backend", items: ["Java 17", "Spring Boot", "Spring MVC", "Spring Security", "Spring Data JPA"] },
-      { group: "Data", items: ["MySQL", "H2 (tests)"] },
+      { group: "Data", items: ["MySQL", "H2"] },
       { group: "Frontend", items: ["Thymeleaf", "Bootstrap"] },
-      { group: "Security", items: ["Role-based workflows (Admin / Seller / Buyer)", "Record ownership", "CSRF protection"] },
+      { group: "Security", items: ["RBAC", "Record Ownership", "CSRF Protection"] },
       { group: "Quality & delivery", items: ["JUnit 5", "Mockito", "JaCoCo", "Docker", "GitHub Actions"] },
     ],
     highlights: [
