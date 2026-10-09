@@ -517,7 +517,7 @@ export const projects: Project[] = [
       "Postgres integration tests, Playwright end-to-end coverage and request-ID propagation.",
     ],
     security: [
-      "JWT authentication at the gateway, re-verified in each domain service, which enforce trainer and participant roles and record ownership; answer keys reach only trainers and the scoring service",
+      "Services re-verify the caller's JWT and enforce trainer and participant roles and record ownership; the question bank is trainer-only, participants receive only their own quiz session's questions, and answer keys reach only trainers and the scoring service",
       "Patched an authentication bypass and an information leak",
       "Middleware verifies JWT signatures before rendering role-specific pages",
     ],
