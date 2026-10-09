@@ -73,7 +73,7 @@ export default function AboutPage() {
           <p>
             Earlier, at Scale AI, I reviewed and evaluated AI-generated data. At Revature I
             started building applied-AI software as an engineer: retrieval grounded in
-            approved policy, LangGraph agent workflows and LangSmith tracing, all kept advisory
+            approved policy, a tool-using LangChain agent, LangGraph orchestration and LangSmith tracing, all kept advisory
             next to the system of record, with evaluation and human review around them. I
             care about
             authorization boundaries, idempotency, reconciliation and observability more

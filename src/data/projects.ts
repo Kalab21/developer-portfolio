@@ -81,7 +81,7 @@ export const projects: Project[] = [
     stats: [
       { value: "11", label: "business services" },
       { value: "13", label: "backend processes incl. gateway and Eureka" },
-      { value: "1,482", label: "automated tests in CI" },
+      { value: "1,482", label: "application tests in CI" },
       { value: "5", label: "shared library modules" },
     ],
     technologies: [
@@ -160,11 +160,12 @@ export const projects: Project[] = [
         { value: "1,028", label: "backend" },
         { value: "385", label: "frontend unit / component" },
         { value: "69", label: "offline Playwright" },
-        { value: "1,482", label: "CI total" },
+        { value: "1,482", label: "application tests in CI" },
       ],
       notes: [
         "Backend: 870 unit and web-slice tests plus 158 integration tests, several against real PostgreSQL and embedded Kafka.",
         "A further 46 live Playwright tests and a full-stack assertion script need all 13 backend processes, so they run on demand rather than in CI.",
+        "CI also runs Terraform architecture-invariant tests against mocked AWS providers; they check the infrastructure model and are not counted in the 1,482.",
       ],
     },
     scope: [
@@ -186,15 +187,15 @@ export const projects: Project[] = [
     subtitle: "Consumer Lending & Applied AI Platform",
     category: "Forward Deployed Engineering & Applied AI",
     cardSummary:
-      "An inherited consumer-lending platform hardened and split into eight FastAPI services, with auditable credit decisions, maker-checker controls and reconciliation, plus advisory AI: a grounded RAG assistant, LangGraph agent workflows and LangSmith tracing.",
-    cardTags: ["Python", "FastAPI", "LangGraph", "Multi-Agent", "LangSmith", "AWS Bedrock", "RAG", "Next.js", "TypeScript"],
+      "An inherited consumer-lending platform hardened and split into eight FastAPI services, with auditable credit decisions, maker-checker controls and reconciliation, plus advisory AI: a grounded RAG assistant, a LangChain/Bedrock underwriting-summary agent with one bounded policy tool, deterministic LangGraph orchestration and LangSmith tracing.",
+    cardTags: ["Python", "FastAPI", "LangGraph", "Agentic AI", "LangSmith", "AWS Bedrock", "RAG", "Next.js", "TypeScript"],
     summary:
       "A brownfield consumer-lending platform (intake, identity checks, credit decisioning, manual review, disclosures, payments, servicing and reconciliation) hardened and decomposed into eight FastAPI backend services, including the gateway. Grounded and agentic AI built with LangChain, LangGraph and AWS Bedrock supports staff, while the core lending workflow stays authoritative for credit decisions.",
     context: [
       "Starting from an inherited codebase plus business and regulatory requirements, I traced how an application moves through intake, identity verification, credit decisioning, manual review, disclosures, payments, servicing and reconciliation, then closed integrity, security and observability gaps without breaking existing behavior.",
     ],
     role:
-      "Contributed brownfield analysis, requirements and ADRs, the RAG assistant, agent workflows and LangSmith tracing, and security, ledger, reconciliation and observability work across the services.",
+      "Contributed brownfield analysis, requirements and ADRs, the RAG assistant, the underwriting-summary agent, LangGraph orchestration and LangSmith tracing, and security, ledger, reconciliation and observability work across the services.",
     repository: {
       url: "https://github.com/2463-FDE/KK-meridian-lending",
       label: "2463-FDE/KK-meridian-lending",
@@ -207,7 +208,7 @@ export const projects: Project[] = [
     ],
     technologies: [
       { group: "Backend", items: ["Python 3.12", "FastAPI", "Pydantic"] },
-      { group: "Applied AI", items: ["LangChain", "LangGraph (multi-agent workflows)", "LangSmith (tracing)", "AWS Bedrock (Anthropic Claude models)", "RAG", "Bounded tool calling", "Retrieval evaluation"] },
+      { group: "Applied AI", items: ["LangChain", "LangGraph (deterministic decision and disclosure orchestration)", "LangSmith (tracing)", "AWS Bedrock (Anthropic Claude models)", "RAG", "Bounded tool calling", "Retrieval evaluation"] },
       { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Playwright"] },
       { group: "Data & access control", items: ["PostgreSQL 16 (versioned SQL migrations)", "Redis (sessions)", "Role-based access control (staff roles, maker-checker)"] },
       { group: "Delivery & ops", items: ["Docker Compose", "GitHub Actions", "gitleaks", "Prometheus", "Grafana", "Pytest"] },
@@ -218,8 +219,8 @@ export const projects: Project[] = [
         body: "The underwriting-summary agent (LangChain on AWS Bedrock) is staff-only and read-only, with no database connection and one bounded policy-search tool. It refuses when retrieval returns no policy evidence, and labels its output as a summary that does not change the decision.",
       },
       {
-        title: "Agentic orchestration",
-        body: "Offer and TILA disclosure assembly runs as a two-agent LangGraph workflow: one agent walks the loan knowledge graph for an approved decision's inputs, a second hands them to the deterministic disclosure engine. The agents are orchestration nodes with one responsibility each, so regulated dollar math never goes through a model. Credit decisions also run as a LangGraph state graph.",
+        title: "LangGraph orchestration",
+        body: "Offer and TILA disclosure assembly runs as a two-node LangGraph disclosure orchestration: a knowledge-graph reader node (kg_reader) collects an approved decision's inputs from the loan knowledge graph, then assemble_disclosure hands them to the deterministic disclosure engine. Both nodes are deterministic and neither calls a model, so regulated dollar math never goes through a model. Credit decisions also run as a deterministic LangGraph state graph.",
       },
       {
         title: "AI tracing with LangSmith",
@@ -267,7 +268,7 @@ export const projects: Project[] = [
     contributions: [
       "Brownfield analysis: traced the lending lifecycle from intake through reconciliation and turned business and regulatory requirements into specifications and ADRs.",
       "RAG policy assistant: retrieval evaluation harness and corpus-hygiene gate, grounded policy chat with cited evidence, and prompt-injection and redaction guards.",
-      "Agentic workflows: the LangChain/Bedrock underwriting-summary agent with a bounded policy tool, and the two-agent LangGraph disclosure workflow over a loan knowledge graph.",
+      "AI and orchestration: the LangChain/Bedrock underwriting-summary agent with one bounded policy tool, and the two-node LangGraph disclosure orchestration over a loan knowledge graph, whose deterministic nodes never call a model.",
       "AI tracing: privacy-safe LangSmith traces propagated from the gateway through the agent run.",
       "AI boundary: kept the RAG assistant out of credit decisioning. Origination persists the authoritative decision evidence, and model reason codes are not surfaced directly to declined applicants.",
       "Payments and data integrity: removed stored card numbers and CVVs from the payments schema through a staged migration.",
@@ -382,7 +383,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "A REST client reaches FastAPI on ECS Fargate through an Application Load Balancer; an MCP consumer runs the same services locally over stdio. A validated JWT becomes an access scope (role, tenant, department, access level) applied inside every query, before retrieval. Semantic, lexical or RRF hybrid search on RDS PostgreSQL + pgvector, optional cross-encoder reranking, an evidence gate, the LangGraph answer generator and citation validation return an answer with sources or a refusal. Terraform models the AWS runtime with ALB, ECS Fargate, RDS, ECR, Secrets Manager, CloudWatch and least-privilege IAM.",
+        "In the AWS infrastructure model, a REST client reaches FastAPI on ECS Fargate through an Application Load Balancer; an MCP consumer runs the same services locally over stdio. A validated JWT becomes an access scope (role, tenant, department, access level) applied inside every query, before retrieval. Semantic, lexical or RRF hybrid search on RDS PostgreSQL + pgvector, optional cross-encoder reranking, an evidence gate, the LangGraph answer generator and citation validation return an answer with sources or a refusal. Terraform models the AWS infrastructure with ALB, ECS Fargate, RDS, ECR, Secrets Manager, CloudWatch and least-privilege IAM.",
       diagram: {
         light: "/projects/policy-rag/architecture.svg",
         dark: "/projects/policy-rag/architecture-dark.svg",
@@ -401,9 +402,9 @@ export const projects: Project[] = [
     },
     security: [
       "JWT validation with an algorithm allowlist chosen from the key source, so unsigned and key-confusion tokens are rejected; 401 for bad tokens, 403 for no usable role",
-      "Document-level authorization in the retrieval SQL: tenant isolation, access levels and departments, with unlabelled data failing closed",
+      "Document-level authorization in the retrieval SQL (tenant isolation, access levels and departments): ingestion applies documented defaults to omitted front-matter labels, while stored chunks missing required authorization attributes fail closed at retrieval",
       "Metadata filter keys are allowlisted, and filter values and query text are bound parameters, so requests cannot inject SQL",
-      "MCP tools are read-only with typed, bounded arguments and no SQL, filesystem, shell or network access",
+      "The MCP interface exposes no arbitrary shell, filesystem, raw-SQL or general-purpose network tool; its three bounded read-only tools take typed arguments and reuse the platform's authorized retrieval and RAG services",
       "Dependency auditing with pip-audit, static analysis with Bandit and a Trivy IaC scan in CI; no secrets in the repository",
     ],
     reliability: [
@@ -516,7 +517,7 @@ export const projects: Project[] = [
       "Postgres integration tests, Playwright end-to-end coverage and request-ID propagation.",
     ],
     security: [
-      "JWT authentication with role-based access enforced at the gateway and again in the services",
+      "JWT authentication at the gateway, re-verified in each domain service, which enforce trainer and participant roles and record ownership; answer keys reach only trainers and the scoring service",
       "Patched an authentication bypass and an information leak",
       "Middleware verifies JWT signatures before rendering role-specific pages",
     ],
