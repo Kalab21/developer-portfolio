@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ArchitectureTier, Project, Screenshot, Stat } from "@/data/projects";
+import type { Project, Screenshot, Stat } from "@/data/projects";
 import { TagList } from "./ui";
 
 export function StatGrid({ stats }: { stats: Stat[] }) {
@@ -16,35 +16,27 @@ export function StatGrid({ stats }: { stats: Stat[] }) {
   );
 }
 
-export function ArchitectureFlow({ tiers }: { tiers: ArchitectureTier[] }) {
+/** One-line request/data path: left to right on wider screens, top to bottom on phones. */
+export function ArchitectureAtGlance({ stages }: { stages: string[] }) {
   return (
-    <ol className="space-y-3">
-      {tiers.map((tier, i) => (
-        <li key={tier.label}>
-          <div className="rounded-xl border border-border bg-surface p-4">
-            <p className="mb-3 font-mono text-xs uppercase tracking-widest text-muted">
-              {tier.label}
-            </p>
-            <ul className="flex flex-wrap gap-2">
-              {tier.nodes.map((n) => (
-                <li
-                  key={n.name}
-                  className="rounded-md border border-border bg-surface-muted px-3 py-2 text-sm"
-                >
-                  <span className="font-medium">{n.name}</span>
-                  {n.detail && <span className="block text-xs text-muted">{n.detail}</span>}
-                </li>
-              ))}
-            </ul>
-          </div>
-          {i < tiers.length - 1 && (
-            <p aria-hidden="true" className="py-1 text-center text-muted">
-              ↓
-            </p>
-          )}
-        </li>
-      ))}
-    </ol>
+    <div>
+      <h3 className="font-mono text-xs uppercase tracking-widest text-muted">Architecture at a glance</h3>
+      <ol className="mt-3 flex flex-col gap-1.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-2 sm:gap-y-2">
+        {stages.map((stage, i) => (
+          <li key={stage} className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-2">
+            <span className="rounded-md border border-border bg-surface px-3 py-1.5 text-sm font-medium">
+              {stage}
+            </span>
+            {i < stages.length - 1 && (
+              <span aria-hidden="true" className="pl-4 text-sm text-muted sm:pl-0">
+                <span className="sm:hidden">↓</span>
+                <span className="hidden sm:inline">→</span>
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
 
@@ -53,10 +45,13 @@ export function ArchitectureDiagram({
 }: {
   diagram: NonNullable<Project["architecture"]["diagram"]>;
 }) {
-  // A tall, text-heavy diagram keeps a readable minimum width and scrolls sideways on phones.
+  // A tall, text-heavy diagram keeps a readable minimum width and scrolls sideways on phones;
+  // a compact one is capped so it does not fill the page.
   const minWidth = diagram.stacked ? "min-w-[860px]" : "";
   return (
-    <figure className="overflow-x-auto rounded-xl border border-border bg-surface">
+    <figure
+      className={`overflow-x-auto rounded-xl border border-border bg-surface ${diagram.stacked ? "" : "max-w-3xl"}`}
+    >
       <Image
         src={diagram.light}
         alt={diagram.alt}

@@ -14,11 +14,6 @@ export type Stat = { value: string; label: string };
 
 export type TechGroup = { group: string; items: string[] };
 
-export type ArchitectureTier = {
-  label: string;
-  nodes: { name: string; detail?: string }[];
-};
-
 export type Project = {
   slug: string;
   title: string;
@@ -37,14 +32,15 @@ export type Project = {
   highlights: { title: string; body: string }[];
   architecture: {
     description: string;
-    tiers: ArchitectureTier[];
+    /** The request or data path in 4-5 short stages, shown above the full diagram. */
+    atGlance: string[];
     diagram?: {
       light: string;
       dark: string;
       alt: string;
       width: number;
       height: number;
-      /** Show the diagram at full width above the tier list (for tall, text-heavy diagrams). */
+      /** A tall, text-heavy diagram: full width, with a minimum width that scrolls sideways on phones. */
       stacked?: boolean;
     };
   };
@@ -126,13 +122,7 @@ export const projects: Project[] = [
     architecture: {
       description:
         "One request path: the browser talks only to a Next.js backend-for-frontend. The BFF resolves the API hostname through Route 53 and sends server-side API requests through CloudFront with WAF and an Application Load Balancer that accepts only CloudFront's origin traffic, to the Spring Cloud Gateway. The gateway validates identity before forwarding to 11 Spring Boot services grouped by domain. REST and OpenFeign carry immediate, authoritative operations such as debits; Kafka carries derived workflows such as notifications, statistics and fraud checks. Each service owns a logical PostgreSQL database; in the AWS model the 11 logical databases share one RDS PostgreSQL deployment with Multi-AZ enabled by default.",
-      tiers: [
-        { label: "Users", nodes: [{ name: "Customer" }, { name: "Staff" }] },
-        { label: "Application / AWS edge", nodes: [{ name: "Next.js BFF", detail: "server-side session; outside current AWS Terraform" }, { name: "Route 53", detail: "DNS for the API hostname" }, { name: "CloudFront / WAF" }, { name: "ALB", detail: "CloudFront-only origin" }, { name: "Spring Cloud Gateway", detail: "JWT validation, identity headers, rate limiting" }, { name: "Eureka" }] },
-        { label: "Business services", nodes: [{ name: "Identity" }, { name: "Accounts & Money Movement" }, { name: "Lending & Cards" }, { name: "Risk & Insight" }] },
-        { label: "Data & messaging", nodes: [{ name: "PostgreSQL", detail: "logical database per service" }, { name: "Redis" }, { name: "Kafka", detail: "outbox, retries, dead-letter topics" }] },
-        { label: "Operations", nodes: [{ name: "ECS Fargate" }, { name: "ECR" }, { name: "Secrets Manager" }, { name: "CloudWatch" }, { name: "Prometheus / Grafana / Zipkin" }] },
-      ],
+      atGlance: ["Browser / Next.js BFF", "AWS Edge & Gateway", "Domain Services", "PostgreSQL / Redis / Kafka", "AWS Runtime & Observability"],
       diagram: {
         light: "/projects/northbank/northbank-end-to-end.svg",
         dark: "/projects/northbank/northbank-end-to-end-dark.svg",
@@ -259,12 +249,7 @@ export const projects: Project[] = [
         height: 1110,
         stacked: true,
       },
-      tiers: [
-        { label: "Client", nodes: [{ name: "Next.js staff and borrower UI" }] },
-        { label: "Edge", nodes: [{ name: "Gateway", detail: "auth, rate limiting, service routing" }] },
-        { label: "Services", nodes: [{ name: "origination", detail: "system of record" }, { name: "kyc" }, { name: "decision", detail: "credit scoring / decision computation" }, { name: "disclosure", detail: "TILA / APR" }, { name: "servicing", detail: "ledger, maker-checker" }, { name: "payment", detail: "idempotent capture" }, { name: "loan-assistant", detail: "advisory RAG agent, read-only" }] },
-        { label: "Data & ops", nodes: [{ name: "PostgreSQL 16" }, { name: "Redis" }, { name: "Prometheus + Grafana" }] },
-      ],
+      atGlance: ["Next.js UI", "Gateway", "Lending Services + Advisory AI", "PostgreSQL / Redis", "Observability"],
     },
     contributions: [
       "Brownfield analysis: traced the lending lifecycle from intake through reconciliation and turned business and regulatory requirements into specifications and ADRs.",
@@ -391,13 +376,7 @@ export const projects: Project[] = [
         height: 1466,
         stacked: true,
       },
-      tiers: [
-        { label: "Clients", nodes: [{ name: "REST" }, { name: "MCP", detail: "stdio, read-only tools" }] },
-        { label: "Runtime & identity", nodes: [{ name: "ALB / ECS FastAPI", detail: "public ingress: HTTPS + ACM" }, { name: "JWT / OIDC-JWKS" }, { name: "Access scope", detail: "role, tenant, department, access level" }] },
-        { label: "Retrieval", nodes: [{ name: "Semantic", detail: "pgvector HNSW" }, { name: "Lexical", detail: "PostgreSQL FTS" }, { name: "Hybrid", detail: "RRF" }, { name: "Reranking", detail: "optional cross-encoder" }] },
-        { label: "Grounding", nodes: [{ name: "Evidence gate" }, { name: "LangGraph" }, { name: "Citation validation" }, { name: "Answer / refusal" }] },
-        { label: "Data & operations", nodes: [{ name: "RDS PostgreSQL + pgvector" }, { name: "ECR" }, { name: "Secrets Manager" }, { name: "CloudWatch" }, { name: "IAM" }, { name: "AWS Bedrock", detail: "optional" }, { name: "OpenTelemetry / Prometheus" }] },
-      ],
+      atGlance: ["REST / MCP", "FastAPI + Authorization", "Hybrid Retrieval on pgvector", "Reranking", "LangGraph Evidence Gate"],
     },
     security: [
       "JWT validation with an algorithm allowlist chosen from the key source, so unsigned and key-confusion tokens are rejected; 401 for bad tokens, 403 for no usable role",
@@ -503,12 +482,7 @@ export const projects: Project[] = [
         height: 1150,
         stacked: true,
       },
-      tiers: [
-        { label: "Client", nodes: [{ name: "Next.js trainer and participant UI" }] },
-        { label: "Edge", nodes: [{ name: "Nginx" }, { name: "API gateway", detail: "JWT, identity headers, request IDs" }] },
-        { label: "Services", nodes: [{ name: "user-service" }, { name: "question-management" }, { name: "test-management", detail: "sessions, scoring" }, { name: "reporting-and-analytics" }] },
-        { label: "Storage", nodes: [{ name: "PostgreSQL" }, { name: "MongoDB" }, { name: "MinIO" }] },
-      ],
+      atGlance: ["Nginx", "Next.js UI / BFF", "API Gateway", "FastAPI Services", "PostgreSQL / MongoDB / MinIO"],
     },
     contributions: [
       "Quiz session creation with Alembic migrations, then the scoring engine with idempotency and locking.",
@@ -598,12 +572,7 @@ export const projects: Project[] = [
         width: 1000,
         height: 950,
       },
-      tiers: [
-        { label: "Browser", nodes: [{ name: "Thymeleaf pages", detail: "Admin, Seller, Buyer views" }] },
-        { label: "Security", nodes: [{ name: "Spring Security", detail: "form login, role URL rules" }] },
-        { label: "Application", nodes: [{ name: "Spring MVC controllers" }, { name: "Service layer", detail: "@Transactional" }] },
-        { label: "Data", nodes: [{ name: "Spring Data JPA" }, { name: "MySQL 8" }] },
-      ],
+      atGlance: ["Browser", "Spring Security", "Spring MVC / Service Layer", "Spring Data JPA", "MySQL"],
     },
     security: [
       "BCrypt password hashing; form login with a server-side session; every state-changing web action is a CSRF-protected POST and GET stays read-only",
