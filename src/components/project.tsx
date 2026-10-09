@@ -128,9 +128,21 @@ function CardImage({ image }: { image: Screenshot }) {
   );
 }
 
-/** One project as a row: image on the left, name and description beside it. */
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
+/**
+ * One project as a row: image on the left, name and description beside it.
+ * `headingLevel` follows the page outline: 3 under a section heading, 2 directly under the page title.
+ */
+export function ProjectCard({
+  project,
+  index,
+  headingLevel = 3,
+}: {
+  project: Project;
+  index: number;
+  headingLevel?: 2 | 3;
+}) {
   const image = project.cardImage ?? project.screenshots[0];
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   return (
     <article className="group relative grid overflow-hidden rounded-2xl border border-border bg-surface shadow-card transition-shadow hover:border-accent hover:shadow-lg md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
       <div className="relative aspect-[16/10] border-b border-border bg-surface-muted md:aspect-auto md:min-h-[320px] md:border-b-0 md:border-r">
@@ -140,14 +152,14 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         <p className="font-mono text-xs uppercase tracking-widest text-accent">
           <span className="text-muted">0{index + 1}</span> · {project.category}
         </p>
-        <h3 className="mt-2 text-2xl font-semibold tracking-tight">
+        <Heading className="mt-2 text-2xl font-semibold tracking-tight">
           <Link
             href={`/projects/${project.slug}`}
             className="after:absolute after:inset-0 after:content-['']"
           >
             {project.title}
           </Link>
-        </h3>
+        </Heading>
         <p className="mt-1 font-medium text-muted">{project.subtitle}</p>
         <p className="mt-4 leading-7 text-muted">{project.cardSummary ?? project.summary}</p>
         <div className="mt-5">
