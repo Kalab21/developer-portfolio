@@ -65,7 +65,7 @@ export const projects: Project[] = [
     category: "Distributed Systems & Financial Engineering",
     cardSummary:
       "A Java 21 / Spring Boot banking platform: 11 services behind an API gateway, Kafka events, a logical database per service and a Next.js console, built around transaction integrity and safe money movement.",
-    cardTags: ["Java 21", "Spring Boot", "Kafka", "PostgreSQL", "Redis", "Next.js", "React", "TypeScript"],
+    cardTags: ["Java 21", "Spring Boot", "Kafka", "PostgreSQL", "Redis", "AWS", "Next.js"],
     summary:
       "A Java full-stack, event-driven banking platform built with 11 Spring Boot services behind an API gateway, Kafka-based events, per-service logical PostgreSQL databases, and a Next.js customer and staff console. Designed around transaction integrity, idempotency, and reliable money movement.",
     context: [
@@ -85,12 +85,13 @@ export const projects: Project[] = [
       { value: "5", label: "shared library modules" },
     ],
     technologies: [
-      { group: "Backend", items: ["Java 21", "Spring Boot 3", "Spring Security", "Spring Cloud Gateway", "Eureka", "OpenFeign", "Resilience4j"] },
-      { group: "Data & messaging", items: ["PostgreSQL 16", "Flyway", "Redis", "Apache Kafka", "Transactional outbox"] },
-      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Recharts"] },
+      { group: "Backend", items: ["Java 21", "Spring Boot", "Spring Security", "Spring Data JPA", "Spring Cloud Gateway", "Eureka", "OpenFeign", "Resilience4j"] },
+      { group: "Distributed systems", items: ["Apache Kafka", "Event-Driven Architecture", "Transactional Outbox", "Idempotency", "Pessimistic Locking"] },
+      { group: "Data", items: ["PostgreSQL", "Flyway", "Redis"] },
+      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Tailwind CSS"] },
+      { group: "AWS infrastructure (modeled in Terraform)", items: ["Terraform", "ECS Fargate", "RDS PostgreSQL", "Amazon MSK"] },
       { group: "Testing", items: ["JUnit 5", "Mockito", "Testcontainers", "Vitest", "Playwright"] },
-      { group: "Delivery", items: ["Docker Compose", "GitHub Actions", "CodeQL", "Trivy", "Terraform · AWS infrastructure"] },
-      { group: "Observability", items: ["Micrometer", "Prometheus", "Grafana", "Zipkin"] },
+      { group: "Delivery & observability", items: ["Docker Compose", "GitHub Actions", "CodeQL", "Trivy", "Prometheus", "Grafana", "Zipkin"] },
     ],
     highlights: [
       {
@@ -188,7 +189,7 @@ export const projects: Project[] = [
     category: "Forward Deployed Engineering & Applied AI",
     cardSummary:
       "An inherited consumer-lending platform hardened and split into eight FastAPI services, with auditable credit decisions, maker-checker controls and reconciliation, plus advisory AI: a grounded RAG assistant, a LangChain/Bedrock underwriting-summary agent with one bounded policy tool, deterministic LangGraph orchestration and LangSmith tracing.",
-    cardTags: ["Python", "FastAPI", "LangGraph", "Agentic AI", "LangSmith", "AWS Bedrock", "RAG", "Next.js", "TypeScript"],
+    cardTags: ["Python", "FastAPI", "RAG", "LangChain", "LangGraph", "AWS Bedrock", "LangSmith", "Next.js"],
     summary:
       "A brownfield consumer-lending platform (intake, identity checks, credit decisioning, manual review, disclosures, payments, servicing and reconciliation) hardened and decomposed into eight FastAPI backend services, including the gateway. Grounded and agentic AI built with LangChain, LangGraph and AWS Bedrock supports staff, while the core lending workflow stays authoritative for credit decisions.",
     context: [
@@ -207,11 +208,11 @@ export const projects: Project[] = [
       { value: "Read-only", label: "staff-only RAG assistant, no database access" },
     ],
     technologies: [
-      { group: "Backend", items: ["Python 3.12", "FastAPI", "Pydantic"] },
-      { group: "Applied AI", items: ["LangChain", "LangGraph (deterministic decision and disclosure orchestration)", "LangSmith (tracing)", "AWS Bedrock (Anthropic Claude models)", "RAG", "Bounded tool calling", "Retrieval evaluation"] },
-      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Playwright"] },
-      { group: "Data & access control", items: ["PostgreSQL 16 (versioned SQL migrations)", "Redis (sessions)", "Role-based access control (staff roles, maker-checker)"] },
-      { group: "Delivery & ops", items: ["Docker Compose", "GitHub Actions", "gitleaks", "Prometheus", "Grafana", "Pytest"] },
+      { group: "Backend", items: ["Python", "FastAPI", "Pydantic", "PostgreSQL"] },
+      { group: "Applied AI", items: ["RAG", "LangChain tool-using agent (one bounded policy tool)", "LangGraph (deterministic decision and disclosure orchestration)", "AWS Bedrock", "LangSmith (tracing)", "Retrieval evaluation"] },
+      { group: "Frontend", items: ["Next.js", "React", "TypeScript"] },
+      { group: "Controls", items: ["RBAC (staff roles)", "Maker-checker approvals", "Idempotency", "Redis (sessions)"] },
+      { group: "Delivery & ops", items: ["Docker Compose", "GitHub Actions", "gitleaks", "Pytest", "Playwright", "Prometheus", "Grafana"] },
     ],
     highlights: [
       {
@@ -321,13 +322,13 @@ export const projects: Project[] = [
     category: "Vector Search & Retrieval-Augmented Generation",
     cardSummary:
       "A question-answering service over policy documents that only uses documents the caller may read, cites its sources and refuses when the evidence is weak. Retrieval quality is measured on held-out questions.",
-    cardTags: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Hybrid Search", "LangGraph", "MCP", "OpenTelemetry"],
+    cardTags: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Hybrid Retrieval", "LangGraph", "MCP", "OpenTelemetry"],
     cardImage: { src: "/projects/policy-rag/architecture.svg", darkSrc: "/projects/policy-rag/architecture-dark.svg", fit: "contain", width: 1440, height: 1466, alt: "Policy RAG Platform end-to-end architecture: authorization before retrieval, evidence gate, grounded answers or refusal, on an AWS infrastructure model.", caption: "End-to-end architecture" },
     summary:
       "A FastAPI service that answers questions over lending-policy documents. It retrieves only from documents the caller is authorized to read, answers with citations it has checked, and refuses when the evidence is insufficient. Retrieval runs on PostgreSQL with pgvector and combines semantic, full-text and hybrid search.",
     context: [
       "Policy RAG Platform answers questions over a small set of synthetic lending-policy documents. It is the project where I worked directly with the retrieval layer: the vector(384) schema and HNSW index, the similarity, full-text and metadata-filter SQL, rank fusion and reranking, and measuring retrieval quality on separate tuning and held-out question sets.",
-      "It also carries the controls an enterprise deployment would ask about: authorization applied before any chunk can become context, bounded read-only tools for AI clients, and observability that never records the user's question or the documents. The default answer generator is extractive, with optional Bedrock and OpenAI-compatible adapters.",
+      "It also carries the controls an enterprise deployment would ask about: authorization applied before any chunk can become context, bounded read-only tools for AI clients, and observability that never records the user's question or the documents. The default answer generator is extractive, with optional AWS Bedrock and OpenAI-compatible adapters.",
     ],
     role:
       "Designed and implemented the ingestion pipeline, pgvector schema and queries, hybrid retrieval and reranking, LangGraph evidence gate, authorization model, MCP server, observability, evaluation harness, tests, Docker setup, CI and the Terraform AWS infrastructure model.",
@@ -342,14 +343,12 @@ export const projects: Project[] = [
       { value: "3", label: "retrieval modes: semantic, lexical, hybrid" },
     ],
     technologies: [
-      { group: "API & language", items: ["Python 3.12", "FastAPI", "Pydantic"] },
-      { group: "Vector search", items: ["PostgreSQL 16", "pgvector 0.8.7", "HNSW (vector_cosine_ops)", "Semantic search (cosine similarity)", "JSONB + GIN metadata index"] },
-      { group: "Lexical & hybrid retrieval", items: ["PostgreSQL Full-Text Search", "tsvector", "GIN full-text index", "Reciprocal Rank Fusion", "Hybrid Retrieval"] },
-      { group: "Reranking", items: ["Cross-Encoder Reranking (ms-marco MiniLM, local ONNX)"] },
-      { group: "Embeddings & RAG", items: ["Embeddings: sentence-transformers/all-MiniLM-L6-v2 (fastembed)", "LangGraph", "Evidence gating", "Citation validation"] },
-      { group: "Security", items: ["JWT validation (OIDC/JWKS)", "RBAC", "Document-level authorization"] },
-      { group: "Interfaces & operations", items: ["MCP (Model Context Protocol) server", "OpenTelemetry", "Prometheus metrics", "Structured logging"] },
-      { group: "Quality & delivery", items: ["Pytest", "Ruff", "mypy", "pip-audit", "Bandit", "Docker Compose", "GitHub Actions", "Terraform · AWS infrastructure", "Trivy IaC scan"] },
+      { group: "Backend & data", items: ["Python", "FastAPI", "Pydantic", "PostgreSQL", "pgvector"] },
+      { group: "Retrieval", items: ["Vector Search", "HNSW", "PostgreSQL Full-Text Search", "Hybrid Retrieval", "Reciprocal Rank Fusion", "Cross-Encoder Reranking", "Local embeddings (all-MiniLM-L6-v2)"] },
+      { group: "AI & orchestration", items: ["RAG", "LangGraph", "Evidence Gating", "Citation Validation", "MCP", "AI Evaluation (held-out retrieval metrics)"] },
+      { group: "Security & observability", items: ["OIDC/JWKS", "JWT", "RBAC", "Document-Level Authorization", "OpenTelemetry", "Prometheus"] },
+      { group: "AWS infrastructure (modeled in Terraform)", items: ["Terraform", "ECS Fargate", "RDS PostgreSQL"] },
+      { group: "Quality & delivery", items: ["Docker Compose", "GitHub Actions", "Pytest", "Ruff", "mypy", "Bandit", "pip-audit", "Trivy"] },
     ],
     highlights: [
       {
@@ -387,7 +386,7 @@ export const projects: Project[] = [
       diagram: {
         light: "/projects/policy-rag/architecture.svg",
         dark: "/projects/policy-rag/architecture-dark.svg",
-        alt: "Policy RAG Platform end-to-end architecture. A REST API client reaches an Application Load Balancer, whose public ingress requires HTTPS with an ACM certificate, and which forwards to the FastAPI service on ECS Fargate; an MCP consumer runs the MCP server locally over stdio with its own token. Both present a bearer token that is validated against an external identity provider's JWKS keys and turned into an access scope of role, tenant, department and access level. The scope is applied inside every retrieval query, before retrieval: semantic (pgvector HNSW), lexical (PostgreSQL full-text) or hybrid (Reciprocal Rank Fusion) search against RDS PostgreSQL 16 with pgvector in private subnets, then optional cross-encoder reranking and an evidence gate. A LangGraph answer generator (extractive by default, AWS Bedrock optional) and citation validation return an answer with sources or a refusal. A runtime and operations rail shows ECR, Secrets Manager, CloudWatch Logs, optional Bedrock, least-privilege IAM, and OpenTelemetry with Prometheus; held-out evaluation and CI run across the platform.",
+        alt: "Policy RAG Platform end-to-end architecture. A REST API client reaches an Application Load Balancer, whose public ingress requires HTTPS with an ACM certificate, and which forwards to the FastAPI service on ECS Fargate; an MCP consumer runs the MCP server locally over stdio with its own token. Both present a bearer token that is validated against an external identity provider's JWKS keys and turned into an access scope of role, tenant, department and access level. The scope is applied inside every retrieval query, before retrieval: semantic (pgvector HNSW), lexical (PostgreSQL full-text) or hybrid (Reciprocal Rank Fusion) search against RDS PostgreSQL 16 with pgvector in private subnets, then optional cross-encoder reranking and an evidence gate. A LangGraph answer generator (extractive by default, AWS Bedrock optional) and citation validation return an answer with sources or a refusal. A runtime and operations rail shows ECR, Secrets Manager, CloudWatch Logs, optional AWS Bedrock, least-privilege IAM, and OpenTelemetry with Prometheus; held-out evaluation and CI run across the platform.",
         width: 1440,
         height: 1466,
         stacked: true,
@@ -397,7 +396,7 @@ export const projects: Project[] = [
         { label: "Runtime & identity", nodes: [{ name: "ALB / ECS FastAPI", detail: "public ingress: HTTPS + ACM" }, { name: "JWT / OIDC-JWKS" }, { name: "Access scope", detail: "role, tenant, department, access level" }] },
         { label: "Retrieval", nodes: [{ name: "Semantic", detail: "pgvector HNSW" }, { name: "Lexical", detail: "PostgreSQL FTS" }, { name: "Hybrid", detail: "RRF" }, { name: "Reranking", detail: "optional cross-encoder" }] },
         { label: "Grounding", nodes: [{ name: "Evidence gate" }, { name: "LangGraph" }, { name: "Citation validation" }, { name: "Answer / refusal" }] },
-        { label: "Data & operations", nodes: [{ name: "RDS PostgreSQL + pgvector" }, { name: "ECR" }, { name: "Secrets Manager" }, { name: "CloudWatch" }, { name: "IAM" }, { name: "Bedrock", detail: "optional" }, { name: "OpenTelemetry / Prometheus" }] },
+        { label: "Data & operations", nodes: [{ name: "RDS PostgreSQL + pgvector" }, { name: "ECR" }, { name: "Secrets Manager" }, { name: "CloudWatch" }, { name: "IAM" }, { name: "AWS Bedrock", detail: "optional" }, { name: "OpenTelemetry / Prometheus" }] },
       ],
     },
     security: [
@@ -464,10 +463,12 @@ export const projects: Project[] = [
       { value: "80%", label: "diff-coverage gate on changed lines in CI" },
     ],
     technologies: [
-      { group: "Backend", items: ["Python", "FastAPI", "Alembic", "JWT/RBAC (PyJWT)"] },
-      { group: "Frontend", items: ["Next.js", "React", "TypeScript", "Vitest", "Recharts"] },
+      { group: "Backend", items: ["Python", "FastAPI", "Alembic"] },
+      { group: "Frontend", items: ["Next.js", "React", "TypeScript"] },
       { group: "Data & storage", items: ["PostgreSQL", "MongoDB", "MinIO"] },
-      { group: "Edge & delivery", items: ["Nginx", "API gateway", "Docker Compose", "GitHub Actions", "Playwright", "Trivy"] },
+      { group: "Security", items: ["JWT", "RBAC (trainer / participant)", "Record ownership", "Service-to-service authentication"] },
+      { group: "Reliability", items: ["Idempotency", "Row locking", "Request-ID propagation"] },
+      { group: "Delivery & testing", items: ["Docker Compose", "Nginx", "GitHub Actions", "Pytest", "Vitest", "Playwright", "Trivy"] },
     ],
     highlights: [
       {
@@ -555,7 +556,7 @@ export const projects: Project[] = [
     category: "Java Full-Stack Engineering",
     cardSummary:
       "A server-rendered Spring marketplace with Admin, Seller and Buyer workflows, per-record ownership checks and CSRF-protected actions, covered by authorization tests.",
-    cardTags: ["Java 17", "Spring Boot", "Spring Security", "MySQL", "Thymeleaf", "Bootstrap", "Docker"],
+    cardTags: ["Java 17", "Spring Boot", "Spring Security", "MySQL", "Thymeleaf", "Bootstrap"],
     summary:
       "A classic server-rendered Java marketplace with Admin, Seller and Buyer workflows: admins review seller accounts, sellers manage product listings, and buyers browse a catalogue, fill a cart and place orders. Built with Spring MVC, Thymeleaf, Spring Security and Spring Data JPA on MySQL.",
     context: [
@@ -573,10 +574,11 @@ export const projects: Project[] = [
       { value: "8", label: "Spring Data JPA repositories" },
     ],
     technologies: [
-      { group: "Backend", items: ["Java 17", "Spring Boot 3.3", "Spring MVC", "Spring Security", "Spring Data JPA"] },
-      { group: "Data", items: ["MySQL 8", "H2 (tests)"] },
-      { group: "Frontend", items: ["Thymeleaf", "Bootstrap 5.3"] },
-      { group: "Delivery", items: ["Docker (multi-stage build)", "Docker Compose", "GitHub Actions", "JaCoCo"] },
+      { group: "Backend", items: ["Java 17", "Spring Boot", "Spring MVC", "Spring Security", "Spring Data JPA"] },
+      { group: "Data", items: ["MySQL", "H2 (tests)"] },
+      { group: "Frontend", items: ["Thymeleaf", "Bootstrap"] },
+      { group: "Security", items: ["Role-based workflows (Admin / Seller / Buyer)", "Record ownership", "CSRF protection"] },
+      { group: "Quality & delivery", items: ["JUnit 5", "Mockito", "JaCoCo", "Docker", "GitHub Actions"] },
     ],
     highlights: [
       { title: "Admin seller review workflow", body: "New sellers register as pending and only an approved seller can create, edit or delete products. Admins review and approve sellers from the seller management page." },
