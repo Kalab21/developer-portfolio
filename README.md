@@ -11,7 +11,7 @@ React/Next.js, AWS and data, Python/FastAPI, and agentic AI and RAG.
 ## Featured projects
 
 - **[Northbank](https://github.com/Kalab21/banking-platform)** — Java 21, Spring Boot, Kafka, PostgreSQL, Redis, Next.js, React, TypeScript
-- **[Meridian Lending](https://github.com/2463-FDE/KK-meridian-lending)** — Python · FastAPI · LangGraph · Multi-Agent Orchestration · LangSmith · AWS Bedrock · RAG · Next.js · React · TypeScript
+- **[Meridian Lending](https://github.com/2463-FDE/KK-meridian-lending)** — Python · FastAPI · LangGraph · Agentic AI · LangSmith · AWS Bedrock · RAG · Next.js · React · TypeScript
 - **[Policy RAG Platform](https://github.com/Kalab21/policy-rag-platform)** — FastAPI, PostgreSQL/pgvector, hybrid retrieval, LangGraph, MCP
 - **[Rev-Eval](https://github.com/RevatureFDEPEP/rev-eval/tree/kalabek)** — FastAPI, Next.js, React, TypeScript, PostgreSQL, MongoDB
 - **[MarketHub](https://github.com/Kalab21/markethub)** — Java 17, Spring Boot MVC, Spring Security, MySQL, Thymeleaf

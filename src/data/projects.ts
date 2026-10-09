@@ -188,7 +188,7 @@ export const projects: Project[] = [
     category: "Forward Deployed Engineering & Applied AI",
     cardSummary:
       "An inherited consumer-lending platform hardened and split into eight FastAPI services, with auditable credit decisions, maker-checker controls and reconciliation, plus advisory AI: a grounded RAG assistant, a LangChain/Bedrock underwriting-summary agent with one bounded policy tool, deterministic LangGraph orchestration and LangSmith tracing.",
-    cardTags: ["Python", "FastAPI", "LangGraph", "Multi-Agent Orchestration", "LangSmith", "AWS Bedrock", "RAG", "Next.js", "TypeScript"],
+    cardTags: ["Python", "FastAPI", "LangGraph", "Agentic AI", "LangSmith", "AWS Bedrock", "RAG", "Next.js", "TypeScript"],
     summary:
       "A brownfield consumer-lending platform (intake, identity checks, credit decisioning, manual review, disclosures, payments, servicing and reconciliation) hardened and decomposed into eight FastAPI backend services, including the gateway. Grounded and agentic AI built with LangChain, LangGraph and AWS Bedrock supports staff, while the core lending workflow stays authoritative for credit decisions.",
     context: [
@@ -383,7 +383,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "A REST client reaches FastAPI on ECS Fargate through an Application Load Balancer; an MCP consumer runs the same services locally over stdio. A validated JWT becomes an access scope (role, tenant, department, access level) applied inside every query, before retrieval. Semantic, lexical or RRF hybrid search on RDS PostgreSQL + pgvector, optional cross-encoder reranking, an evidence gate, the LangGraph answer generator and citation validation return an answer with sources or a refusal. Terraform models the AWS runtime with ALB, ECS Fargate, RDS, ECR, Secrets Manager, CloudWatch and least-privilege IAM.",
+        "A REST client reaches FastAPI on ECS Fargate through an Application Load Balancer; an MCP consumer runs the same services locally over stdio. A validated JWT becomes an access scope (role, tenant, department, access level) applied inside every query, before retrieval. Semantic, lexical or RRF hybrid search on RDS PostgreSQL + pgvector, optional cross-encoder reranking, an evidence gate, the LangGraph answer generator and citation validation return an answer with sources or a refusal. Terraform models the AWS infrastructure with ALB, ECS Fargate, RDS, ECR, Secrets Manager, CloudWatch and least-privilege IAM.",
       diagram: {
         light: "/projects/policy-rag/architecture.svg",
         dark: "/projects/policy-rag/architecture-dark.svg",
@@ -402,7 +402,7 @@ export const projects: Project[] = [
     },
     security: [
       "JWT validation with an algorithm allowlist chosen from the key source, so unsigned and key-confusion tokens are rejected; 401 for bad tokens, 403 for no usable role",
-      "Document-level authorization in the retrieval SQL: tenant isolation, access levels and departments, with unlabelled data failing closed",
+      "Document-level authorization in the retrieval SQL (tenant isolation, access levels and departments): ingestion applies documented defaults to omitted front-matter labels, while stored chunks missing required authorization attributes fail closed at retrieval",
       "Metadata filter keys are allowlisted, and filter values and query text are bound parameters, so requests cannot inject SQL",
       "The MCP interface exposes no arbitrary shell, filesystem, raw-SQL or general-purpose network tool; its three bounded read-only tools take typed arguments and reuse the platform's authorized retrieval and RAG services",
       "Dependency auditing with pip-audit, static analysis with Bandit and a Trivy IaC scan in CI; no secrets in the repository",
@@ -517,7 +517,7 @@ export const projects: Project[] = [
       "Postgres integration tests, Playwright end-to-end coverage and request-ID propagation.",
     ],
     security: [
-      "JWT authentication with role-based access enforced at the gateway and again in the services",
+      "JWT authentication at the gateway, with role and ownership checks in the domain services; selected services re-verify the JWT for defense in depth",
       "Patched an authentication bypass and an information leak",
       "Middleware verifies JWT signatures before rendering role-specific pages",
     ],

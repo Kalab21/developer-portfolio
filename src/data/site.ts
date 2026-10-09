@@ -59,7 +59,7 @@ export const expertise: Expertise[] = [
     title: "Applied & Agentic AI",
     summary:
       "RAG and retrieval, LangGraph orchestration, tool-using LangChain agents with bounded tool calling, LangSmith tracing and evaluation, kept advisory next to the system of record.",
-    tags: ["RAG", "LangGraph", "Multi-Agent Orchestration", "LangSmith", "AWS Bedrock"],
+    tags: ["RAG", "LangGraph", "Tool-Using Agents", "LangSmith", "AWS Bedrock"],
   },
 ];
 
@@ -139,7 +139,7 @@ export const skillGroups: SkillGroup[] = [
       "LangChain",
       "LangGraph",
       "Agentic AI",
-      "Multi-Agent Orchestration",
+      "Tool-Using Agents",
       "LangSmith",
       "AWS Bedrock",
       "Tool Calling",
@@ -226,7 +226,7 @@ export const roles: Role[] = [
           "Strengthened RBAC, decision finality, idempotency, auditability and data-integrity controls.",
           "Translated business and regulatory requirements into specifications and ADRs; added automated verification for lending calculations, plus logging, metrics, tracing and CI gates.",
         ],
-        stack: ["Python", "FastAPI", "LangChain", "LangGraph", "Multi-Agent Orchestration", "LangSmith", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "Redis", "JWT/RBAC", "Next.js", "TypeScript", "Prometheus/Grafana", "Pytest", "Playwright"],
+        stack: ["Python", "FastAPI", "LangChain", "LangGraph", "Agentic AI", "LangSmith", "AWS Bedrock", "RAG", "Tool Calling", "PostgreSQL", "Redis", "JWT/RBAC", "Next.js", "TypeScript", "Prometheus/Grafana", "Pytest", "Playwright"],
       },
       {
         name: "Rev-Eval — Skills Assessment Platform",
