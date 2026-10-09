@@ -383,7 +383,7 @@ export const projects: Project[] = [
     ],
     architecture: {
       description:
-        "A REST client reaches FastAPI on ECS Fargate through an Application Load Balancer; an MCP consumer runs the same services locally over stdio. A validated JWT becomes an access scope (role, tenant, department, access level) applied inside every query, before retrieval. Semantic, lexical or RRF hybrid search on RDS PostgreSQL + pgvector, optional cross-encoder reranking, an evidence gate, the LangGraph answer generator and citation validation return an answer with sources or a refusal. Terraform models the AWS infrastructure with ALB, ECS Fargate, RDS, ECR, Secrets Manager, CloudWatch and least-privilege IAM.",
+        "In the AWS infrastructure model, a REST client reaches FastAPI on ECS Fargate through an Application Load Balancer; an MCP consumer runs the same services locally over stdio. A validated JWT becomes an access scope (role, tenant, department, access level) applied inside every query, before retrieval. Semantic, lexical or RRF hybrid search on RDS PostgreSQL + pgvector, optional cross-encoder reranking, an evidence gate, the LangGraph answer generator and citation validation return an answer with sources or a refusal. Terraform models the AWS infrastructure with ALB, ECS Fargate, RDS, ECR, Secrets Manager, CloudWatch and least-privilege IAM.",
       diagram: {
         light: "/projects/policy-rag/architecture.svg",
         dark: "/projects/policy-rag/architecture-dark.svg",
@@ -517,7 +517,7 @@ export const projects: Project[] = [
       "Postgres integration tests, Playwright end-to-end coverage and request-ID propagation.",
     ],
     security: [
-      "JWT authentication at the gateway, with role and ownership checks in the domain services; selected services re-verify the JWT for defense in depth",
+      "JWT authentication at the gateway, re-verified in each domain service, which enforce trainer and participant roles and record ownership; answer keys reach only trainers and the scoring service",
       "Patched an authentication bypass and an information leak",
       "Middleware verifies JWT signatures before rendering role-specific pages",
     ],
