@@ -376,7 +376,7 @@ export const projects: Project[] = [
         height: 1466,
         stacked: true,
       },
-      atGlance: ["REST / MCP", "FastAPI + Authorization", "Hybrid Retrieval on pgvector", "Reranking", "LangGraph Evidence Gate"],
+      atGlance: ["REST API / MCP", "Authorization Scope", "Retrieval + Reranking", "LangGraph Evidence Gate", "Cited Answer / Refusal"],
     },
     security: [
       "JWT validation with an algorithm allowlist chosen from the key source, so unsigned and key-confusion tokens are rejected; 401 for bad tokens, 403 for no usable role",
